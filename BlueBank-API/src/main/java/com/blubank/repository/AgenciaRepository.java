@@ -1,4 +1,9 @@
 package com.blubank.repository;
 
-public interface AgenciaRepository {
+import com.blubank.model.Agencia;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface AgenciaRepository extends JpaRepository<Agencia, Integer>{
 }
