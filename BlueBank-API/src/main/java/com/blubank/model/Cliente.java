@@ -1,10 +1,15 @@
 package com.blubank.model;
 
+import java.sql.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -17,27 +22,22 @@ public class Cliente {
 	@Column(name ="id")
 	private Long id; //conta bancaria;
 	
+	@Column(name ="nome_cliente")
 	@NotEmpty(message ="O nome deve ser preenchido")
 	private String nome;
 	
-	@NotEmpty(message ="O sobrenome deve ser preenchido")
-	private String sobrenome;
-	
-	@NotEmpty(message ="O CPF deve ser preenchido")
-	private Long cpf;
-	
-	@NotEmpty(message ="O telefone deve ser preenchido")
-	private Long tel;
-	
-	@NotEmpty(message ="O email deve ser preenchido")
-	private String email;
-	
-	@NotEmpty(message ="A senha deve ser preenchida")
-	private String senha;
+	@Column(name ="data_inicio")
+	private Date data_ini;
 
-	
+	@Column(name ="data_fim")
+	private Date data_fim;
+
+	@OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "fk_dado",nullable=false)
+	private DadoCliente dado_cliente;
+
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -45,52 +45,36 @@ public class Cliente {
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public String getSobrenome() {
-		return sobrenome;
+	public Date getData_ini() {
+		return this.data_ini;
 	}
 
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
+	public void setData_ini(Date data_ini) {
+		this.data_ini = data_ini;
 	}
 
-	public Long getCpf() {
-		return cpf;
+	public Date getData_fim() {
+		return this.data_fim;
 	}
 
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
+	public void setData_fim(Date data_fim) {
+		this.data_fim = data_fim;
 	}
 
-	public Long getTel() {
-		return tel;
+	public DadoCliente getDadoCliente() {
+		return this.dado_cliente;
 	}
 
-	public void setTel(Long tel) {
-		this.tel = tel;
+	public void setDadoCliente(DadoCliente dadoCliente) {
+		this.dado_cliente = dadoCliente;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
 	
 }

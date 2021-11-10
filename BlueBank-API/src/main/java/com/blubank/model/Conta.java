@@ -2,11 +2,15 @@ package com.blubank.model;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +19,6 @@ public class Conta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "id_conta")
     private int id;
     
@@ -23,17 +26,21 @@ public class Conta {
     private String nome;
 
     @Column(name = "data_abertura")
-    private Date data;
+    private Date data_abertura;
 
     @Column(name = "data_fechamento")
-    private Date data;
+    private Date data_fechamento;
 
     @Column(name = "debito_bloqueado")
     private boolean debito;
 
-    @Column(name = "cliente_id_cliente")
-    private int cliente_id;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "fk_cliente",nullable=false)
+    private Cliente cliente;
 
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "fk_movimento",nullable=false)
+    private Movimento movimento;
 
     public int getId() {
         return this.id;
@@ -51,20 +58,20 @@ public class Conta {
         this.nome = nome;
     }
 
-    public Date getData() {
-        return this.data;
+    public Date getData_abertura() {
+        return this.data_abertura;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setData_abertura(Date data_abertura) {
+        this.data_abertura = data_abertura;
     }
 
-    public Date getData() {
-        return this.data;
+    public Date getData_fechamento() {
+        return this.data_fechamento;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setData_fechamento(Date data_fechamento) {
+        this.data_fechamento = data_fechamento;
     }
 
     public boolean isDebito() {
@@ -79,12 +86,13 @@ public class Conta {
         this.debito = debito;
     }
 
-    public int getCliente_id() {
-        return this.cliente_id;
+    public Cliente getCliente() {
+        return this.cliente;
     }
 
-    public void setCliente_id(int cliente_id) {
-        this.cliente_id = cliente_id;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
+    
 
 }
