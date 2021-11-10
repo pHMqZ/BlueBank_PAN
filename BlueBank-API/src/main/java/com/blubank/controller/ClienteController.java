@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/clientes")
-public class ClienteController {
+public class ClienteController 
 	
 	//o que cliente faz:
 	//cadastro de cliente
@@ -15,6 +15,4 @@ public class ClienteController {
 	//movimentação de conta(deposito/transferencia)
 	//hist de movimentação
 	
-	
-
 }
