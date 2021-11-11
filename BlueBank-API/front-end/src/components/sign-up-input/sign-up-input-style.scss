@@ -1,0 +1,50 @@
+
+
+
+.titulo{
+    color:#4DBEFE;
+    
+}
+.input-field{
+    input{
+        height: 40px;
+        width: 250px;
+        border-radius: 10px ;
+        margin-top: 8px;
+        background-color: #222D33;
+        border: none;
+        color: #fff;
+        padding-left:15px;
+        
+    }
+    input:focus{
+        outline: none !important;
+        border-color: #4DBEFE;
+        box-shadow: 0 0 10px #4DBEFE;
+    }
+    
+    
+}
+
+.uniao-container{
+    position:relative;
+    padding:0;
+    margin:0;
+
+    .image{
+        position:absolute;
+        bottom:12px;
+        left:235px;
+    }
+}
+
+.input-container{
+    margin-left: 32px;
+    margin-top: 12px;
+}
+
+.logo-banco{
+    position: absolute;
+    right: 70px;
+    bottom: 40px;
+}
