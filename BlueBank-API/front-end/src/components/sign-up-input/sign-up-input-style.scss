@@ -6,6 +6,7 @@
     
 }
 .input-field{
+    
     input{
         height: 40px;
         width: 250px;
@@ -16,26 +17,31 @@
         color: #fff;
         padding-left:15px;
         
+        
+        
     }
     input:focus{
         outline: none !important;
         border-color: #4DBEFE;
         box-shadow: 0 0 10px #4DBEFE;
     }
+
+    
     
     
 }
 
 .uniao-container{
-    position:relative;
+    
     padding:0;
     margin:0;
-
+    position:relative;
     .image{
         position:absolute;
         bottom:12px;
         left:235px;
     }
+    
 }
 
 .input-container{

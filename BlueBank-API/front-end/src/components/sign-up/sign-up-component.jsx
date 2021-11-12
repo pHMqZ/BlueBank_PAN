@@ -29,9 +29,10 @@ const SignUp = () => (
                         <SignUpInput titulo="Confirmar senha:" icone={Senha} tipo="password"></SignUpInput>
                 </div>
 
+                
     </div>
-    <div className="botao">
-                <Button tipo ="submit"/>
+                <div className="botao">
+                        <Button tipo ="submit" texto="CRIAR CONTA" tamanho="560px"/>
                 </div>
     </form>
 );

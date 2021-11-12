@@ -1,9 +1,9 @@
 import React from "react";
 import "./button-style.scss";
-const Button = ({tipo}) => {
+const Button = ({tipo,texto,tamanho}) => {
 
     return(
-        <button className="botao"   type ={tipo}>CRIAR CONTA</button>
+        <button style={{"width": `${tamanho}`}} className="botao"   type ={tipo}>{texto}</button>
     );
 }
 

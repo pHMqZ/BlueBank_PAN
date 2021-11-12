@@ -12,11 +12,12 @@ const SignUpInput = ({titulo, icone, tipo}) => {
                     {titulo}
                 </div>
         
-                <div className="uniao-container">
-                    <div className="input-field" >
-                        <input type={tipo} />
+                <div className="uniao-container" >
+                    <div className="input-field"  >
+                        <input type={tipo}  />
+                        <img src={icone} className="image" />
                     </div>
-                    <img src={icone} className="image" />
+                    
                 </div>
                 
                 
