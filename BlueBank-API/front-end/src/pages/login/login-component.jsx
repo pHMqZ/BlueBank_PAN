@@ -2,6 +2,7 @@ import React from "react";
 import RegisterMenu from "../../components/register-menu/register-menu-component";
 import './login-style.scss';
 import SignIn from "../../components/sign-in/sigin-in-component";
+import {ReactComponent as LogoBlue} from '../../assets/logoBlue.svg';
 
 
 const LoginPage = () => {
@@ -23,6 +24,8 @@ const LoginPage = () => {
             <div className="forms">
                 <SignIn/>
             </div>
+
+            <LogoBlue className="logo-banco"/>
             
         </div>
 
