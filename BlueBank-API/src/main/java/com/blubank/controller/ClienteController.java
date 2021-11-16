@@ -20,7 +20,7 @@ import com.blubank.repository.MovimentoRepository;
 
 @RestController
 @RequestMapping("/clientes")
-public class ClienteController {
+public class ClienteController 
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
