@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -26,11 +28,12 @@ public class Cliente {
 	@NotEmpty(message ="O nome deve ser preenchido")
 	private String nome;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name ="data_inicio")
-	private Date data_ini;
+	private Date data_ini = new java.sql.Date(System.currentTimeMillis()); //pega automatico quando o dado é gerado
 
 	@Column(name ="data_fim")
-	private Date data_fim;
+	private Date data_fim; //verificar se é possivel linkar o delete com o temporal aqui
 
 	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_dado",nullable=false)
