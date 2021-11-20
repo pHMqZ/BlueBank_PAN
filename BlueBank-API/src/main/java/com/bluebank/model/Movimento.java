@@ -1,4 +1,4 @@
-package com.blubank.model;
+package com.bluebank.model;
 
 import java.sql.Date;
 

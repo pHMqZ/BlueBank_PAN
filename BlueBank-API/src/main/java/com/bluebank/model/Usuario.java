@@ -1,4 +1,4 @@
-package com.blubank.model;
+package com.bluebank.model;
 
 import java.sql.Date;
 
@@ -16,8 +16,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="clientes")
-public class Cliente {
+@Table(name="usuarios")
+public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +28,9 @@ public class Cliente {
 	@NotEmpty(message ="O nome deve ser preenchido")
 	private String nome;
 	
+	@Column(name ="senha_cliente")
+	@NotEmpty(message = "A senha deve ser preenchida")
+	private String senha;
 	
 	@Column(name ="data_inicio")
 	private Date data_ini; //pega automatico quando o dado é gerado
@@ -37,8 +40,11 @@ public class Cliente {
 
 	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_dado",nullable=false)
-	private DadoCliente dado_cliente;
+	private DadoUsuario dado_usuario;
+	
+	private boolean admin = false;
 
+	
 	public Long getId() {
 		return this.id;
 	}
@@ -53,6 +59,14 @@ public class Cliente {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public Date getData_ini() {
@@ -71,13 +85,21 @@ public class Cliente {
 		this.data_fim = data_fim;
 	}
 
-	public DadoCliente getDadoCliente() {
-		return this.dado_cliente;
+
+	public DadoUsuario getDado_usuario() {
+		return dado_usuario;
 	}
 
-	public void setDadoCliente(DadoCliente dadoCliente) {
-		this.dado_cliente = dadoCliente;
+	public void setDado_usuario(DadoUsuario dado_usuario) {
+		this.dado_usuario = dado_usuario;
 	}
 
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 	
 }

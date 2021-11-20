@@ -1,4 +1,4 @@
-package com.blubank.model;
+package com.bluebank.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

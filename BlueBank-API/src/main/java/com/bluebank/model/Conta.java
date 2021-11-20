@@ -1,4 +1,4 @@
-package com.blubank.model;
+package com.bluebank.model;
 
 import java.sql.Date;
 
@@ -36,7 +36,7 @@ public class Conta {
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_cliente",nullable=false)
-    private Cliente cliente;
+    private Usuario cliente;
 
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_movimento",nullable=false)
@@ -86,11 +86,11 @@ public class Conta {
         this.debito = debito;
     }
 
-    public Cliente getCliente() {
+    public Usuario getCliente() {
         return this.cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Usuario cliente) {
         this.cliente = cliente;
     }
     
