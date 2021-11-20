@@ -137,5 +137,20 @@ public class DadoUsuario {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public DadoUsuario(int cpf, String rua, int numero, String complemento, String bairro, String cidade, String estado,
+			int telefone, String email) {
+		this.cpf = cpf;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.telefone = telefone;
+		this.email = email;
+	}
+	
+	
 	
 }

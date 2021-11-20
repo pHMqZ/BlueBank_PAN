@@ -26,7 +26,7 @@ public class Agencia {
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_conta",nullable=false)
     private Conta conta;
-    }
+    
 
     public int getId() {
         return this.id;
