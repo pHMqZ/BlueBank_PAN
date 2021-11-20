@@ -1,18 +1,16 @@
-package com.blubank.model;
+package com.bluebank.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="dado_cliente")
-public class DadoCliente {
+@Table(name="dado_usuario")
+public class DadoUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,10 +43,6 @@ public class DadoCliente {
 
     @Column(name = "email")
     private String email;
-
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_cliente",nullable=false)
-	private Cliente cliente;
 
     public int getId() {
         return this.id;
@@ -130,13 +124,16 @@ public class DadoCliente {
         this.email = email;
     }
 
-    public Cliente getCliente() {
-        return this.cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-
+	public DadoUsuario(int cpf, String rua, int numero, String complemento, String bairro, String cidade, String estado,
+			int telefone, String email) {
+		this.cpf = cpf;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.telefone = telefone;
+		this.email = email;
+	}
 }

@@ -1,14 +1,17 @@
-package com.blubank.model;
+package com.bluebank.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -37,9 +40,12 @@ public class Movimento {
     private int saldo;
 
     @ManyToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_conta",nullable=false)
-    private Conta conta;
-
+    @JoinTable(name = "conta_has_movimento",
+                joinColumns = @JoinColumn(name = "movimento_id_transacao"),
+                inverseJoinColumns = @JoinColumn(name = "conta_id_conta"))
+    private List<Conta> conta;
+    //@JoinColumn(name = "fk_conta",nullable=false)
+    //private Conta conta;
 
     public int getId() {
         return this.id;
@@ -87,14 +93,6 @@ public class Movimento {
 
     public void setSaldo(int saldo) {
         this.saldo = saldo;
-    }
-
-    public Conta getConta() {
-        return this.conta;
-    }
-
-    public void setConta(Conta conta) {
-        this.conta = conta;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.blubank;
+package com.bluebank;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

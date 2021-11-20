@@ -1,4 +1,4 @@
-package com.blubank.controller;
+package com.bluebank.controller;
 
 public class AdminController {
 	
