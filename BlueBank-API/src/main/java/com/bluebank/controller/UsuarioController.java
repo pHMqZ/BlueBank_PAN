@@ -29,6 +29,27 @@ public class UsuarioController {
 		Usuario usuario = usuarioService.salvaCliente(DTO.transformaUsuario());
 		return new ResponseEntity<> (UsuarioResposta.transformaDTO(usuario), HttpStatus.CREATED);
 	}
-	
-	
+
 }
+//	// o que cliente faz:
+  
+//
+//	// excluir dados
+//	@DeleteMapping
+//	public void deletaCliente(@PathVariable Integer id, @RequestBody Usuario cliente, @RequestBody DadoUsuario dado) {
+//		clienteRepo.deleteById(id);
+//		dadoClienteRepo.deleteById(id);
+//	}
+
+//  movimentação de conta(deposito/transferencia)
+//	@PostMapping
+//	public void transacoes(@PathVariable Integer id, @RequestBody Movimento movimento) {
+//		
+//	}
+//	
+//	
+//	hist de movimentação  -> GetMapping da movimentação
+//	@GetMapping
+//	public ResponseEntity<List<Movimento> getAll(){
+//		//return ResponseEntity.ok(movimentoRepo.findAll());
+//	}
