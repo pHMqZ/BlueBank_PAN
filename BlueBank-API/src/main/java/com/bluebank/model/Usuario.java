@@ -101,5 +101,14 @@ public class Usuario {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+
+	public Usuario(String nome,String senha, DadoUsuario dado_usuario) {
+		
+		this.nome = nome;
+		this.senha = senha;
+		this.dado_usuario = dado_usuario;
+	}
+	
+	
 	
 }

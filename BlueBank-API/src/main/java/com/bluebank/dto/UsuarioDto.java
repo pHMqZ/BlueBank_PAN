@@ -3,7 +3,7 @@ package com.bluebank.dto;
 import com.bluebank.model.DadoUsuario;
 import com.bluebank.model.Usuario;
 
-public class ClienteDto {
+public class UsuarioDto {
 	
 	private String nome;
 	private String senha;
@@ -16,25 +16,13 @@ public class ClienteDto {
     private String estado;
     private int telefone;
     private String email;
-	
-    public static ClienteDto u(Usuario c, DadoUsuario d) {
-    	var cliente = new ClienteDto();
-    	cliente.setNome(c.getNome());
-    	cliente.setSenha(c.getSenha());
-    	cliente.setCpf(d.getCpf());
-    	cliente.setRua(d.getRua());
-    	cliente.setNumero(d.getNumero());
-    	cliente.setComplemento(d.getComplemento());
-    	cliente.setBairro(d.getBairro());
-    	cliente.setCidade(d.getCidade());
-    	cliente.setEstado(d.getEstado());
-    	cliente.setTelefone(d.getTelefone());
-		cliente.setEmail(d.getEmail());
-		
-    	
-    	return cliente;	
+    
+    public Usuario transformaUsuario() {
+    	DadoUsuario dadoUsuario = new DadoUsuario(cpf, rua, numero, complemento, bairro, cidade, estado, telefone, email);
+    	return new Usuario(nome, senha, dadoUsuario);
     }
 
+    
 	public String getNome() {
 		return nome;
 	}
