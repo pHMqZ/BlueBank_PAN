@@ -9,97 +9,92 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="usuarios")
-public class Usuario {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="id")
-	private Long id; //conta bancaria;
-	
-	@Column(name ="nome_cliente")
-	@NotEmpty(message ="O nome deve ser preenchido")
-	private String nome;
-	
-	@Column(name ="senha_cliente")
-	@NotEmpty(message = "A senha deve ser preenchida")
-	private String senha;
-	
-	@Column(name ="data_inicio")
-	private Date data_ini; //pega automatico quando o dado é gerado
+@Table(name="movimento")
+public class Movimento {
 
-	@Column(name ="data_fim")
-	private Date data_fim; //verificar se é possivel linkar o delete com o temporal aqui
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_transacao")
+    private int id;
 
-	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_dado",nullable=false)
-	private DadoUsuario dado_usuario;
-	
-	private boolean admin = false;
+    @Column(name = "data_movimento")
+    private Date data_movimento;
 
-	
-	public Long getId() {
-		return this.id;
-	}
+    @Column(name = "tipo_movimento")
+    private String tipo_movimento;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "valor")
+    private int valor;
 
-	public String getNome() {
-		return this.nome;
-	}
+    @Column(name = "numero_doc")
+    private int numero_doc;
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public String getSenha() {
-		return senha;
-	}
+    @Column(name = "saldo")
+    private int saldo;
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public Date getData_ini() {
-		return this.data_ini;
-	}
-
-	public void setData_ini(Date data_ini) {
-		this.data_ini = data_ini;
-	}
-
-	public Date getData_fim() {
-		return this.data_fim;
-	}
-
-	public void setData_fim(Date data_fim) {
-		this.data_fim = data_fim;
-	}
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "fk_conta",nullable=false)
+    private Conta conta;
 
 
-	public DadoUsuario getDado_usuario() {
-		return dado_usuario;
-	}
+    public int getId() {
+        return this.id;
+    }
 
-	public void setDado_usuario(DadoUsuario dado_usuario) {
-		this.dado_usuario = dado_usuario;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public boolean isAdmin() {
-		return admin;
-	}
+    public Date getData_movimento() {
+        return this.data_movimento;
+    }
 
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
-	
+    public void setData_movimento(Date data_movimento) {
+        this.data_movimento = data_movimento;
+    }
+
+    public String getTipo_movimento() {
+        return this.tipo_movimento;
+    }
+
+    public void setTipo_movimento(String tipo_movimento) {
+        this.tipo_movimento = tipo_movimento;
+    }
+
+    public int getValor() {
+        return this.valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+    public int getNumero_doc() {
+        return this.numero_doc;
+    }
+
+    public void setNumero_doc(int numero_doc) {
+        this.numero_doc = numero_doc;
+    }
+
+    public int getSaldo() {
+        return this.saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
+
+    public Conta getConta() {
+        return this.conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+
 }

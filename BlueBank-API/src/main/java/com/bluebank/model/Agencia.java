@@ -21,10 +21,12 @@ public class Agencia {
 
     @Column(name = "nome_agencia")
     private String nome_agencia;
+
     
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_conta",nullable=false)
     private Conta conta;
+    }
 
     public int getId() {
         return this.id;
@@ -49,6 +51,4 @@ public class Agencia {
     public void setConta(Conta conta) {
         this.conta = conta;
     }
-
-
 }
