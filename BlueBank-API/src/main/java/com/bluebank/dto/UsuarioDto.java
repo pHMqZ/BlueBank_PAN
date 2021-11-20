@@ -4,7 +4,7 @@ import com.bluebank.model.DadoUsuario;
 import com.bluebank.model.Usuario;
 
 public class UsuarioDto {
-	
+    	
 	private String nome;
 	private String senha;
     private int cpf;
@@ -113,3 +113,5 @@ public class UsuarioDto {
 
     
 }
+
+
