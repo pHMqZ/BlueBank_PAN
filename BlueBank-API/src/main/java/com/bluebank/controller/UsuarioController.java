@@ -1,11 +1,11 @@
-package com.blubank.controller;
+package com.bluebank.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/clientes")
-public class ClienteController {
+public class UsuarioController {
 	
 	//o que cliente faz:
 	//cadastro de cliente

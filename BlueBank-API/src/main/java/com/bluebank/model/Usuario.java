@@ -1,4 +1,4 @@
-package com.blubank.model;
+package com.bluebank.model;
 
 import java.sql.Date;
 
@@ -14,30 +14,33 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="clientes")
-public class Cliente {
+@Table(name="usuario")
+public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="id")
 	private Long id; //conta bancaria;
 	
-	@Column(name ="nome_cliente")
+	@Column(name ="nome")
 	@NotEmpty(message ="O nome deve ser preenchido")
 	private String nome;
-	
-	@Column(name ="data_inicio")
-	private Date data_ini;
 
-	@Column(name ="data_fim")
-	private Date data_fim;
+	@Column(name = "status")
+	private Boolean status = true;
 
 	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_dado",nullable=false)
-	private DadoCliente dado_cliente;
+	private DadoUsuario dado_usuario;
+
+	@Column(name = "senha")
+	private String senha;
+
+	@Column(name = "admin")
+	private Boolean admin;
 
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -45,36 +48,43 @@ public class Cliente {
 	}
 
 	public String getNome() {
-		return this.nome;
+		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public Date getData_ini() {
-		return this.data_ini;
+
+	public DadoUsuario getDado_usuario() {
+		return dado_usuario;
 	}
 
-	public void setData_ini(Date data_ini) {
-		this.data_ini = data_ini;
+	public void setDado_usuario(DadoUsuario dado_usuario) {
+		this.dado_usuario = dado_usuario;
 	}
 
-	public Date getData_fim() {
-		return this.data_fim;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setData_fim(Date data_fim) {
-		this.data_fim = data_fim;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
-	public DadoCliente getDadoCliente() {
-		return this.dado_cliente;
+	public Boolean getAdmin() {
+		return admin;
 	}
 
-	public void setDadoCliente(DadoCliente dadoCliente) {
-		this.dado_cliente = dadoCliente;
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
 
-	
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
 }

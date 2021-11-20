@@ -1,4 +1,4 @@
-package com.blubank.model;
+package com.bluebank.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name="agencia")
@@ -21,10 +22,13 @@ public class Agencia {
 
     @Column(name = "nome_agencia")
     private String nome_agencia;
+
+    @Column(name = "status")
+    private Boolean status = true;
     
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_conta",nullable=false)
-    private Conta conta;
+    private List<Conta> conta;
 
     public int getId() {
         return this.id;
@@ -42,13 +46,19 @@ public class Agencia {
         this.nome_agencia = nome_agencia;
     }
 
-    public Conta getConta() {
+    public List<Conta> getConta() {
         return this.conta;
     }
 
-    public void setConta(Conta conta) {
+    public void setConta(List<Conta> conta) {
         this.conta = conta;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
 
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 }

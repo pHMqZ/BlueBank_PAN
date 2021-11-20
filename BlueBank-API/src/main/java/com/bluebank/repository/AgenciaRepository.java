@@ -1,6 +1,6 @@
-package com.blubank.repository;
+package com.bluebank.repository;
 
-import com.blubank.model.Agencia;
+import com.bluebank.model.Agencia;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
