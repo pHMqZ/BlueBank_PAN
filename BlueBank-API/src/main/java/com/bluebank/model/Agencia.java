@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
 
 @Entity
 @Table(name="agencia")
@@ -23,12 +22,11 @@ public class Agencia {
     @Column(name = "nome_agencia")
     private String nome_agencia;
 
-    @Column(name = "status")
-    private Boolean status = true;
     
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_conta",nullable=false)
-    private List<Conta> conta;
+    private Conta conta;
+    }
 
     public int getId() {
         return this.id;
@@ -46,19 +44,11 @@ public class Agencia {
         this.nome_agencia = nome_agencia;
     }
 
-    public List<Conta> getConta() {
+    public Conta getConta() {
         return this.conta;
     }
 
-    public void setConta(List<Conta> conta) {
+    public void setConta(Conta conta) {
         this.conta = conta;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 }

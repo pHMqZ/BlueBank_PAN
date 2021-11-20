@@ -16,7 +16,7 @@ public class DadoUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_dados")
     private int id;
 
     @Column(name = "cpf")
@@ -47,7 +47,7 @@ public class DadoUsuario {
     private String email;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_usuario",nullable=false)
+    @JoinColumn(name = "fk_cliente",nullable=false)
 	private Usuario usuario;
 
     public int getId() {
@@ -130,13 +130,12 @@ public class DadoUsuario {
         this.email = email;
     }
 
-    public Usuario getUsuario() {
-        return this.usuario;
-    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 }

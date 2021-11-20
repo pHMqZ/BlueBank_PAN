@@ -9,82 +9,92 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="usuario")
-public class Usuario {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="id")
-	private Long id; //conta bancaria;
-	
-	@Column(name ="nome")
-	@NotEmpty(message ="O nome deve ser preenchido")
-	private String nome;
+@Table(name="movimento")
+public class Movimento {
 
-	@Column(name = "status")
-	private Boolean status = true;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_transacao")
+    private int id;
 
-	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_dado",nullable=false)
-	private DadoUsuario dado_usuario;
+    @Column(name = "data_movimento")
+    private Date data_movimento;
 
-	@Column(name = "senha")
-	private String senha;
+    @Column(name = "tipo_movimento")
+    private String tipo_movimento;
 
-	@Column(name = "admin")
-	private Boolean admin;
+    @Column(name = "valor")
+    private int valor;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(name = "numero_doc")
+    private int numero_doc;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "saldo")
+    private int saldo;
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "fk_conta",nullable=false)
+    private Conta conta;
 
 
-	public DadoUsuario getDado_usuario() {
-		return dado_usuario;
-	}
+    public int getId() {
+        return this.id;
+    }
 
-	public void setDado_usuario(DadoUsuario dado_usuario) {
-		this.dado_usuario = dado_usuario;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    public Date getData_movimento() {
+        return this.data_movimento;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public void setData_movimento(Date data_movimento) {
+        this.data_movimento = data_movimento;
+    }
 
-	public Boolean getAdmin() {
-		return admin;
-	}
+    public String getTipo_movimento() {
+        return this.tipo_movimento;
+    }
 
-	public void setAdmin(Boolean admin) {
-		this.admin = admin;
-	}
+    public void setTipo_movimento(String tipo_movimento) {
+        this.tipo_movimento = tipo_movimento;
+    }
 
-	public Boolean getStatus() {
-		return status;
-	}
+    public int getValor() {
+        return this.valor;
+    }
 
-	public void setStatus(Boolean status) {
-		this.status = status;
-	}
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+    public int getNumero_doc() {
+        return this.numero_doc;
+    }
+
+    public void setNumero_doc(int numero_doc) {
+        this.numero_doc = numero_doc;
+    }
+
+    public int getSaldo() {
+        return this.saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
+
+    public Conta getConta() {
+        return this.conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+
 }

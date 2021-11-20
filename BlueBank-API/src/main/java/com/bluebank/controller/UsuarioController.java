@@ -4,15 +4,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/clientes")
+
+@RequestMapping("/usuario")
 public class UsuarioController {
 	
-	//o que cliente faz:
-	//cadastro de cliente
-	//editar dados cliente
-	//salvar os dados
-	//excluir dados
-	//movimentação de conta(deposito/transferencia)
-	//hist de movimentação
 	
-}
+
+//	// o que cliente faz:
+  
+//
+//	// excluir dados
+//	@DeleteMapping
+//	public void deletaCliente(@PathVariable Integer id, @RequestBody Usuario cliente, @RequestBody DadoUsuario dado) {
+//		clienteRepo.deleteById(id);
+//		dadoClienteRepo.deleteById(id);
+//	}
+
+//  movimentação de conta(deposito/transferencia)
+//	@PostMapping
+//	public void transacoes(@PathVariable Integer id, @RequestBody Movimento movimento) {
+//		
+//	}
+//	
+//	
+//	hist de movimentação  -> GetMapping da movimentação
+//	@GetMapping
+//	public ResponseEntity<List<Movimento> getAll(){
+//		//return ResponseEntity.ok(movimentoRepo.findAll());
+//	}

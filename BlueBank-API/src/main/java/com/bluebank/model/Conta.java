@@ -1,9 +1,17 @@
 package com.bluebank.model;
 
 import java.sql.Date;
-import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="conta")
@@ -27,15 +35,15 @@ public class Conta {
     private boolean debito;
 
     @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_usuario",nullable=false)
-    private Usuario usuario;
+    @JoinColumn(name = "fk_cliente",nullable=false)
+    private Usuario cliente;
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "fk_movimento",nullable=false)
-    private List<Movimento> movimento;
+    private Movimento movimento;
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -43,7 +51,7 @@ public class Conta {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -51,7 +59,7 @@ public class Conta {
     }
 
     public Date getData_abertura() {
-        return data_abertura;
+        return this.data_abertura;
     }
 
     public void setData_abertura(Date data_abertura) {
@@ -59,7 +67,7 @@ public class Conta {
     }
 
     public Date getData_fechamento() {
-        return data_fechamento;
+        return this.data_fechamento;
     }
 
     public void setData_fechamento(Date data_fechamento) {
@@ -67,26 +75,24 @@ public class Conta {
     }
 
     public boolean isDebito() {
-        return debito;
+        return this.debito;
+    }
+
+    public boolean getDebito() {
+        return this.debito;
     }
 
     public void setDebito(boolean debito) {
         this.debito = debito;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getCliente() {
+        return this.cliente;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
     }
+    
 
-    public List<Movimento> getMovimento() {
-        return movimento;
-    }
-
-    public void setMovimento(List<Movimento> movimento) {
-        this.movimento = movimento;
-    }
 }
