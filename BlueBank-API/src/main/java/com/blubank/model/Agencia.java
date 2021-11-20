@@ -1,5 +1,7 @@
 package com.blubank.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="agencia")
@@ -21,34 +25,12 @@ public class Agencia {
 
     @Column(name = "nome_agencia")
     private String nome_agencia;
-    
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_conta",nullable=false)
-    private Conta conta;
 
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome_agencia() {
-        return this.nome_agencia;
-    }
-
-    public void setNome_agencia(String nome_agencia) {
-        this.nome_agencia = nome_agencia;
-    }
-
-    public Conta getConta() {
-        return this.conta;
-    }
-
-    public void setConta(Conta conta) {
-        this.conta = conta;
-    }
-
-
+    @OneToMany(cascade = CascadeType.ALL)
+    // @JoinTable(name = "conta",
+    //             joinColumns = @JoinColumn(name = "agencia_id_agencia"),
+    //             inverseJoinColumns = @JoinColumn(name = "id_agencia")
+    //             )
+    @JoinColumn(name = "agencia_id_agencia")
+    private List<Conta> conta;
 }
