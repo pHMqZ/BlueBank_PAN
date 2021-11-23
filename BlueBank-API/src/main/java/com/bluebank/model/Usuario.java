@@ -1,100 +1,82 @@
 package com.bluebank.model;
 
-import java.sql.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="usuario")
+@Table(name="usuarios")
 public class Usuario {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="id")
+	private Long id; //conta bancaria;
+	
+	@Column(name ="nome_cliente")
+	@NotEmpty(message ="O nome deve ser preenchido")
+	private String nome;
+	
+	@Column(name ="senha_cliente")
+	@NotEmpty(message = "A senha deve ser preenchida")
+	private String senha;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+    private DadoUsuario dado_usuario;
+	
+	private boolean admin = false;
+	
+	public Long getId() {
+		return this.id;
+	}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_transacao")
-    private int id;
-
-    @Column(name = "data_movimento")
-    private Date data_movimento;
-
-    @Column(name = "tipo_movimento")
-    private String tipo_movimento;
-
-    @Column(name = "valor")
-    private int valor;
-
-    @Column(name = "numero_doc")
-    private int numero_doc;
-
-    @Column(name = "saldo")
-    private int saldo;
-
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_conta",nullable=false)
-    private Conta conta;
-
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getData_movimento() {
-        return this.data_movimento;
+    public String getNome() {
+        return this.nome;
     }
 
-    public void setData_movimento(Date data_movimento) {
-        this.data_movimento = data_movimento;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
 
-    public String getTipo_movimento() {
-        return this.tipo_movimento;
-    }
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
-    public void setTipo_movimento(String tipo_movimento) {
-        this.tipo_movimento = tipo_movimento;
-    }
+	public DadoUsuario getDado_usuario() {
+		return dado_usuario;
+	}
 
-    public int getValor() {
-        return this.valor;
-    }
+	public void setDado_usuario(DadoUsuario dado_usuario) {
+		this.dado_usuario = dado_usuario;
+	}
 
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
+	public boolean isAdmin() {
+		return admin;
+	}
 
-    public int getNumero_doc() {
-        return this.numero_doc;
-    }
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 
-    public void setNumero_doc(int numero_doc) {
-        this.numero_doc = numero_doc;
-    }
-
-    public int getSaldo() {
-        return this.saldo;
-    }
-
-    public void setSaldo(int saldo) {
-        this.saldo = saldo;
-    }
-
-    public Conta getConta() {
-        return this.conta;
-    }
-
-    public void setConta(Conta conta) {
-        this.conta = conta;
-    }
-
+	public Usuario(String nome,String senha, DadoUsuario dado_usuario) {
+		
+		this.nome = nome;
+		this.senha = senha;
+		this.dado_usuario = dado_usuario;
+	}
+	
 }

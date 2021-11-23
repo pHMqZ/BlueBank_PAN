@@ -1,14 +1,12 @@
 package com.bluebank.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="dado_usuario")
@@ -45,10 +43,6 @@ public class DadoUsuario {
 
     @Column(name = "email")
     private String email;
-
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_cliente",nullable=false)
-	private Usuario usuario;
 
     public int getId() {
         return this.id;
@@ -130,12 +124,16 @@ public class DadoUsuario {
         this.email = email;
     }
 
-	public Usuario getUsuario() {
-		return usuario;
+	public DadoUsuario(int cpf, String rua, int numero, String complemento, String bairro, String cidade, String estado,
+			int telefone, String email) {
+		this.cpf = cpf;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.telefone = telefone;
+		this.email = email;
 	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
 }
