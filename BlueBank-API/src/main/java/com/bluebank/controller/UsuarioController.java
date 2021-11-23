@@ -25,7 +25,7 @@ public class UsuarioController {
 		this.usuarioService = usuarioService;
 	}
 	
-	@PostMapping("*/salvar")
+	@PostMapping("/salvar")
 	public ResponseEntity<UsuarioResposta> salvar(@RequestBody UsuarioDto DTO){
 		Usuario usuario = usuarioService.salvaCliente(DTO.transformaUsuario());
 		return new ResponseEntity<> (UsuarioResposta.transformaDTO(usuario), HttpStatus.CREATED);
