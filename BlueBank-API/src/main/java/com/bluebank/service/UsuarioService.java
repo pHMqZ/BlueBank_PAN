@@ -29,20 +29,6 @@ public class UsuarioService {
 		return usuarioRepo.save(usuario);
 	}
 	
-//	public void salvarClienteDados(DadoUsuario dado) {
-//
-//		dado.setCpf(dado.getCpf());
-//		dado.setRua(dado.getRua());
-//		dado.setNumero(dado.getNumero());
-//		dado.setComplemento(dado.getComplemento());
-//		dado.setBairro(dado.getBairro());
-//		dado.setCidade(dado.getCidade());
-//		dado.setEstado(dado.getEstado());
-//		dado.setTelefone(dado.getTelefone());
-//		dado.setEmail(dado.getEmail());
-//
-//		dadoUsuarioRepo.save(dado);
-//	}
 
 	public void atualizaCliente(@PathVariable Integer id, Usuario usuario, DadoUsuario dado) throws Exception {
 
@@ -84,6 +70,8 @@ public class UsuarioService {
 		usuarioRepo.deleteById(id);
 		dadoUsuarioRepo.deleteById(id);
 	}
+
+    
 
 //  movimentação de conta(deposito/transferencia)
 //
