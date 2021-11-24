@@ -1,6 +1,6 @@
 package com.bluebank.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,8 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="conta")
@@ -23,11 +24,18 @@ public class Conta {
     @Column(name = "id_conta")
     private int id;
     
+    @Column(name = "saldo")
+    private double saldo;
+    
     @Column(name = "nome_conta")
     private String nome;
 
-    @Column(name = "data_abertura")
-    private Date data_abertura;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date data_abertura = new java.sql.Date(System.currentTimeMillis());
+    
+ 
+
 
     @Column(name = "data_fechamento")
     private Date data_fechamento;
@@ -42,10 +50,18 @@ public class Conta {
     private List<Movimento> movimento;
     //@JoinColumn(name = "fk_movimento",nullable=false)
 
-    @OneToOne(cascade=CascadeType.ALL)
-    private Usuario usuario;
+    
 
-    public int getId() {
+    
+    
+    
+    
+    
+    public Conta(String nome) {
+		this.nome = nome;
+	}
+
+	public int getId() {
         return this.id;
     }
 
@@ -88,6 +104,34 @@ public class Conta {
     public void setDebito(boolean debito) {
         this.debito = debito;
     }
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
+	public Agencia getAge() {
+		return age;
+	}
+
+	public void setAge(Agencia age) {
+		this.age = age;
+	}
+
+	public List<Movimento> getMovimento() {
+		return movimento;
+	}
+
+	public void setMovimento(List<Movimento> movimento) {
+		this.movimento = movimento;
+	}
+
+	
+    
+    
 
     // public Cliente getCliente() {
     //     return this.cliente;

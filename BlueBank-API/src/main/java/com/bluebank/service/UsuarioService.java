@@ -1,13 +1,13 @@
 package com.bluebank.service;
 
+import com.bluebank.model.DadoUsuario;
+import com.bluebank.model.Usuario;
+import com.bluebank.repository.DadoUsuarioRepository;
+import com.bluebank.repository.UsuarioRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import com.bluebank.model.Usuario;
-import com.bluebank.model.DadoUsuario;
-import com.bluebank.repository.UsuarioRepository;
-import com.bluebank.repository.DadoUsuarioRepository;
 
 @Service
 public class UsuarioService {
@@ -70,6 +70,12 @@ public class UsuarioService {
 		usuarioRepo.deleteById(id);
 		dadoUsuarioRepo.deleteById(id);
 	}
+	
+	
+	
+	
+	
+	
 
     
 

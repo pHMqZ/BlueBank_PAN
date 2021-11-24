@@ -2,11 +2,16 @@ package com.bluebank.controller;
 
 import com.bluebank.dto.UsuarioDto;
 import com.bluebank.dto.UsuarioResposta;
+import com.bluebank.model.Conta;
 import com.bluebank.model.Usuario;
+import com.bluebank.repository.ContaRepository;
 import com.bluebank.service.UsuarioService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +25,9 @@ public class UsuarioController {
 	
 	private final UsuarioService usuarioService;
 
-
+	@Autowired
+	private ContaRepository contaRepository;
+	
 	public UsuarioController(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
@@ -30,6 +37,17 @@ public class UsuarioController {
 		Usuario usuario = usuarioService.salvaCliente(DTO.transformaUsuario());
 		return new ResponseEntity<> (UsuarioResposta.transformaDTO(usuario), HttpStatus.CREATED);
 	}
+
+	@GetMapping("/conta/{id}")
+	public ResponseEntity<Conta> getContaById(@PathVariable Integer id){
+		return contaRepository.findById(id)
+				.map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());    									
+	}
+	
+	
+
+
 }
 //	// o que cliente faz:
   
