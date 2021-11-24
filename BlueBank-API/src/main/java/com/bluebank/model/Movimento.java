@@ -52,6 +52,9 @@ public class Movimento {
     	this.valor = valor;
     	this.tipo_movimento = tipo_movimento;
     }
+    public Movimento() {
+    	
+    }
 
     public int getId() {
         return this.id;
@@ -92,6 +95,8 @@ public class Movimento {
     public void setNumero_doc(int numero_doc) {
         this.numero_doc = numero_doc;
     }
+
+	
 
     
 

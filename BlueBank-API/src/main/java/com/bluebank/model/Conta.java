@@ -55,11 +55,14 @@ public class Conta {
 
     
     
+    public Conta() {
+    
+    }
     
     
-    
-    public Conta(String nome) {
+    public Conta(String nome, Double saldo) {
 		this.nome = nome;
+		this.saldo = saldo;
 	}
 
 	public int getId() {

@@ -1,5 +1,7 @@
 package com.bluebank.controller;
 
+import java.util.Optional;
+
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +39,7 @@ public class UsuarioController {
 	@Autowired
 	private ContaRepository contaRepository;
 	
+	
 	public UsuarioController(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
@@ -45,12 +49,26 @@ public class UsuarioController {
 		Usuario usuario = usuarioService.salvaCliente(DTO.transformaUsuario());
 		return new ResponseEntity<> (UsuarioResposta.transformaDTO(usuario), HttpStatus.CREATED);
 	}
-
+	
 	@GetMapping("/conta/{id}")
 	public ResponseEntity<Conta> getContaById(@PathVariable Integer id){
 		return contaRepository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());    									
+	}
+	
+	@PostMapping("/transferir/{id_origem}/{id_destino}/{valor}")
+	public ResponseEntity<?> transferir
+	(@PathVariable Integer id_origem,  @PathVariable Integer id_destino,  @PathVariable double valor) throws Exception{ //
+		try {
+			Conta contaOrigem = contaRepository.findById(id_origem).orElseThrow();
+			Conta contaDestino = contaRepository.findById(id_destino).orElseThrow();
+			usuarioService.transferirDinheiro(contaOrigem, contaDestino,valor);
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		}catch (Exception e){
+			throw new Exception(e);
+		}
+		
 	}
 	
 	

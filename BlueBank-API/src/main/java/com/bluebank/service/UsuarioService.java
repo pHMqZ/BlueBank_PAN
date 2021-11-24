@@ -1,14 +1,19 @@
 package com.bluebank.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.bluebank.model.Usuario;
+import com.bluebank.model.Conta;
 import com.bluebank.model.DadoUsuario;
 import com.bluebank.model.Movimento;
 import com.bluebank.repository.UsuarioRepository;
+import com.bluebank.repository.ContaRepository;
 import com.bluebank.repository.DadoUsuarioRepository;
+import com.bluebank.repository.MovimentoRepository;
 
 @Service
 public class UsuarioService {
@@ -18,6 +23,12 @@ public class UsuarioService {
 
 	@Autowired
 	private DadoUsuarioRepository dadoUsuarioRepo;
+	
+	@Autowired
+	private ContaRepository contaRepository;
+	
+	@Autowired
+	private MovimentoRepository movimentoRepository;
 	
 	public UsuarioService(UsuarioRepository usuarioRepo) {
 		this.usuarioRepo = usuarioRepo;
@@ -86,6 +97,40 @@ public class UsuarioService {
 		dadoUsuarioRepo.deleteById(id);
 	}
 	
+	
+	public void transferirDinheiro(Conta contaOrigem, Conta contaDestino, double valor ) throws Exception {
+		
+		
+		if(contaOrigem.getSaldo() >= valor) {
+			double saldoAtual = contaOrigem.getSaldo();
+			contaOrigem.setSaldo(saldoAtual-valor);
+			
+			
+			double saldoAtual2 = contaDestino.getSaldo();
+			contaDestino.setSaldo(saldoAtual2 + valor);
+			
+			Movimento movimentoOrigem = new Movimento(valor, "Transferência");
+			Movimento movimentoDestino = new Movimento(valor, "Recebimento");
+			
+			List<Movimento> mov_origem = contaOrigem.getMovimento();
+			mov_origem.add(movimentoOrigem);
+			contaOrigem.setMovimento(mov_origem);
+			
+			List<Movimento> mov_destino = contaDestino.getMovimento();
+			mov_destino.add(movimentoDestino);
+			contaDestino.setMovimento(mov_destino);
+			
+			contaRepository.save(contaOrigem);
+			contaRepository.save(contaDestino);
+			movimentoRepository.save(movimentoOrigem);
+			movimentoRepository.save(movimentoDestino);
+			
+			
+			
+		}else {
+			throw new Exception("Não se pode fazer essa transferência");
+		}
+	}
 	
 	
 	
