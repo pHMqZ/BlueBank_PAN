@@ -1,6 +1,6 @@
 package com.bluebank.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -20,7 +19,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="id")
-	private Long id; //conta bancaria;
+	private Integer id; //conta bancaria;
 	
 	@Column(name ="nome_cliente")
 	@NotEmpty(message ="O nome deve ser preenchido")
@@ -30,30 +29,32 @@ public class Usuario {
 	@NotEmpty(message = "A senha deve ser preenchida")
 	private String senha;
 	
-	@Column(name ="data_inicio")
-	private Date data_ini; //pega automatico quando o dado é gerado
-
-	@Column(name ="data_fim")
-	private Date data_fim; //verificar se é possivel linkar o delete com o temporal aqui
-
 	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_dado",nullable=false)
-	private DadoUsuario dado_usuario;
+    private Conta conta;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+    private DadoUsuario dado_usuario;
+	
+	@Column(name = "data_nascimento")
+	private Date data_nasc;
 	
 	private boolean admin = false;
-
 	
-	public Long getId() {
+	public Usuario() {
+		
+	}
+	
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getNome() {
-		return this.nome;
-	}
+    public String getNome() {
+        return this.nome;
+    }
 
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -66,23 +67,6 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public Date getData_ini() {
-		return this.data_ini;
-	}
-
-	public void setData_ini(Date data_ini) {
-		this.data_ini = data_ini;
-	}
-
-	public Date getData_fim() {
-		return this.data_fim;
-	}
-
-	public void setData_fim(Date data_fim) {
-		this.data_fim = data_fim;
-	}
-
 
 	public DadoUsuario getDado_usuario() {
 		return dado_usuario;
@@ -100,12 +84,30 @@ public class Usuario {
 		this.admin = admin;
 	}
 
-	public Usuario(String nome,String senha, DadoUsuario dado_usuario) {
+	public Usuario(String nome,String senha, DadoUsuario dado_usuario, Conta conta) {
 		
 		this.nome = nome;
 		this.senha = senha;
 		this.dado_usuario = dado_usuario;
+		this.conta = conta;
 	}
+
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
+	public Date getData_nasc() {
+		return data_nasc;
+	}
+
+	public void setData_nasc(Date data_nasc) {
+		this.data_nasc = data_nasc;
+	}
+	
 	
 	
 	

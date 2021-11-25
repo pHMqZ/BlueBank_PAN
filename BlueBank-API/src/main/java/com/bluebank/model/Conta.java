@@ -1,6 +1,7 @@
 package com.bluebank.model;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="conta")
@@ -22,11 +27,18 @@ public class Conta {
     @Column(name = "id_conta")
     private int id;
     
+    @Column(name = "saldo")
+    private double saldo;
+    
     @Column(name = "nome_conta")
     private String nome;
 
-    @Column(name = "data_abertura")
-    private Date data_abertura;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date data_abertura = new java.sql.Date(System.currentTimeMillis());
+    
+ 
+
 
     @Column(name = "data_fechamento")
     private Date data_fechamento;
@@ -34,15 +46,30 @@ public class Conta {
     @Column(name = "debito_bloqueado")
     private boolean debito;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_cliente",nullable=false)
-    private Usuario cliente;
+    @ManyToOne
+    private Agencia age;
 
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_movimento",nullable=false)
-    private Movimento movimento;
+    @Column(name = "lista_movimento")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "conta_id_conta")
+    private List<Movimento> movimento;
+ 
 
-    public int getId() {
+    
+
+    
+    
+    public Conta() {
+    
+    }
+    
+    
+    public Conta(String nome, Double saldo) {
+		this.nome = nome;
+		this.saldo = saldo;
+	}
+
+	public int getId() {
         return this.id;
     }
 
@@ -86,13 +113,41 @@ public class Conta {
         this.debito = debito;
     }
 
-    public Usuario getCliente() {
-        return this.cliente;
-    }
+	public double getSaldo() {
+		return saldo;
+	}
 
-    public void setCliente(Usuario cliente) {
-        this.cliente = cliente;
-    }
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
+	public Agencia getAge() {
+		return age;
+	}
+
+	public void setAge(Agencia age) {
+		this.age = age;
+	}
+
+	public List<Movimento> getMovimento() {
+		return movimento;
+	}
+
+	public void setMovimento(List<Movimento> movimento) {
+		this.movimento = movimento;
+	}
+
+	
+    
+    
+
+    // public Cliente getCliente() {
+    //     return this.cliente;
+    // }
+
+    // public void setCliente(Cliente cliente) {
+    //     this.cliente = cliente;
+    // }
     
 
 }
