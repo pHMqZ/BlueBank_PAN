@@ -112,8 +112,8 @@ public class UsuarioService {
 			String nome_conta_origem = contaOrigem.getNome();
 			String nome_conta_destino= contaDestino.getNome();
 			
-			Movimento movimentoOrigem = new Movimento(valor, "Transferência", contaOrigem, nome_conta_origem);
-			Movimento movimentoDestino = new Movimento(valor, "Recebimento", contaDestino, nome_conta_destino);
+			Movimento movimentoOrigem = new Movimento(valor, "Transferência", contaOrigem, nome_conta_destino);
+			Movimento movimentoDestino = new Movimento(valor, "Recebimento", contaDestino, nome_conta_origem);
 			
 			List<Movimento> mov_origem = contaOrigem.getMovimento();
 			mov_origem.add(movimentoOrigem);
