@@ -20,10 +20,13 @@ import com.bluebank.dto.ContaMovimentoResposta;
 import com.bluebank.dto.UsuarioDto;
 import com.bluebank.dto.UsuarioResposta;
 import com.bluebank.model.Conta;
+import com.bluebank.model.DadoUsuario;
 import com.bluebank.model.Movimento;
 import com.bluebank.model.Usuario;
 import com.bluebank.repository.ContaRepository;
+import com.bluebank.repository.DadoUsuarioRepository;
 import com.bluebank.repository.MovimentoRepository;
+import com.bluebank.repository.UsuarioRepository;
 import com.bluebank.service.UsuarioService;
 
 import org.json.simple.JSONArray;
@@ -41,6 +44,12 @@ public class UsuarioController {
 
 	@Autowired
 	private ContaRepository contaRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private DadoUsuarioRepository dadoUsuarioRepository;
 	
 	
 	public UsuarioController(UsuarioService usuarioService) {
@@ -84,12 +93,23 @@ public class UsuarioController {
 				movimentosResposta.add(ContaMovimentoResposta.transformaMovimento(movimento));
 				
 				}
-			
 			return  movimentosResposta;
 		}catch (Exception e){
 			throw new Exception(e);
 		}
 		
+	}
+	
+	@PutMapping("/editar/{id}")
+	public ResponseEntity<?> editarDados(@PathVariable Integer id, @RequestBody JSONObject jsonObject) throws Exception{
+		try {
+			Usuario cliente = usuarioRepository.findById(id).orElseThrow();
+			DadoUsuario dadosUsuario = dadoUsuarioRepository.findById(id).orElseThrow();
+			usuarioService.atualizaDadosCliente(cliente, dadosUsuario,jsonObject );
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		}catch(Exception e) {
+			throw new Exception(e);
+		}
 	}
 	
 	

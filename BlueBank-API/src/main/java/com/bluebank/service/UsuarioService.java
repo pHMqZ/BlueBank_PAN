@@ -2,6 +2,7 @@ package com.bluebank.service;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,6 +57,11 @@ public class UsuarioService {
 //		dadoUsuarioRepo.save(dado);
 //	}
 
+	
+	
+	
+	
+	
 	public void atualizaCliente(@PathVariable Integer id, Usuario usuario, DadoUsuario dado) throws Exception {
 
 		var u = usuarioRepo.findById(id);
@@ -136,6 +142,51 @@ public class UsuarioService {
 			throw new Exception("Não se pode fazer essa transferência");
 		}
 	}
+	
+	public void atualizaDadosCliente( Usuario usuario, DadoUsuario dado, JSONObject jsonObject) throws Exception {
+		
+		
+		int telefone;
+		String email;
+		String bairro;
+		String complemento;
+		String rua;
+		String estado;
+		String cidade; 
+		
+		try {
+			telefone = (int) jsonObject.get("telefone");
+			email = (String) jsonObject.get("email");
+			bairro = (String) jsonObject.get("bairro");
+			complemento = (String) jsonObject.get("complemento");
+			rua = (String) jsonObject.get("rua");
+			estado = (String) jsonObject.get("estado");
+			cidade = (String) jsonObject.get("cidade");
+			
+			dado.setTelefone(telefone);
+			dado.setEmail(email);
+			dado.setBairro(bairro);
+			dado.setComplemento(complemento);
+			dado.setRua(rua);
+			dado.setEstado(estado);
+			dado.setCidade(cidade);
+			
+			dadoUsuarioRepo.save(dado);
+			
+			
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
 	
 	
 	
