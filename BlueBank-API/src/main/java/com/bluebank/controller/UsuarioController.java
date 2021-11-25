@@ -1,5 +1,7 @@
 package com.bluebank.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.json.simple.JSONArray;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bluebank.dto.ContaMovimentoResposta;
 import com.bluebank.dto.UsuarioDto;
 import com.bluebank.dto.UsuarioResposta;
 import com.bluebank.model.Conta;
@@ -65,6 +68,24 @@ public class UsuarioController {
 			Conta contaDestino = contaRepository.findById(id_destino).orElseThrow();
 			usuarioService.transferirDinheiro(contaOrigem, contaDestino,valor);
 			return new ResponseEntity<>(HttpStatus.CREATED);
+		}catch (Exception e){
+			throw new Exception(e);
+		}
+		
+	}
+	
+	
+	@GetMapping("/historico/{id}")
+	public List<ContaMovimentoResposta> getHistoricoMovimento(@PathVariable Integer id) throws Exception{
+		try {
+			List<Movimento> movimentos = contaRepository.findByContaId(id);
+			List<ContaMovimentoResposta> movimentosResposta = new ArrayList<ContaMovimentoResposta>();
+			for(Movimento movimento: movimentos){
+				movimentosResposta.add(ContaMovimentoResposta.transformaMovimento(movimento));
+				
+				}
+			
+			return  movimentosResposta;
 		}catch (Exception e){
 			throw new Exception(e);
 		}

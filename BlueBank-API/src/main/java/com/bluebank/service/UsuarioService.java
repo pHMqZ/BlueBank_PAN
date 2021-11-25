@@ -109,8 +109,11 @@ public class UsuarioService {
 			double saldoAtual2 = contaDestino.getSaldo();
 			contaDestino.setSaldo(saldoAtual2 + valor);
 			
-			Movimento movimentoOrigem = new Movimento(valor, "Transferência");
-			Movimento movimentoDestino = new Movimento(valor, "Recebimento");
+			String nome_conta_origem = contaOrigem.getNome();
+			String nome_conta_destino= contaDestino.getNome();
+			
+			Movimento movimentoOrigem = new Movimento(valor, "Transferência", contaOrigem, nome_conta_origem);
+			Movimento movimentoDestino = new Movimento(valor, "Recebimento", contaDestino, nome_conta_destino);
 			
 			List<Movimento> mov_origem = contaOrigem.getMovimento();
 			mov_origem.add(movimentoOrigem);
@@ -120,10 +123,12 @@ public class UsuarioService {
 			mov_destino.add(movimentoDestino);
 			contaDestino.setMovimento(mov_destino);
 			
-			contaRepository.save(contaOrigem);
-			contaRepository.save(contaDestino);
+			
 			movimentoRepository.save(movimentoOrigem);
 			movimentoRepository.save(movimentoDestino);
+			contaRepository.save(contaOrigem);
+			contaRepository.save(contaDestino);
+			
 			
 			
 			
