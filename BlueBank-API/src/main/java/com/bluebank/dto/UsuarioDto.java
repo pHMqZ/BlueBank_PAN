@@ -1,5 +1,6 @@
 package com.bluebank.dto;
 
+import com.bluebank.model.Conta;
 import com.bluebank.model.DadoUsuario;
 import com.bluebank.model.Usuario;
 
@@ -19,7 +20,8 @@ public class UsuarioDto {
     
     public Usuario transformaUsuario() {
     	DadoUsuario dadoUsuario = new DadoUsuario(cpf, rua, numero, complemento, bairro, cidade, estado, telefone, email);
-    	return new Usuario(nome, senha, dadoUsuario);
+    	Conta conta = new Conta(nome,200.0);
+    	return new Usuario(nome, senha, dadoUsuario, conta);
     }
 
     
