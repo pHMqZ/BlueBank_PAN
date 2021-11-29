@@ -6,29 +6,41 @@ import com.bluebank.model.Usuario;
 
 public class UsuarioResposta {
 	
-	private Long id;
+	private Integer id;
 	private String nome;
 	private boolean admin;
 	private DadoUsuario dado_usuario;
 	private Conta conta;
+	private Boolean status;
 	
 	public static UsuarioResposta transformaDTO(Usuario usuario) {
-		return new UsuarioResposta(usuario.getId(), usuario.getNome(), usuario.isAdmin(), usuario.getDado_usuario(), usuario.getConta());
+		return new UsuarioResposta(usuario.getId(), usuario.getNome(), usuario.isAdmin(), usuario.getDado_usuario(), usuario.getConta(), usuario.getStatus());
+	}
+	public static UsuarioResposta transformaDTOAdmin(Usuario usuario) {
+		return new UsuarioResposta(usuario.getId(), usuario.getNome(), usuario.isAdmin(), usuario.getStatus());
 	}
 
-	public UsuarioResposta(Long id, String nome, boolean admin, DadoUsuario dado_usuario, Conta conta) {
+	public UsuarioResposta(Integer id, String nome, boolean admin, DadoUsuario dado_usuario, Conta conta, Boolean status) {
 		this.id = id;
 		this.nome = nome;
 		this.admin = admin;
 		this.dado_usuario = dado_usuario;
 		this.conta = conta;
+		this.status = status;
 	}
 
-	public Long getId() {
+	public UsuarioResposta(Integer id, String nome, Boolean admin, Boolean status) {
+		this.id = id;
+		this.nome = nome;
+		this.admin = admin;
+		this.status = status;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
