@@ -115,6 +115,7 @@ public class UsuarioService {
 			double saldoAtual2 = contaDestino.getSaldo();
 			contaDestino.setSaldo(saldoAtual2 + valor);
 			
+			//setar movimento
 			String nome_conta_origem = contaOrigem.getNome();
 			String nome_conta_destino= contaDestino.getNome();
 			
