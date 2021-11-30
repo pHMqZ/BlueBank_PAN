@@ -19,11 +19,11 @@ public class Agencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_agencia")
-    private int id;
+    @Column(name = "id")
+    private Integer id;
 
-    @Column(name = "nome_agencia")
-    private String nome_agencia;
+    @Column(name = "nome")
+    private String nome;
 
     @OneToMany(cascade = CascadeType.ALL)
     // @JoinTable(name = "conta",
@@ -32,4 +32,35 @@ public class Agencia {
     //             )
     @JoinColumn(name = "agencia_id_agencia")
     private List<Conta> conta;
+
+    @Column(name = "status")
+    private Boolean status = true;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Conta> getConta() {
+        return conta;
+    }
+
+    public void setConta(List<Conta> conta) {
+        this.conta = conta;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 }
