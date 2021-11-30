@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.bluebank.model.Usuario;
 import com.bluebank.model.DadoUsuario;
+import com.bluebank.model.Movimento;
 import com.bluebank.repository.UsuarioRepository;
 import com.bluebank.repository.DadoUsuarioRepository;
 
@@ -84,6 +85,12 @@ public class UsuarioService {
 		usuarioRepo.deleteById(id);
 		dadoUsuarioRepo.deleteById(id);
 	}
+	
+	
+	
+	
+	
+	
 
 //  movimentação de conta(deposito/transferencia)
 //

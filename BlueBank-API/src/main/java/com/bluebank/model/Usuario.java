@@ -1,5 +1,7 @@
 package com.bluebank.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +30,13 @@ public class Usuario {
 	private String senha;
 	
 	@OneToOne(cascade=CascadeType.ALL)
+    private Conta conta;
+	
+	@OneToOne(cascade=CascadeType.ALL)
     private DadoUsuario dado_usuario;
+	
+	@Column(name = "data_nascimento")
+	private Date data_nasc;
 	
 	private boolean admin = false;
 	
@@ -72,11 +80,31 @@ public class Usuario {
 		this.admin = admin;
 	}
 
-	public Usuario(String nome,String senha, DadoUsuario dado_usuario) {
+	public Usuario(String nome,String senha, DadoUsuario dado_usuario, Conta conta) {
 		
 		this.nome = nome;
 		this.senha = senha;
 		this.dado_usuario = dado_usuario;
+		this.conta = conta;
 	}
+
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
+	public Date getData_nasc() {
+		return data_nasc;
+	}
+
+	public void setData_nasc(Date data_nasc) {
+		this.data_nasc = data_nasc;
+	}
+	
+	
+	
 	
 }

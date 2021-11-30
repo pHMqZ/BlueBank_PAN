@@ -31,13 +31,13 @@ public class Movimento {
     private String tipo_movimento;
 
     @Column(name = "valor")
-    private int valor;
+    private double valor;
 
     @Column(name = "numero_doc")
     private int numero_doc;
+    
+    
 
-    @Column(name = "saldo")
-    private int saldo;
 
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "conta_has_movimento",
@@ -46,6 +46,12 @@ public class Movimento {
     private List<Conta> conta;
     //@JoinColumn(name = "fk_conta",nullable=false)
     //private Conta conta;
+    
+    
+    public Movimento(double valor, String tipo_movimento) {
+    	this.valor = valor;
+    	this.tipo_movimento = tipo_movimento;
+    }
 
     public int getId() {
         return this.id;
@@ -71,11 +77,11 @@ public class Movimento {
         this.tipo_movimento = tipo_movimento;
     }
 
-    public int getValor() {
+    public double getValor() {
         return this.valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
@@ -87,12 +93,6 @@ public class Movimento {
         this.numero_doc = numero_doc;
     }
 
-    public int getSaldo() {
-        return this.saldo;
-    }
-
-    public void setSaldo(int saldo) {
-        this.saldo = saldo;
-    }
+    
 
 }
