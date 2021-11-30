@@ -19,7 +19,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="id")
-	private Long id; //conta bancaria;
+	private Integer id; //conta bancaria;
 	
 	@Column(name ="nome_cliente")
 	@NotEmpty(message ="O nome deve ser preenchido")
@@ -40,11 +40,15 @@ public class Usuario {
 	
 	private boolean admin = false;
 	
-	public Long getId() {
+	public Usuario() {
+		
+	}
+	
+	public Integer getId() {
 		return this.id;
 	}
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

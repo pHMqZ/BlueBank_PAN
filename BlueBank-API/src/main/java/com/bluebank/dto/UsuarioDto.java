@@ -20,7 +20,7 @@ public class UsuarioDto {
     
     public Usuario transformaUsuario() {
     	DadoUsuario dadoUsuario = new DadoUsuario(cpf, rua, numero, complemento, bairro, cidade, estado, telefone, email);
-    	Conta conta = new Conta(nome);
+    	Conta conta = new Conta(nome,200.0);
     	return new Usuario(nome, senha, dadoUsuario, conta);
     }
 
