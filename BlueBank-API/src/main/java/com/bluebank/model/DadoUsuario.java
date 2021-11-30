@@ -18,7 +18,7 @@ public class DadoUsuario {
     private int id;
 
     @Column(name = "cpf")
-    private int cpf;
+    private String cpf;
 
     @Column(name = "rua")
     private String rua;
@@ -56,11 +56,11 @@ public class DadoUsuario {
         this.id = id;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return this.cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -128,7 +128,7 @@ public class DadoUsuario {
         this.email = email;
     }
 
-	public DadoUsuario(int cpf, String rua, int numero, String complemento, String bairro, String cidade, String estado,
+	public DadoUsuario(String cpf, String rua, int numero, String complemento, String bairro, String cidade, String estado,
 			int telefone, String email) {
 		this.cpf = cpf;
 		this.rua = rua;
