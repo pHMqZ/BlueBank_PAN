@@ -6,7 +6,7 @@ import com.bluebank.model.Usuario;
 
 public class UsuarioResposta {
 	
-	private Long id;
+	private Integer id;
 	private String nome;
 	private boolean admin;
 	private DadoUsuario dado_usuario;
@@ -16,19 +16,19 @@ public class UsuarioResposta {
 		return new UsuarioResposta(usuario.getId(), usuario.getNome(), usuario.isAdmin(), usuario.getDado_usuario(), usuario.getConta());
 	}
 
-	public UsuarioResposta(Long id, String nome, boolean admin, DadoUsuario dado_usuario, Conta conta) {
-		this.id = id;
+	public UsuarioResposta(Integer integer, String nome, boolean admin, DadoUsuario dado_usuario, Conta conta) {
+		this.id = integer;
 		this.nome = nome;
 		this.admin = admin;
 		this.dado_usuario = dado_usuario;
 		this.conta = conta;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

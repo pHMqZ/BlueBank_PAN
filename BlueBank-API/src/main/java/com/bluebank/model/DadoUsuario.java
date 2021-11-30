@@ -43,6 +43,10 @@ public class DadoUsuario {
 
     @Column(name = "email")
     private String email;
+    
+    public DadoUsuario() {
+    	
+    }
 
     public int getId() {
         return this.id;
