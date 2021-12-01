@@ -58,6 +58,9 @@ public class Usuario {
 		this.nome = nome;
 		this.senha = senha;
 	}
+	public Usuario() {
+		
+	}
 
 	//Metodos
 	public String getNome() {

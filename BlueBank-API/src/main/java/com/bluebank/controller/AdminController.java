@@ -1,14 +1,20 @@
 package com.bluebank.controller;
 
+import com.bluebank.dto.ContaMovimentoResposta;
 import com.bluebank.dto.UsuarioDto;
 import com.bluebank.dto.UsuarioResposta;
 import com.bluebank.model.DadoUsuario;
+import com.bluebank.model.Movimento;
 import com.bluebank.model.Usuario;
 import com.bluebank.repository.AgenciaRepository;
+import com.bluebank.repository.ContaRepository;
 import com.bluebank.repository.DadoUsuarioRepository;
 import com.bluebank.repository.MovimentoRepository;
 import com.bluebank.repository.UsuarioRepository;
 import com.bluebank.service.AdminService;
+
+import lombok.NoArgsConstructor;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,19 +24,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("usuario/admin")
 public class AdminController {
     //Funções do Admin
 //    Escopo = Usuário
     //    - Cadastrar Admin
-    //    - Listar usuário(s)
-    //    - Editar usuário(s)
-    //    - Bloquear usuário(s)
-    //    - Desbloquear usuário(s)
+       
 //    Escopo = Agência
     //    - Criar agência(s)
     //    - Listar agência(s) (EXTRA)
@@ -46,15 +51,29 @@ public class AdminController {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private DadoUsuarioRepository dadoUsuarioRepository;
+    
+    
     @Autowired
-    private AgenciaRepository agenciaRepository;
-    @Autowired
-    private MovimentoRepository movimentoRepository;
+	private ContaRepository contaRepository;
 
 
-    public AdminController(AdminService adminService){
-        this.adminService = adminService;
+    
+   
+    public AdminController(AdminService adminService) {
+		this.adminService = adminService;
+    	
     }
+    
+    
+    public AdminController() {
+		this.adminService = new AdminService();
+    	
+    }
+    
+   
+    
+    
+   
 
     @PostMapping("/salvar")
     public ResponseEntity<UsuarioResposta> cadastrarAdmin(@RequestBody UsuarioDto usuarioDto){
@@ -64,10 +83,23 @@ public class AdminController {
 
     @GetMapping("/listarUsuarios")
     public List<UsuarioResposta> userFindAll(){
-        var user = adminService.userFindAll();
-        return user.stream().map(UsuarioResposta::transformaDTO).collect(Collectors.toList());
+    	List<Usuario> usuarios = usuarioRepository.findAll();
+    	List<UsuarioResposta> resposta = new ArrayList<UsuarioResposta>();
+    	for(Usuario usuario: usuarios){
+    		resposta.add(UsuarioResposta.transformaDTOsemDados(usuario));
+			}
+ 
+    	return resposta;
+        
     }
-    @GetMapping("/listarUsuarioId")
+    
+    @GetMapping("/listarUsuariosSemDados")
+    public List<UsuarioResposta> userFindAllNoData(){
+        var user = adminService.userFindAll();
+        return user.stream().map(UsuarioResposta::transformaDTOsemDados).collect(Collectors.toList());
+    }
+    
+    @GetMapping("/listarUsuarioId/{id}")
     public UsuarioResposta findById(@PathVariable("id") Integer id){
         var user = adminService.userFindById(id);
         return UsuarioResposta.transformaDTO(user);
@@ -96,6 +128,39 @@ public class AdminController {
             throw new Exception(e);
         }
     }
+    
+    @GetMapping("/historico/{id}")
+	public List<ContaMovimentoResposta> getHistoricoMovimento(@PathVariable Integer id) throws Exception{
+		try {
+			List<Movimento> movimentos = contaRepository.findByContaId(id);
+			List<ContaMovimentoResposta> movimentosResposta = new ArrayList<ContaMovimentoResposta>();
+			for(Movimento movimento: movimentos){
+				movimentosResposta.add(ContaMovimentoResposta.transformaMovimento(movimento));
+				}
+			return  movimentosResposta;
+		}catch (Exception e){
+			throw new Exception(e);
+		}
+		
+	}
+    
+    
+    @GetMapping("/historicoGeral")
+    public List<ContaMovimentoResposta> getHistoricoMovimentoGeral() throws Exception{
+		try {
+			List<Movimento> movimentos = adminService.movimentoFindAll();
+			List<ContaMovimentoResposta> movimentosResposta = new ArrayList<ContaMovimentoResposta>();
+			for(Movimento movimento: movimentos){
+				movimentosResposta.add(ContaMovimentoResposta.transformaMovimento(movimento));
+				}
+			return  movimentosResposta;
+		}catch (Exception e){
+			throw new Exception(e);
+		}
+		
+	}
+    
+    
 
 
 

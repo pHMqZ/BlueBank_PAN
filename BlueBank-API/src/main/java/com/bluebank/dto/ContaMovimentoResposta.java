@@ -7,13 +7,13 @@ import com.bluebank.model.Usuario;
 
 
 public class ContaMovimentoResposta {
-	private int id;
+	private Integer id;
     private Date data_movimento;
     private String tipo_movimento;
     private double valor;
     private String nome_conta;
     
-    public ContaMovimentoResposta(int id2, Date data_movimento2, String tipo_movimento2, double valor2,
+    public ContaMovimentoResposta(Integer id2, Date data_movimento2, String tipo_movimento2, double valor2,
 			String nome_conta2) {
 		
     	this.id = id2;
@@ -31,11 +31,11 @@ public class ContaMovimentoResposta {
 		return new ContaMovimentoResposta(movimento.getId(), movimento.getData_movimento(), movimento.getTipo_movimento(),movimento.getValor(), movimento.getNome_conta());
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

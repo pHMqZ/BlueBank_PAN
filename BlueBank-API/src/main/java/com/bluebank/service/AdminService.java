@@ -8,6 +8,8 @@ import com.bluebank.repository.AgenciaRepository;
 import com.bluebank.repository.DadoUsuarioRepository;
 import com.bluebank.repository.MovimentoRepository;
 import com.bluebank.repository.UsuarioRepository;
+
+
 import org.json.simple.JSONObject;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,34 +39,35 @@ public class AdminService {
 
 //Parametros e contrutores
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private AgenciaRepository agenciaRepository;
-
-    @Autowired
-    private MovimentoRepository movimentoRepository;
-
-    @Autowired
-    private DadoUsuarioRepository dadoUsuarioRepository;
+    
+	@Autowired
+    private  UsuarioRepository usuarioRepository;
+	@Autowired
+    private  AgenciaRepository agenciaRepository;
+	@Autowired
+    private  MovimentoRepository movimentoRepository;
+	@Autowired
+    private  DadoUsuarioRepository dadoUsuarioRepository;
 
 
-    public AdminService(UsuarioRepository usuarioRepository){
-        this.usuarioRepository = usuarioRepository;
+  
+    
+    public AdminService(UsuarioRepository usuarioRepository) {
+    	this.usuarioRepository = usuarioRepository;
+
     }
-
-    public AdminService(AgenciaRepository agenciaRepository) {
-        this.agenciaRepository = agenciaRepository;
+    
+    public AdminService() {
+    	
     }
-
-    public AdminService(MovimentoRepository movimentoRepository) {
-        this.movimentoRepository = movimentoRepository;
-    }
+    
+    
 
 //USUARIOS
 
-    public Usuario cadastrarAdmin(Usuario usuario){
+    
+
+	public Usuario cadastrarAdmin(Usuario usuario){
         usuario.setAdmin(true);
         return usuarioRepository.save(usuario);
     }
