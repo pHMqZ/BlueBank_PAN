@@ -25,7 +25,7 @@ public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conta")
-    private int id;
+    private Integer id;
     
     @Column(name = "saldo")
     private double saldo;
@@ -69,11 +69,11 @@ public class Conta {
 		this.saldo = saldo;
 	}
 
-	public int getId() {
+	public Integer getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

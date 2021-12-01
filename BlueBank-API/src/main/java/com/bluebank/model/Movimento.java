@@ -23,7 +23,7 @@ public class Movimento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_transacao")
-    private int id;
+    private Integer id;
 
     @Column(name = "data_movimento")
     private Date data_movimento;
@@ -59,11 +59,11 @@ public class Movimento {
     	
     }
 
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
