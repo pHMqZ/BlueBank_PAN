@@ -16,7 +16,6 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="usuarios")
-@NoArgsConstructor
 public class Usuario {
 //	Atrbutos
 	@Id
@@ -57,6 +56,9 @@ public class Usuario {
 	public Usuario(String nome, String senha) {
 		this.nome = nome;
 		this.senha = senha;
+	}
+	public Usuario() {
+		
 	}
 
 	//Metodos
