@@ -2,6 +2,7 @@ package com.bluebank.model;
 
 
 import java.util.Date;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
