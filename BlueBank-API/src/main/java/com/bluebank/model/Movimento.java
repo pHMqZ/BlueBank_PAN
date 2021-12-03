@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +23,7 @@ public class Movimento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_transacao")
-    private int id;
+    private Integer id;
 
     @Column(name = "data_movimento")
     private Date data_movimento;
@@ -36,28 +37,33 @@ public class Movimento {
     @Column(name = "numero_doc")
     private int numero_doc;
     
+    @Column(name ="nome_terceiro")
+    private String nome_conta;
+    
     
 
 
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name = "conta_has_movimento",
-                joinColumns = @JoinColumn(name = "movimento_id_transacao"),
-                inverseJoinColumns = @JoinColumn(name = "conta_id_conta"))
-    private List<Conta> conta;
-    //@JoinColumn(name = "fk_conta",nullable=false)
-    //private Conta conta;
+    @ManyToOne
+    private Conta conta;
+
+ 
     
-    
-    public Movimento(double valor, String tipo_movimento) {
+    public Movimento(double valor, String tipo_movimento, Conta contaOrigem, String nome_conta) {
     	this.valor = valor;
     	this.tipo_movimento = tipo_movimento;
+    	this.conta = contaOrigem;
+    	this.nome_conta = nome_conta;
+    }
+    
+    public Movimento() {
+    	
     }
 
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -92,6 +98,20 @@ public class Movimento {
     public void setNumero_doc(int numero_doc) {
         this.numero_doc = numero_doc;
     }
+	public String getNome_conta() {
+		return nome_conta;
+	}
+	public void setNome_conta(String nome_conta) {
+		this.nome_conta = nome_conta;
+	}
+	public Conta getConta() {
+		return conta;
+	}
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
+	
 
     
 

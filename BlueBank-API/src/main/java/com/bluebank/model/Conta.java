@@ -9,8 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,7 +25,7 @@ public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conta")
-    private int id;
+    private Integer id;
     
     @Column(name = "saldo")
     private double saldo;
@@ -46,26 +49,31 @@ public class Conta {
     @ManyToOne
     private Agencia age;
 
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "conta")
+    @Column(name = "lista_movimento")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "conta_id_conta")
     private List<Movimento> movimento;
-    //@JoinColumn(name = "fk_movimento",nullable=false)
+ 
 
     
 
     
     
+    public Conta() {
+    
+    }
     
     
-    
-    public Conta(String nome) {
+    public Conta(String nome, Double saldo) {
 		this.nome = nome;
+		this.saldo = saldo;
 	}
 
-	public int getId() {
+	public Integer getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

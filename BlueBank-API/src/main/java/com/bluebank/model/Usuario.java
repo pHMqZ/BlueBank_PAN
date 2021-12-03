@@ -1,5 +1,6 @@
 package com.bluebank.model;
 
+
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -15,17 +16,17 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name="usuarios")
 public class Usuario {
-	
+//	Atrbutos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="id")
-	private Long id; //conta bancaria;
+	private Integer id; //conta bancaria;
 	
-	@Column(name ="nome_cliente")
+	@Column(name ="nome")
 	@NotEmpty(message ="O nome deve ser preenchido")
 	private String nome;
 	
-	@Column(name ="senha_cliente")
+	@Column(name ="senha")
 	@NotEmpty(message = "A senha deve ser preenchida")
 	private String senha;
 	
@@ -37,55 +38,43 @@ public class Usuario {
 	
 	@Column(name = "data_nascimento")
 	private Date data_nasc;
-	
+
+	@Column(name = "status")
+	private Boolean status = true;
+
+	@Column(name = "admin")
 	private boolean admin = false;
-	
-	public Long getId() {
-		return this.id;
+//Construtores
+	public Usuario(String nome,String senha, DadoUsuario dado_usuario, Conta conta) {
+		this.nome = nome;
+		this.senha = senha;
+		this.dado_usuario = dado_usuario;
+		this.conta = conta;
 	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Usuario(String nome, String senha) {
+		this.nome = nome;
+		this.senha = senha;
+	}
+	public Usuario() {
+		
+	}
 
-    public String getNome() {
-        return this.nome;
-    }
+	//Metodos
+	public String getNome() {
+		return nome;
+	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getSenha() {
 		return senha;
 	}
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-
-	public DadoUsuario getDado_usuario() {
-		return dado_usuario;
-	}
-
-	public void setDado_usuario(DadoUsuario dado_usuario) {
-		this.dado_usuario = dado_usuario;
-	}
-
-	public boolean isAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
-
-	public Usuario(String nome,String senha, DadoUsuario dado_usuario, Conta conta) {
-		
-		this.nome = nome;
-		this.senha = senha;
-		this.dado_usuario = dado_usuario;
-		this.conta = conta;
 	}
 
 	public Conta getConta() {
@@ -96,6 +85,14 @@ public class Usuario {
 		this.conta = conta;
 	}
 
+	public DadoUsuario getDado_usuario() {
+		return dado_usuario;
+	}
+
+	public void setDado_usuario(DadoUsuario dado_usuario) {
+		this.dado_usuario = dado_usuario;
+	}
+
 	public Date getData_nasc() {
 		return data_nasc;
 	}
@@ -103,8 +100,24 @@ public class Usuario {
 	public void setData_nasc(Date data_nasc) {
 		this.data_nasc = data_nasc;
 	}
-	
-	
-	
-	
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 }
