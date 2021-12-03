@@ -1,19 +1,29 @@
 package com.bluebank.service;
 
-public class AdminService {
-//Funções do Admin
-//    Escopo = Usuário
-    //    - Listar usuário(s)
-    //    - Editar usuário(s)
-    //    - Bloquear usuário(s)
-    //    - Desbloquear usuário(s)
-//    Escopo = Agência
-    //    - Criar agência(s)
-    //    - Listar agência(s) (EXTRA)
-    //    - Editar agência(s)
-    //    - Desativar agência(s) (EXTRA)
-    //    - Ativar agência(s) (EXTRA)
-//    Escopo = Movimento
-    //    - Listar Movimentos(s)
+import com.bluebank.dto.ContaMovimentoResposta;
+import com.bluebank.dto.UsuarioResposta;
 
+import com.bluebank.model.Movimento;
+import com.bluebank.model.Usuario;
+
+
+
+
+import java.util.List;
+
+
+public interface AdminService {
+
+	public abstract Usuario cadastrarAdmin(Usuario usuario);
+    public abstract  List<Usuario> userFindAll();
+	public abstract Usuario userFindById(Integer id);
+	public abstract Usuario bloqueiaUser(Integer id);
+    public abstract Usuario desbloqueiaUser(Integer id);
+    public abstract Movimento movimentoFindById(Integer id);
+    public abstract List<Movimento> movimentoFindAll();
+    public abstract List<UsuarioResposta> findAllUsers();
+    public abstract List<ContaMovimentoResposta> getHistoricoGeral() throws Exception;
+
+
+   
 }
