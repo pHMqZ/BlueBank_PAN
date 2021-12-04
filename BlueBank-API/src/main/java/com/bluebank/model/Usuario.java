@@ -16,7 +16,6 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="usuarios")
-@NoArgsConstructor
 public class Usuario {
 //	Atrbutos
 	@Id
