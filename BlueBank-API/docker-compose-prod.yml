@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: db
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/db
+    image: 965934840569.dkr.ecr.sa-east-1.amazonaws.com/db
     container_name: db
     networks:
       - bluebank
@@ -19,7 +19,7 @@ services:
     build:
       context: .
       dockerfile: api
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/api
+    image: 965934840569.dkr.ecr.sa-east-1.amazonaws.com/api
     networks:
       - bluebank
     ports:

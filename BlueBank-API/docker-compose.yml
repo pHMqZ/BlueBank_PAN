@@ -14,8 +14,8 @@ services:
       - ./docker/volume_mysql:/var/lib/mysql
     restart: always
 
-  api_bluebank:
-    container_name: api_bluebank
+  api:
+    container_name: api
     build:
       context: .
       dockerfile: api
