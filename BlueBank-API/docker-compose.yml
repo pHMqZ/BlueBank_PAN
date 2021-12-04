@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: db
+    image: db_api_bluebank:1
+    container_name: db
+    networks:
+      - bluebank
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./docker/volume_mysql:/var/lib/mysql
+    restart: always
+
+  api_bluebank:
+    container_name: api_bluebank
+    build:
+      context: .
+      dockerfile: api
+    image: api_bluebank:1
+    networks:
+      - bluebank
+    ports:
+      - '8080:8080'
+    restart: always
+    depends_on:
+      - db
+networks:
+  bluebank:
+    driver: bridge
