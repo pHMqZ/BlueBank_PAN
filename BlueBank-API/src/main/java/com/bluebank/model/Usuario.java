@@ -1,6 +1,5 @@
 package com.bluebank.model;
 
-
 import java.util.Date;
 import lombok.NoArgsConstructor;
 
@@ -15,28 +14,28 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class Usuario {
-//	Atrbutos
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="id")
-	private Integer id; //conta bancaria;
-	
-	@Column(name ="nome")
-	@NotEmpty(message ="O nome deve ser preenchido")
+	@Column(name = "id")
+	private Integer id;
+
+	@Column(name = "nome")
+	@NotEmpty(message = "O nome deve ser preenchido")
 	private String nome;
-	
-	@Column(name ="senha")
+
+	@Column(name = "senha")
 	@NotEmpty(message = "A senha deve ser preenchida")
 	private String senha;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-    private Conta conta;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-    private DadoUsuario dado_usuario;
-	
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Conta conta;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private DadoUsuario dado_usuario;
+
 	@Column(name = "data_nascimento")
 	private Date data_nasc;
 
@@ -45,8 +44,8 @@ public class Usuario {
 
 	@Column(name = "admin")
 	private boolean admin = false;
-//Construtores
-	public Usuario(String nome,String senha, DadoUsuario dado_usuario, Conta conta) {
+
+	public Usuario(String nome, String senha, DadoUsuario dado_usuario, Conta conta) {
 		this.nome = nome;
 		this.senha = senha;
 		this.dado_usuario = dado_usuario;
@@ -57,11 +56,12 @@ public class Usuario {
 		this.nome = nome;
 		this.senha = senha;
 	}
+
 	public Usuario() {
-		
+
 	}
 
-	//Metodos
+	// Metodos
 	public String getNome() {
 		return nome;
 	}

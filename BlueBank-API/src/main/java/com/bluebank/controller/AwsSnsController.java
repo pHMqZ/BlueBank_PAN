@@ -3,35 +3,35 @@ package com.bluebank.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.SubscribeRequest;
 import com.bluebank.dto.UsuarioDto;
-import com.bluebank.model.DadoUsuario;
-import com.bluebank.repository.DadoUsuarioRepository;
 
 @RestController
 public class AwsSnsController {
 	
 		@Autowired
-		private AmazonSNSClient snsClient;
+		private AmazonSNSClient snsCliente;
 	
 	
 		private String TOPIC_ARN = "";
 		
-		@GetMapping("/addSubscription/{email}")
+		@GetMapping("/addInscricao/{email}")
 		public String addSubscription(@PathVariable String email) {
+			
 			SubscribeRequest request = new SubscribeRequest(TOPIC_ARN, "email", email);
-			snsClient.subscribe(request);
+			snsCliente.subscribe(request);
 			return "Seu cadastro está pedente. Para confirmar, verifique seu e-mail:" + email;
 		}
 		
-		@GetMapping("/sendNotification")
+		@GetMapping("/enviaNotificacao")
 		public String publishMessageToTopic() {
 			PublishRequest publishRequest = new PublishRequest(TOPIC_ARN, buildEmailBody(), "Notificatio: Network connectivity issue");
-			snsClient.publish(publishRequest);
+			snsCliente.publish(publishRequest);
 			return "Notificação enviada com sucesso!";
 		}
 		
