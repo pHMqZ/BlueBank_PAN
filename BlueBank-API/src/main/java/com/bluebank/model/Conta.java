@@ -46,7 +46,7 @@ public class Conta {
     @Column(name = "debito_bloqueado")
     private boolean debito;
 
-    @ManyToOne
+    @OneToOne
     private Agencia age;
 
     @Column(name = "lista_movimento")
