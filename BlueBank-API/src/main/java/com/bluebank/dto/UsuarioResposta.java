@@ -1,6 +1,5 @@
 package com.bluebank.dto;
 
-import com.bluebank.model.Conta;
 import com.bluebank.model.DadoUsuario;
 import com.bluebank.model.Usuario;
 

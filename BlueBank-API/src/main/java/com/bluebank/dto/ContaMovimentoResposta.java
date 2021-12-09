@@ -3,7 +3,6 @@ package com.bluebank.dto;
 import java.sql.Date;
 
 import com.bluebank.model.Movimento;
-import com.bluebank.model.Usuario;
 
 public class ContaMovimentoResposta {
 	private Integer id;
