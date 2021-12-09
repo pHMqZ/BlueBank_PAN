@@ -12,55 +12,50 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="agencia")
+@Table(name = "agencia")
 public class Agencia {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
 
-    @Column(name = "nome")
-    private String nome;
+	@Column(name = "nome")
+	private String nome;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    // @JoinTable(name = "conta",
-    //             joinColumns = @JoinColumn(name = "agencia_id_agencia"),
-    //             inverseJoinColumns = @JoinColumn(name = "id_agencia")
-    //             )
-    @JoinColumn(name = "agencia_id_agencia")
-    private List<Conta> conta;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "agencia_id_agencia")
+	private List<Conta> conta;
 
-    @Column(name = "status")
-    private Boolean status = true;
+	@Column(name = "status")
+	private Boolean status = true;
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public List<Conta> getConta() {
-        return conta;
-    }
+	public List<Conta> getConta() {
+		return conta;
+	}
 
-    public void setConta(List<Conta> conta) {
-        this.conta = conta;
-    }
+	public void setConta(List<Conta> conta) {
+		this.conta = conta;
+	}
 
-    public Boolean getStatus() {
-        return status;
-    }
+	public Boolean getStatus() {
+		return status;
+	}
 
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
 }
