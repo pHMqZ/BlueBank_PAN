@@ -40,6 +40,7 @@ public class UsuarioController {
 		Usuario usuario = usuarioService.salvaCliente(DTO.transformaUsuario());
 		return new ResponseEntity<>(UsuarioResposta.transformaDTO(usuario), HttpStatus.CREATED);
 	}
+		
 
 	@GetMapping("/conta/{id}")
 	public ContaResposta getContaById(@PathVariable Integer id) {
