@@ -19,99 +19,89 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="conta")
+@Table(name = "conta")
 public class Conta {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_conta")
-    private Integer id;
-    
-    @Column(name = "saldo")
-    private double saldo;
-    
-    @Column(name = "nome_conta")
-    private String nome;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_conta")
+	private Integer id;
 
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date data_abertura = new java.sql.Date(System.currentTimeMillis());
-    
- 
+	@Column(name = "saldo")
+	private double saldo;
 
+	@Column(name = "nome_conta")
+	private String nome;
 
-    @Column(name = "data_fechamento")
-    private Date data_fechamento;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date data_abertura = new java.sql.Date(System.currentTimeMillis());
 
-    @Column(name = "debito_bloqueado")
-    private boolean debito;
+	@Column(name = "data_fechamento")
+	private Date data_fechamento;
 
-    @ManyToOne
-    private Agencia age;
+	@Column(name = "debito_bloqueado")
+	private boolean debito;
 
-    @Column(name = "lista_movimento")
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "conta_id_conta")
-    private List<Movimento> movimento;
- 
+	@ManyToOne
+	private Agencia age;
 
-    
+	@Column(name = "lista_movimento")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "conta_id_conta")
+	private List<Movimento> movimento;
 
-    
-    
-    public Conta() {
-    
-    }
-    
-    
-    public Conta(String nome, Double saldo) {
+	public Conta() {
+
+	}
+
+	public Conta(String nome, Double saldo) {
 		this.nome = nome;
 		this.saldo = saldo;
 	}
 
 	public Integer getId() {
-        return this.id;
-    }
+		return this.id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getNome() {
-        return this.nome;
-    }
+	public String getNome() {
+		return this.nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public Date getData_abertura() {
-        return this.data_abertura;
-    }
+	public Date getData_abertura() {
+		return this.data_abertura;
+	}
 
-    public void setData_abertura(Date data_abertura) {
-        this.data_abertura = data_abertura;
-    }
+	public void setData_abertura(Date data_abertura) {
+		this.data_abertura = data_abertura;
+	}
 
-    public Date getData_fechamento() {
-        return this.data_fechamento;
-    }
+	public Date getData_fechamento() {
+		return this.data_fechamento;
+	}
 
-    public void setData_fechamento(Date data_fechamento) {
-        this.data_fechamento = data_fechamento;
-    }
+	public void setData_fechamento(Date data_fechamento) {
+		this.data_fechamento = data_fechamento;
+	}
 
-    public boolean isDebito() {
-        return this.debito;
-    }
+	public boolean isDebito() {
+		return this.debito;
+	}
 
-    public boolean getDebito() {
-        return this.debito;
-    }
+	public boolean getDebito() {
+		return this.debito;
+	}
 
-    public void setDebito(boolean debito) {
-        this.debito = debito;
-    }
+	public void setDebito(boolean debito) {
+		this.debito = debito;
+	}
 
 	public double getSaldo() {
 		return saldo;
@@ -136,18 +126,5 @@ public class Conta {
 	public void setMovimento(List<Movimento> movimento) {
 		this.movimento = movimento;
 	}
-
-	
-    
-    
-
-    // public Cliente getCliente() {
-    //     return this.cliente;
-    // }
-
-    // public void setCliente(Cliente cliente) {
-    //     this.cliente = cliente;
-    // }
-    
 
 }
