@@ -27,7 +27,7 @@ public class AdminController {
 	@Autowired
 	UsuarioService usuarioService;
 
-
+	@CrossOrigin(origins = "http://localhost:3006")
     @GetMapping("/listarUsuarios")
     public List<UsuarioResposta> userFindAll(){
     	return adminService.findAllUsers();
