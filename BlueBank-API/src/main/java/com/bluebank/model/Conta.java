@@ -22,39 +22,49 @@ import javax.persistence.TemporalType;
 @Table(name = "conta")
 public class Conta {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_conta")
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_conta")
+    private Integer id;
+    
+    @Column(name = "saldo")
+    private double saldo;
+    
+    @Column(name = "nome_conta")
+    private String nome;
 
-	@Column(name = "saldo")
-	private double saldo;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date data_abertura = new java.sql.Date(System.currentTimeMillis());
+    
+ 
 
-	@Column(name = "nome_conta")
-	private String nome;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date data_abertura = new java.sql.Date(System.currentTimeMillis());
+    @Column(name = "data_fechamento")
+    private Date data_fechamento;
 
-	@Column(name = "data_fechamento")
-	private Date data_fechamento;
+    @Column(name = "debito_bloqueado")
+    private boolean debito;
 
-	@Column(name = "debito_bloqueado")
-	private boolean debito;
+    @OneToOne
+    private Agencia age;
 
-	@ManyToOne
-	private Agencia age;
+    @Column(name = "lista_movimento")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "conta_id_conta")
+    private List<Movimento> movimento;
+ 
 
-	@Column(name = "lista_movimento")
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "conta_id_conta")
-	private List<Movimento> movimento;
+    
 
-	public Conta() {
-
-	}
-
-	public Conta(String nome, Double saldo) {
+    
+    
+    public Conta() {
+    
+    }
+    
+    
+    public Conta(String nome, Double saldo) {
 		this.nome = nome;
 		this.saldo = saldo;
 	}
