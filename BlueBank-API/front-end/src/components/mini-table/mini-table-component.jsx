@@ -1,16 +1,15 @@
 import React from "react";
 import "./mini-table-style.scss";
 
-const MiniTable = () => {
+const MiniTable = (list) => {
 
     const columnNames = ['Data', 'Valor', "Para"];
 
-    const list = [
-        {data: "05/11/2021", valor: "R$ 29,90", para: "Rubens" },
-        {data: "02/10/2021", valor: "R$ 490,90", para: "Alexandre"},
-        {data: "09/09/2021", valor: "R$ 19,50", para: "Ana"},
-
-    ]
+    // const list = [
+    //     {data: "05/11/2021", valor: "R$ 29,90", para: "Rubens" },
+    //     {data: "02/10/2021", valor: "R$ 490,90", para: "Alexandre"},
+    //     {data: "09/09/2021", valor: "R$ 19,50", para: "Ana"},
+    // ]
 
     return(
         <div className="mini-table">
