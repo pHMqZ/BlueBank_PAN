@@ -1,9 +1,15 @@
 import React from "react";
 import "./mini-table-style.scss";
 
-const MiniTable = (list) => {
-
-    const columnNames = ['Data', 'Valor', "Para"];
+const MiniTable = ({list}) => {
+    
+    const columnNames = ['Data', 'Valor', "Tipo"];
+    
+    
+    
+    //for(let i = 0; i < list.list.dadosTabela.length; i++){
+      //  console.log(i)
+    //}
 
     // const list = [
     //     {data: "05/11/2021", valor: "R$ 29,90", para: "Rubens" },
@@ -27,6 +33,8 @@ const MiniTable = (list) => {
 
 
     function Table({list, colNames, width = 'auto', height = 'auto'}){
+     
+       
         return(
             <div>
                 <table cellSpacing="0" style={{"width" :width, "height":height}} className="table-historico">
@@ -41,11 +49,15 @@ const MiniTable = (list) => {
                     </thead>
 
                     <tbody>
+                    
                         {Object.values(list).map((obj, index) => (
                             <tr key={index}>
+                                
                                 {Object.values(obj).map((value, index2) => (
+                                   
                                     <td key={index2}>
-                                       {value} 
+                                        
+                                       {value } 
                                     </td>
                                 ))}
                             </tr>    

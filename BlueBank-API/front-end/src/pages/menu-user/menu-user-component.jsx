@@ -6,7 +6,7 @@ import MenuLateral from "../../components/menu-lateral/menu-lateral-component";
 import StepFormTransfer from "../../components/step-form/step-form-component";
 import MiniTable from "../../components/mini-table/mini-table-component";
 import funcao from "../../services/urls";
-import { MenuItem } from "@material-ui/core";
+import { ListItemSecondaryAction, MenuItem } from "@material-ui/core";
 import axios from "axios";
 import BASE_URL from "../../services/bases";
 
@@ -16,44 +16,70 @@ const MenuUserPage = () => {
     
     const [dados, setDados] = useState({
         id: 2,
-        dadosTabela: "",
         nome: "",
         saldo: "",
         data: "",
         valor: "",
-        para: "",
-
-
-
+        tipo: "",
     });
 
-    const {id,nome,saldo,data,valor,para, dadosTabela} = dados;
+    const [dadosTabela, setDadosTabela] = useState({
+        tableData: [],
+    });
 
-    function getHistorico(id){
-        axios.get(`${BASE_URL}usuario/cliente/historico/${id}`)
-        .then(res => console.log(res.data))
-    }
+    const {id,nome,saldo,data,valor,para} = dados;
+    const {tableData} = dadosTabela;
 
-    //   useEffect(async () =>{
-    //      const dadosConta = await getSaldoCliente(id);
-    //      const saldoAtual = dadosConta["saldo"];
-    //      setDados({...dados, saldo:  saldoAtual });
-    //   });
+    // function getHistorico(id){
+    //     axios.get(`${BASE_URL}usuario/cliente/historico/${id}`)
+    //     .then(res => console.log(res.data))
+    // }
+
+       useEffect( () =>{
+        axios.get(`${BASE_URL}usuario/cliente/conta/${id}`)
+        .then(res => 
+            setDados({...dados, saldo:  res.data.saldo }));
+
+        
+        mapeiaDadosTabela(id);
+        
+        
 
 
-    //  async function pegaSaldo(){
-    //      const dadosConta = await getSaldoCliente(id);
-    //      console.log(dadosConta);
-    //      const saldoAtual = dadosConta["saldo"];
-    //      setDados({...dados, saldo:saldoAtual });
-    //  }
 
-        function mapeiaDadosTabela(){
-            const respostaTabela = getHistorico(id);
-            console.log(respostaTabela);
+
+       },[] );
+
+       console.log(tableData);
+   
+
+         function mapeiaDadosTabela(identificacao){
+            axios.get(`${BASE_URL}usuario/cliente/historico/${identificacao}`)        
+            .then(res => {
+            const resposta = [];
+  
+            for(let i = 0; i < res.data.length; i++){
+                const item = {"data_origem": "", "valor":"", "tipo":""};
+                item.data_origem = res.data[i].data_movimento;
+                item.tipo = res.data[i].tipo_movimento;
+                item.valor =  res.data[i].valor ;
+                resposta.push(item)
+              
+            }
+            
+
+           
+            setDadosTabela({ tableData: resposta });
+                 
+        })
+              
+                
+             
         }
+        
+        
 
-        mapeiaDadosTabela();
+        
 
     return(
 <div className="menu-user-page">
@@ -72,7 +98,7 @@ const MenuUserPage = () => {
 
                 <div className="texto-saldo">
                     <h6>saldo</h6>
-                    <h3>3900</h3>  
+                    <h3>{saldo}</h3>  
                 </div>
                 
             </div>
@@ -82,7 +108,8 @@ const MenuUserPage = () => {
             </div>
 
             <div className="info-menu-table">
-                <MiniTable list={dadosTabela} />   
+                
+                <MiniTable list={tableData} />   
             </div>
 
         </div>
