@@ -1,4 +1,4 @@
-package com.bluebank.config;
+/*package com.bluebank.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,3 +27,4 @@ public class AwsSnsConfig {
 	}
 
 }
+*/

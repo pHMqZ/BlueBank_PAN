@@ -1,16 +1,21 @@
 import React from "react";
 import "./mini-table-style.scss";
 
-const MiniTable = () => {
+const MiniTable = ({list}) => {
+    
+    const columnNames = ['Data', 'Valor', "Tipo"];
+    
+    
+    
+    //for(let i = 0; i < list.list.dadosTabela.length; i++){
+      //  console.log(i)
+    //}
 
-    const columnNames = ['Data', 'Valor', "Para"];
-
-    const list = [
-        {data: "05/11/2021", valor: "R$ 29,90", para: "Rubens" },
-        {data: "02/10/2021", valor: "R$ 490,90", para: "Alexandre"},
-        {data: "09/09/2021", valor: "R$ 19,50", para: "Ana"},
-
-    ]
+    // const list = [
+    //     {data: "05/11/2021", valor: "R$ 29,90", para: "Rubens" },
+    //     {data: "02/10/2021", valor: "R$ 490,90", para: "Alexandre"},
+    //     {data: "09/09/2021", valor: "R$ 19,50", para: "Ana"},
+    // ]
 
     return(
         <div className="mini-table">
@@ -28,6 +33,8 @@ const MiniTable = () => {
 
 
     function Table({list, colNames, width = 'auto', height = 'auto'}){
+     
+       
         return(
             <div>
                 <table cellSpacing="0" style={{"width" :width, "height":height}} className="table-historico">
@@ -42,11 +49,15 @@ const MiniTable = () => {
                     </thead>
 
                     <tbody>
+                    
                         {Object.values(list).map((obj, index) => (
                             <tr key={index}>
+                                
                                 {Object.values(obj).map((value, index2) => (
+                                   
                                     <td key={index2}>
-                                       {value} 
+                                        
+                                       {value } 
                                     </td>
                                 ))}
                             </tr>    

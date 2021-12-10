@@ -1,4 +1,4 @@
-package com.bluebank.config;
+/*package com.bluebank.config;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -20,3 +20,4 @@ public class AwsLambdaConfig {
 	}
 	
 }
+*/

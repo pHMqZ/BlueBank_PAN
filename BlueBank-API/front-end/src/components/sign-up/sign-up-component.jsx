@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SignUpInput from "../sign-up-input/sign-up-input-component";
 import "./sign-up-style.scss";
-import axios from "axios";
+
 
 import Profile from "../../assets/perfil.png";
 import Email from "../../assets/Email.png";
@@ -9,7 +9,7 @@ import Senha from "../../assets/senha.png";
 import Celular from "../../assets/celular.png";
 import CPF from "../../assets/cpf.png";
 import Button from "../button/button-component";
-import createClient from "../../services/urls";
+import funcao from "../../services/urls";
 
 
 const SignUp = () => {
@@ -26,7 +26,8 @@ const SignUp = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    createClient(nome, password);
+    funcao.createClient(nome, password);
+    setUserCredentials({nome: "", email: "", password:"", confirmPassword:"", celular:"", cpf:""})
   }
 
   const handleChange =(event) => {

@@ -46,18 +46,15 @@ public class UsuarioController {
 	public ContaResposta getContaById(@PathVariable Integer id) {
 		return usuarioService.findContaById(id);
 	}
-
 	@PostMapping("/transferir/{id_origem}/{id_destino}/{valor}")
 	public ResponseEntity<?> transferir(@PathVariable Integer id_origem, @PathVariable Integer id_destino,
 			@PathVariable double valor) throws Exception { //
 		return usuarioService.transferir(id_origem, id_destino, valor);
 	}
-
 	@GetMapping("/historico/{id}")
 	public List<ContaMovimentoResposta> getHistoricoMovimento(@PathVariable Integer id) throws Exception {
 		return usuarioService.getHistoricoById(id);
 	}
-
 	@PutMapping("/editar/{id}")
 	public ResponseEntity<?> editarDados(@PathVariable Integer id, @RequestBody JSONObject jsonObject)
 			throws Exception {
