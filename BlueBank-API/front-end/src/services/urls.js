@@ -2,10 +2,7 @@ import axios from "axios";
 import BASE_URL from "./bases";
 
 
- function showClients (){
-      axios.get(`${BASE_URL}usuario/admin/listarUsuarios`)
-          .then(res =>console.log(res))
- }
+ 
 
 
 
@@ -19,28 +16,21 @@ import BASE_URL from "./bases";
         idConsulta = res
     });
 
-    
      await axios.put(`${BASE_URL}usuario/admin/editarUser/${idConsulta.data}`, {"telefone": celular,"email":email,
      "cpf":cpf})
      .then(res =>console.log(res));
 
-     //DadoUsuario(String, String, int, String, String, String, String, int, String)
+    return idConsulta;
+
+     
  
  }
 
- function getSaldoCliente(id){
-     axios.get(`${BASE_URL}usuario/cliente/conta/${id}`)
-     .then(res => console.log(res))
- }
-
-function getHistorico(id){
-    axios.get(`${BASE_URL}usuario/cliente/historico/${id}`)
-    .then(res => console.log(res))
-}
+ 
 
 
 
 
- export default {showClients,createClient,getSaldoCliente, getHistorico }
+ export default {createClient}
 
 
