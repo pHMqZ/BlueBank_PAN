@@ -6,6 +6,7 @@ target/
 
 ### STS ###
 .apt_generated
+.apt_generated_tests
 .classpath
 .factorypath
 .project
@@ -34,3 +35,4 @@ build/
 
 application.properties
 .gitignore
+.mvn
