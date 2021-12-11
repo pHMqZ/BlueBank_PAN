@@ -19,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("usuario/admin")
+@CrossOrigin("*")
 public class AdminController {
    
 	@Autowired
@@ -27,35 +28,35 @@ public class AdminController {
 	@Autowired
 	UsuarioService usuarioService;
 
-	@CrossOrigin(origins = "http://localhost:3006")
+	
     @GetMapping("/listarUsuarios")
     public List<UsuarioResposta> userFindAll(){
     	return adminService.findAllUsers();
         
     }
     
-	@CrossOrigin(origins = "http://localhost:3006")
+	
     @GetMapping("/listarUsuarioId/{id}")
     public UsuarioResposta findById(@PathVariable("id") Integer id){
     	Usuario user =  usuarioService.getById(id);	
         return UsuarioResposta.transformaDTO(user);
     }
 
-	@CrossOrigin(origins = "http://localhost:3006")
+	
     @PostMapping("/bloquearUsuario/{id}")
     public UsuarioResposta bloqueiaUser(@PathVariable("id") Integer id){
     	Usuario user = adminService.bloqueiaUser(id);
     	return UsuarioResposta.transformaDTO(user);
     }
 
-	@CrossOrigin(origins = "http://localhost:3006")
+	
     @PostMapping("/desbloquearUsuario/{id}")
     public UsuarioResposta desbloqueiaUser(@PathVariable("id") Integer id){
     	Usuario user = adminService.desbloqueiaUser(id);
        return UsuarioResposta.transformaDTO(user);
     }
 
-	@CrossOrigin(origins = "http://localhost:3006")
+	
     @PutMapping("/editarUser/{id}")
     public ResponseEntity<?> editarDados(@PathVariable Integer id, @RequestBody JSONObject jsonObject) throws Exception{
     	try {
@@ -68,13 +69,13 @@ public class AdminController {
 		}
     }
     
-	@CrossOrigin(origins = "http://localhost:3006")
+	
     @GetMapping("/historico/{id}")
 	public List<ContaMovimentoResposta> getHistoricoMovimento(@PathVariable Integer id) throws Exception{
     	return usuarioService.getHistoricoById(id);
 	}
     
-	@CrossOrigin(origins = "http://localhost:3006")
+	
     @GetMapping("/historicoGeral")
     public List<ContaMovimentoResposta> getHistoricoMovimentoGeral() throws Exception{
 		return adminService.getHistoricoGeral();

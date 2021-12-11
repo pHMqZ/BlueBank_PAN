@@ -11,6 +11,7 @@ import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.SubscribeRequest;
 
 @RestController
+@CrossOrigin("*")
 public class AwsSnsController {
 	
 		@Autowired
@@ -20,9 +21,9 @@ public class AwsSnsController {
 		@Autowired
 		private UsuarioController userController;
 	
-		private String TOPIC_ARN = "arn:aws:sns:us-east-1:965934840569:SQ5T2Topico";
+		private String TOPIC_ARN = "";
 		
-		@CrossOrigin(origins = "http://localhost:3006")
+		
 		@GetMapping("/addInscricao/{email}")
 		public String addSubscription(@PathVariable String email) {
 			
@@ -31,7 +32,7 @@ public class AwsSnsController {
 			return "Seu cadastro está pedente. Para confirmar, verifique seu e-mail:" + email;
 		}
 		
-		@CrossOrigin(origins = "http://localhost:3006")
+		
 		@GetMapping("/enviaNotificacao")
 		public String publishMessageToTopic() throws Exception {
 			PublishRequest publishRequest = new PublishRequest(TOPIC_ARN, buildEmailBody(), "Notificatio: Network connectivity issue");

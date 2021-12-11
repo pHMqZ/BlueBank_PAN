@@ -26,6 +26,7 @@ import com.bluebank.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuario/cliente")
+@CrossOrigin("*")
 public class UsuarioController {
 
 
@@ -33,7 +34,7 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 
-	@CrossOrigin(origins = "http://localhost:3006")
+	
 	@PostMapping("/salvar")
 	public ResponseEntity<UsuarioResposta> salvar(@RequestBody UsuarioDto DTO) {
 		Usuario usuario = usuarioService.salvaCliente(DTO.transformaUsuario());
@@ -41,26 +42,26 @@ public class UsuarioController {
 	}
 
 	
-	@CrossOrigin(origins = "http://localhost:3006")
+	
 	@GetMapping("/conta/{id}")
 	public ContaResposta getContaById(@PathVariable Integer id) {
 		return usuarioService.findContaById(id);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3006")
+	
 	@PostMapping("/transferir/{id_origem}/{id_destino}/{valor}")
 	public ResponseEntity<?> transferir(@PathVariable Integer id_origem, @PathVariable Integer id_destino,
 			@PathVariable double valor) throws Exception { //
 		return usuarioService.transferir(id_origem, id_destino, valor);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3006")
+	
 	@GetMapping("/historico/{id}")
 	public List<ContaMovimentoResposta> getHistoricoMovimento(@PathVariable Integer id) throws Exception {
 		return usuarioService.getHistoricoById(id);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3006")
+	
 	@PutMapping("/editar/{id}")
 	public ResponseEntity<?> editarDados(@PathVariable Integer id, @RequestBody JSONObject jsonObject)
 			throws Exception {
@@ -68,13 +69,13 @@ public class UsuarioController {
 	}
 
 
-	@CrossOrigin(origins = "http://localhost:3006")
+	
 	@GetMapping("/pegarSenha/{id}")
 	public String pegarSenha(@PathVariable Integer id) throws Exception{
 		return usuarioService.pegarSenhaUser(id);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3006")
+	
 	@GetMapping("/pegarIds")
 	public Integer pegarIds() throws Exception{
 		return usuarioService.pegarIds();
