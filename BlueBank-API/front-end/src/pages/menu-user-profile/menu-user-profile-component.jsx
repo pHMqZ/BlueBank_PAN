@@ -9,6 +9,7 @@ import IconeCadeado from "../../assets/icone-cadeado.png";
 import axios from "axios";
 import BASE_URL from "../../services/bases";
 import { useParams, useNavigate  } from 'react-router-dom';
+import Button from "../../components/button/button-component";
 
 
 const MenuUserProfile = () => {
@@ -46,18 +47,13 @@ const MenuUserProfile = () => {
 
     useEffect(  () =>{
         
-        //setarNome(id);
+       
+        
         setarConta(id); 
-        //setarDadosPessoais(id);
+       
        },[]);
 
-    useEffect(async ()=>{
-        await axios.put(`${BASE_URL}usuario/admin/editarUser/${id}`, {"telefone": celular,"email":email,
-        "bairro":bairro, "complemento":complemento, "rua":rua,"estado":estado,"cidade":cidade})
-        .then(res=>console.log(res)
-    )
-       
-    },[celular,email,bairro,complemento,rua,estado,cidade]) ;
+    
 
     
 
@@ -72,27 +68,32 @@ const MenuUserProfile = () => {
         .then(res => {nomeAux = res.data.nome });
 
         axios.get(`${BASE_URL}usuario/admin/listarUsuarioId/${id}`)
-        .then(res =>
-            
+        .then(res => {
+            console.log(res.data.dado_usuario);
             setUserCredentials({...userCredentials,
-                cpf: res.data.dado_usuario.cpf ? res.data.dado_usuario.cpf : "...",
-                rua: res.data.dado_usuario.rua ? res.data.dado_usuario.rua: "...",
-                numero: res.data.dado_usuario.numero ? res.data.dado_usuario.numero : "...",
-                complemento: res.data.dado_usuario.complemento ? res.data.dado_usuario.complemento : "...",
-                bairro: res.data.dado_usuario.bairro ? res.data.dado_usuario.bairro : "...",
-                cidade: res.data.dado_usuario.cidade ? res.data.dado_usuario.cidade : "...",
-                estado: res.data.dado_usuario.estado ? res.data.dado_usuario.estado : "...",
-                celular: res.data.dado_usuario.telefone ? res.data.dado_usuario.telefone : "...",
-                email: res.data.dado_usuario.email ? res.data.dado_usuario.email : "...",
+                cpf: res.data.dado_usuario.cpf,
+                rua: res.data.dado_usuario.rua || "...",
+                numero: res.data.dado_usuario.numero || "...",
+                complemento: res.data.dado_usuario.complemento || "...",
+                bairro: res.data.dado_usuario.bairro || "...",
+                cidade: res.data.dado_usuario.cidade || "...",
+                estado: res.data.dado_usuario.estado || "...",
+                celular: res.data.dado_usuario.telefone,
+                email: res.data.dado_usuario.email,
                 conta: contaAux,
                 nome: nomeAux
                 }
                 
-            ))
+            )
+        })
 
-        
+        }
 
-            //setUserCredentials({...userCredentials, conta:  res.data.id })); 
+        function enviarDadosNovos(event){
+            event.preventDefault();
+            axios.put(`${BASE_URL}usuario/admin/editarUser/${id}`, {"telefone": celular,"email":email,
+        "bairro":bairro, "complemento":complemento, "rua":rua,"estado":estado,"cidade":cidade})
+        .then(res=>console.log(res))
         }
         
 
@@ -114,7 +115,7 @@ const MenuUserProfile = () => {
                         <ProfileCircle/>
                     </div>
 
-                    <form>
+                    <form onSubmit={enviarDadosNovos}>
                     <div className="form-profile">
                     
                             <div className="lado-esquerdo">
@@ -167,6 +168,15 @@ const MenuUserProfile = () => {
                                 value={celular}
                                 name="celular"
                                 ></SignUpInput>
+
+                            <div className="botao">
+                                <Button
+                                type="submit"
+                                tipo="submit"
+                                texto="ATUALIZAR DADOS"
+                                tamanho="130px"
+                                />
+                            </div>
                             </div>
                     </div>
                     </form>
@@ -178,7 +188,7 @@ const MenuUserProfile = () => {
                         <InfoCircle/>
                     </div>
 
-                    <form>
+                    <form onSubmit={enviarDadosNovos}>
                     <div className="form-profile">
                     
                             <div className="lado-esquerdo">
@@ -227,6 +237,15 @@ const MenuUserProfile = () => {
                                 value={cidade}
                                 name="cidade"
                                 ></SignUpInput>
+
+                            <div className="botao">
+                                <Button
+                                type="submit"
+                                tipo="submit"
+                                texto="ATUALIZAR DADOS"
+                                tamanho="130px"
+                                />
+                            </div>
                             </div>
                     </div>
                     </form>
