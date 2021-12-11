@@ -26,7 +26,7 @@ const SignUp = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    funcao.createClient(nome, password);
+    funcao.createClient(nome, password, email, celular,cpf);
     setUserCredentials({nome: "", email: "", password:"", confirmPassword:"", celular:"", cpf:""})
   }
 
@@ -43,6 +43,7 @@ const SignUp = () => {
         <div className="lado-esquerdo">
                 
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Nome:"
             icone={Profile}
@@ -50,6 +51,7 @@ const SignUp = () => {
             value={nome}
           ></SignUpInput>
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Email:"
             icone={Email}
@@ -57,6 +59,7 @@ const SignUp = () => {
             value={email}
           ></SignUpInput>
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Senha:"
             icone={Senha}
@@ -68,6 +71,7 @@ const SignUp = () => {
 
         <div className="lado-direito">
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Celular:"
             icone={Celular}
@@ -75,6 +79,7 @@ const SignUp = () => {
             value={celular}
           ></SignUpInput>
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="CPF:"
             icone={CPF}
@@ -82,6 +87,7 @@ const SignUp = () => {
             name="cpf"
           ></SignUpInput>
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Confirmar senha:"
             icone={Senha}

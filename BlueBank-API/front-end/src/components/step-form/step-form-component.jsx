@@ -8,30 +8,36 @@ import IconeValor from '../../assets/icone-valor.png'
 import SignUpInput from "../sign-up-input/sign-up-input-component";
 import Button from "../button/button-component";
 import Senha from "../../assets/senha.png";
+import axios from "axios";
+import BASE_URL from "../../services/bases";
 
 
-const StepFormTransfer = () =>{
+const StepFormTransfer = ({id}) =>{
     const [page, setPage] = useState({
         "pagina": 1,
         "conta": "",
         "valor": "",
         "senha": "",
-        "confirmarSenha": ""
+        "confirmarSenha": "",
+        "nomeDestino": "",
     });
 
-    const {pagina, conta, valor, senha, confirmarSenha} = page;
+    const {pagina, conta, valor, senha, confirmarSenha,nomeDestino} = page;
 
 
     function handleSubmit(event) {
         event.preventDefault();
-        setPage({...page, "pagina": pagina + 1});   
+        axios.get(`${BASE_URL}usuario/cliente/conta/${conta}`)
+        .then(res => 
+            setPage({...page, "pagina": pagina + 1, nomeDestino: res.data.nome }));
+
+        //setPage({...page, "pagina": pagina + 1});   
       }
     
 
     const handleChange =(event) => {
         const {name,value} = event.target;
         setPage({...page, [name]: value});
-        console.log(conta);
       };
 
       function voltar() {
@@ -41,6 +47,28 @@ const StepFormTransfer = () =>{
       useEffect(()=>{
         
       })
+
+      function transferirDinheiro(event){
+        event.preventDefault();
+        
+          if(confirmarSenha === senha){
+            axios.get(`${BASE_URL}usuario/cliente/pegarSenha/${id}`)
+            .then(res => {
+                if(res.data === senha){
+                    console.log("cheguei aqui");
+                    var valorEmDouble =  parseFloat(valor);
+                    axios.post(`${BASE_URL}usuario/cliente/transferir/${id}/${conta}/${valorEmDouble}`).
+                    then( resp => setPage({...page,"pagina": 1, "conta": "", "valor": "", "senha":"", "confirmarSenha": "", "nomeDestino": "" }))   
+                }
+            })
+
+            window.location.reload();
+          }else{
+              alert("Senhas não batem!")
+          }
+      }
+
+    
 
 
     return (
@@ -72,6 +100,7 @@ const StepFormTransfer = () =>{
             <form onSubmit={handleSubmit}>
                 <div className="campo-input-step">
                 <SignUpInput
+                    
                     onChange={handleChange}
                     value={conta}
                     titulo="Conta:"
@@ -81,6 +110,7 @@ const StepFormTransfer = () =>{
                     ></SignUpInput>
 
                 <SignUpInput
+                    
                     onChange={handleChange}
                     titulo="Valor:"
                     icone={IconeValor}
@@ -108,9 +138,9 @@ const StepFormTransfer = () =>{
                 </div>
 
                 <div className="conjunto-dados-confirmacao">
-                    <div className="quadrado-azul"><div>Nome</div></div>
-                    <div className="quadrado-azul"><div>Conta</div></div>
-                    <div className="quadrado-azul"><div>Valor</div></div>
+                    <div className="quadrado-azul"><div>{nomeDestino}</div></div>
+                    <div className="quadrado-azul"><div>{conta}</div></div>
+                    <div className="quadrado-azul"><div>{valor}</div></div>
                 </div>
 
                 <form  onSubmit={handleSubmit} > 
@@ -131,13 +161,14 @@ const StepFormTransfer = () =>{
     function ConfirmarSenha(handleChange){
         return(
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={transferirDinheiro}>
                 <div className="campo-input-step">
                     <SignUpInput
                         onChange={handleChange}
                         titulo="Senha:"
                         icone={Senha}
                         name="senha"
+                        type="password"
                         value={senha}
                         className="ajuste-margin"
                     ></SignUpInput>
@@ -146,6 +177,7 @@ const StepFormTransfer = () =>{
                         onChange={handleChange}
                         titulo="Confirmar senha:"
                         icone={Senha}
+                        type="password"
                         name="confirmarSenha"
                         value={confirmarSenha}
                         className="ajuste-margin"
@@ -156,7 +188,7 @@ const StepFormTransfer = () =>{
                             <button onClick={voltar}>VOLTAR</button>  
                         </div>
                         <div className="botao">
-                            <Button onClick={voltar} tipo ="submit" texto="PRÓXIMO" tamanho="160px"/>
+                            <Button  tipo ="submit" texto="FINALIZAR" tamanho="160px"/>
                         </div>
 
                     </div>

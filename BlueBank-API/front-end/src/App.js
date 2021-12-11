@@ -12,15 +12,20 @@ import MenuAdminPage from './pages/menu-admin/menu-admin-component';
 import MenuAdminHistoricoPage from './pages/menu-admin-historico/menu-admin-historico-component';
 
 function App() {
+
+
+
   return (
     <div>
         <Routes>
           <Route  exact path = '/error' element = {<ErrorPage/>}/>
-          <Route  exact path = '/home' element = {<UserHomePage/>} /> 
+          <Route  exact path = '/' element = {<UserHomePage/>} /> 
           <Route  exact path = '/login' element = {<LoginPage/>}/>
-          <Route  exact path = '/menu-user' element = {<MenuUserPage/>}/>
-          <Route  exact path = '/menu-user-historico' element = {<MenuUserHistorico/>}/>
-          <Route  exact path = '/menu-user-profile' element = {<MenuUserProfile/>}/>
+
+          <Route  exact path = '/menu-user/:userId' element = {<MenuUserPage/>}/>
+          <Route  exact path = '/menu-user-historico/:userId' element = {<MenuUserHistorico/>}/>
+          <Route  exact path = '/menu-user-profile/:userId' element = {<MenuUserProfile/>}/>
+
           <Route  exact path = '/menu-admin' element = {<MenuAdminPage/>}/>
           <Route  exact path = '/menu-admin-historico' element = {<MenuAdminHistoricoPage/>}/>
 
