@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SignUpInput from "../sign-up-input/sign-up-input-component";
 import "./sign-up-style.scss";
-import axios from "axios";
+
 
 import Profile from "../../assets/perfil.png";
 import Email from "../../assets/Email.png";
@@ -9,7 +9,7 @@ import Senha from "../../assets/senha.png";
 import Celular from "../../assets/celular.png";
 import CPF from "../../assets/cpf.png";
 import Button from "../button/button-component";
-import createClient from "../../services/urls";
+import funcao from "../../services/urls";
 
 
 const SignUp = () => {
@@ -26,7 +26,8 @@ const SignUp = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    createClient(nome, password);
+    funcao.createClient(nome, password, email, celular,cpf);
+    setUserCredentials({nome: "", email: "", password:"", confirmPassword:"", celular:"", cpf:""})
   }
 
   const handleChange =(event) => {
@@ -42,6 +43,7 @@ const SignUp = () => {
         <div className="lado-esquerdo">
                 
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Nome:"
             icone={Profile}
@@ -49,6 +51,7 @@ const SignUp = () => {
             value={nome}
           ></SignUpInput>
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Email:"
             icone={Email}
@@ -56,6 +59,7 @@ const SignUp = () => {
             value={email}
           ></SignUpInput>
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Senha:"
             icone={Senha}
@@ -67,6 +71,7 @@ const SignUp = () => {
 
         <div className="lado-direito">
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Celular:"
             icone={Celular}
@@ -74,6 +79,7 @@ const SignUp = () => {
             value={celular}
           ></SignUpInput>
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="CPF:"
             icone={CPF}
@@ -81,6 +87,7 @@ const SignUp = () => {
             name="cpf"
           ></SignUpInput>
           <SignUpInput
+            required
             onChange={handleChange}
             titulo="Confirmar senha:"
             icone={Senha}

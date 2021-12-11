@@ -40,7 +40,7 @@ public class DadoUsuario {
     private String estado;
 
     @Column(name = "telefone")
-    private int telefone;
+    private String telefone;
 
     @Column(name = "email")
     private String email;
@@ -113,11 +113,11 @@ public class DadoUsuario {
         this.estado = estado;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return this.telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -130,7 +130,7 @@ public class DadoUsuario {
     }
 
 	public DadoUsuario(String cpf, String rua, int numero, String complemento, String bairro, String cidade, String estado,
-			int telefone, String email) {
+			String telefone, String email) {
 		this.cpf = cpf;
 		this.rua = rua;
 		this.numero = numero;

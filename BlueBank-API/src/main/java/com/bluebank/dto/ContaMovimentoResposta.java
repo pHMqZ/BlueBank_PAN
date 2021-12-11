@@ -1,9 +1,13 @@
 package com.bluebank.dto;
 
-import java.sql.Date;
+
+import java.text.ParseException;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 import com.bluebank.model.Movimento;
-import com.bluebank.model.Usuario;
+
 
 public class ContaMovimentoResposta {
 	private Integer id;
@@ -26,9 +30,10 @@ public class ContaMovimentoResposta {
 
 	}
 
-	public static ContaMovimentoResposta transformaMovimento(Movimento movimento) {
-		return new ContaMovimentoResposta(movimento.getId(), movimento.getData_movimento(),
-				movimento.getTipo_movimento(), movimento.getValor(), movimento.getNome_conta());
+
+	public static ContaMovimentoResposta transformaMovimento(Movimento movimento) throws ParseException {
+		return new ContaMovimentoResposta(movimento.getId(), movimento.getData_movimento(), movimento.getTipo_movimento(),movimento.getValor(), movimento.getNome_conta());
+
 	}
 
 	public Integer getId() {

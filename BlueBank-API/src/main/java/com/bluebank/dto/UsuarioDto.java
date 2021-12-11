@@ -6,17 +6,19 @@ import com.bluebank.model.Usuario;
 
 public class UsuarioDto {
 
-	private String nome;
-	private String senha;
-	private String cpf;
-	private String rua;
-	private int numero;
-	private String complemento;
-	private String bairro;
-	private String cidade;
-	private String estado;
-	private int telefone;
-	private String email;
+	  private String nome;
+	  private String senha;
+    private String cpf;
+    private String rua;
+    private int numero;
+    private String complemento;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private String telefone;
+    private String email;
+
+
 
 	public UsuarioDto() {
 	}
@@ -104,11 +106,11 @@ public class UsuarioDto {
 		this.estado = estado;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
