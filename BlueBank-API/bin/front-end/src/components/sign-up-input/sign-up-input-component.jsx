@@ -2,7 +2,7 @@ import React from "react";
 import './sign-up-input-style.scss';
 
 
-const SignUpInput = ({onChange,titulo, icone, tipo, ...otherProps }) => {
+const SignUpInput = ({onChange,titulo, icone, tipo,...otherProps }) => {
 
     
     return(
@@ -14,7 +14,7 @@ const SignUpInput = ({onChange,titulo, icone, tipo, ...otherProps }) => {
         
                 <div className="uniao-container" >
                     <div className="input-field"  >
-                        <input onChange={onChange} type={tipo} {...otherProps}  />
+                        <input autoComplete="off" onChange={onChange} type={tipo} {...otherProps}  />
                         <img src={icone} className="image" />
                     </div>
                     

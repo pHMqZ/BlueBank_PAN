@@ -3,13 +3,11 @@ package com.bluebank.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.SubscribeRequest;
-import com.bluebank.dto.UsuarioDto;
 
 @RestController
 public class AwsSnsController {
@@ -18,7 +16,7 @@ public class AwsSnsController {
 		private AmazonSNSClient snsCliente;
 	
 	
-		private String TOPIC_ARN = "";
+		private String TOPIC_ARN = "arn:aws:sns:us-east-1:965934840569:SQ5T2Topico";
 		
 		@GetMapping("/addInscricao/{email}")
 		public String addSubscription(@PathVariable String email) {
