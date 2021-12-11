@@ -1,0 +1,41 @@
+@use '@material/switch/styles';
+
+
+.menu-admin-page{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    margin-left: 60px;
+    
+
+    .info-admin{
+        background-image: url("../../assets/background-menu-user.png");
+        background-size: cover;
+        height: auto;
+        width: 100vw;
+        position: relative;
+
+        .info-admin-texto{
+            margin-top: 74px;
+            margin-left: 74px;
+
+            h4{
+                margin-top: 0px;
+                margin-bottom: 0px;
+                color: white;  
+            }
+
+            h4.titulo-azul{
+                color:#4E9CFE;
+            }
+
+        }
+
+        .info-admin-dados-pessoais{
+            margin-top: 70px;
+            display: flex;
+            flex-direction: row;
+        }
+
+    }
+}

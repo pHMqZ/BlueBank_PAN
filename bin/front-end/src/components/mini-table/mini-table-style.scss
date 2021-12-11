@@ -1,0 +1,42 @@
+.mini-table{
+    h5{
+        color: white ;
+    }
+    .mini-table-conteudo{
+        background-color: #222D33;
+        border-radius: 10px;
+
+        .ver-historico{
+
+            text-align: right;
+            padding-right: 20px;
+            padding-bottom: 16px;
+            a{
+                font-size: 14px;
+                color: #4DBEFE;
+            }
+            
+            
+        }
+
+    }
+    
+}
+
+.table-historico{
+    
+    color: white;
+    font-size: 16px;
+    
+    td{
+        border-bottom: 1px solid #0F415E;
+    }
+    th{
+        text-align: left;
+        color: #787878 ;
+    }
+
+    padding: 20px;  
+
+}
+

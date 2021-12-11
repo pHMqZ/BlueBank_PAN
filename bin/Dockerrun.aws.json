@@ -1,0 +1,31 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "db",
+      "image": "965934840569.dkr.ecr.sa-east-1.amazonaws.com/db",
+      "hostname": "db",
+      "essential": true,
+      "memory": 512,
+      "portMappings": [
+        {
+          "hostPort": 3306,
+          "containerPort": 3306
+        }
+      ]
+    },
+    {
+      "name": "api",
+      "image": "965934840569.dkr.ecr.sa-east-1.amazonaws.com/api",
+      "hostname": "api",
+      "essential": true,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "hostPort": 8080,
+          "containerPort": 8080
+        }
+      ]
+    }
+  ]
+}
