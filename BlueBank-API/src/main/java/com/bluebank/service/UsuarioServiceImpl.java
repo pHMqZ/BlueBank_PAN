@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-
 import com.bluebank.dto.ContaMovimentoResposta;
 import com.bluebank.dto.ContaResposta;
 import com.bluebank.model.Conta;
@@ -21,78 +20,76 @@ import com.bluebank.repository.DadoUsuarioRepository;
 import com.bluebank.repository.MovimentoRepository;
 import com.bluebank.repository.UsuarioRepository;
 
-
 @Service
-public class UsuarioServiceImpl  implements UsuarioService{
+public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepo;
 
 	@Autowired
 	private DadoUsuarioRepository dadoUsuarioRepo;
-	
+
 	@Autowired
 	private ContaRepository contaRepository;
-	
+
 	@Autowired
 	private MovimentoRepository movimentoRepository;
-	
-	
+
 	@Override
 	public Usuario salvaCliente(Usuario usuario) {
 		return usuarioRepo.save(usuario);
 	}
-	
 
 	@Override
-	public void transferirDinheiro(Conta contaOrigem, Conta contaDestino, double valor ) throws Exception {
-		
-		if(contaOrigem.getSaldo() >= valor) {
+	public void transferirDinheiro(Conta contaOrigem, Conta contaDestino, double valor) throws Exception {
+
+		if (contaOrigem.getSaldo() >= valor) {
 			double saldoAtual = contaOrigem.getSaldo();
-			contaOrigem.setSaldo(saldoAtual-valor);
-			
-			
+			contaOrigem.setSaldo(saldoAtual - valor);
+
 			double saldoAtual2 = contaDestino.getSaldo();
 			contaDestino.setSaldo(saldoAtual2 + valor);
-			
-			//setar movimento
+
+			// setar movimento
 			String nome_conta_origem = contaOrigem.getNome();
-			String nome_conta_destino= contaDestino.getNome();
-			
+			String nome_conta_destino = contaDestino.getNome();
+
 			Movimento movimentoOrigem = new Movimento(valor, "Transferência", contaOrigem, nome_conta_destino);
 			Movimento movimentoDestino = new Movimento(valor, "Recebimento", contaDestino, nome_conta_origem);
-			
+
 			List<Movimento> mov_origem = contaOrigem.getMovimento();
 			mov_origem.add(movimentoOrigem);
 			contaOrigem.setMovimento(mov_origem);
-			
+
 			List<Movimento> mov_destino = contaDestino.getMovimento();
 			mov_destino.add(movimentoDestino);
 			contaDestino.setMovimento(mov_destino);
-			
-			
+
 			movimentoRepository.save(movimentoOrigem);
 			movimentoRepository.save(movimentoDestino);
 			contaRepository.save(contaOrigem);
 			contaRepository.save(contaDestino);
-			
-		}else {
+
+		} else {
 			throw new Exception("Não se pode fazer essa transferência");
 		}
 	}
-	
-	
+
 	@Override
+
 	public void atualizaDadosCliente( Usuario usuario, DadoUsuario dado, JSONObject jsonObject) throws Exception {
 		String telefone;
+
 		String email;
 		String bairro;
 		String complemento;
 		String rua;
 		String estado;
+
 		String cidade; 
 		String cpf;
 		
+
 		try {
 			telefone = (String) jsonObject.get("telefone");
 			email = (String) jsonObject.get("email");
@@ -103,6 +100,9 @@ public class UsuarioServiceImpl  implements UsuarioService{
 			cidade = (String) jsonObject.get("cidade");
 			cpf = (String) jsonObject.get("cpf");
 			
+
+
+
 			dado.setTelefone(telefone);
 			dado.setEmail(email);
 			dado.setBairro(bairro);
@@ -111,69 +111,69 @@ public class UsuarioServiceImpl  implements UsuarioService{
 			dado.setEstado(estado);
 			dado.setCidade(cidade);
 			dado.setCpf(cpf);
-			
+		
 			dadoUsuarioRepo.save(dado);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			throw new Exception(e);
 		}
 	}
-	
+
 	@Override
-	public ContaResposta  findContaById(Integer id){
-		ContaResposta contaResposta =  ContaResposta.transformaConta(contaRepository.findById(id).orElseThrow());
-		return  contaResposta ; 	
+	public ContaResposta findContaById(Integer id) {
+		ContaResposta contaResposta = ContaResposta.transformaConta(contaRepository.findById(id).orElseThrow());
+		return contaResposta;
 	}
-	
+
 	@Override
 	public Usuario getById(Integer id) {
 		return usuarioRepo.getById(id);
 	}
-	
-	@Override 
+
+	@Override
 	public DadoUsuario findDadosById(Integer id) {
 		return dadoUsuarioRepo.getById(id);
 	}
-	
+
 	@Override
-	public List<ContaMovimentoResposta> getHistoricoById(Integer id) throws Exception{
+	public List<ContaMovimentoResposta> getHistoricoById(Integer id) throws Exception {
 		try {
 			List<Movimento> movimentos = contaRepository.findByContaId(id);
 			List<ContaMovimentoResposta> movimentosResposta = new ArrayList<ContaMovimentoResposta>();
-			for(Movimento movimento: movimentos){
+			for (Movimento movimento : movimentos) {
 				movimentosResposta.add(ContaMovimentoResposta.transformaMovimento(movimento));
-				
-				}
-			return  movimentosResposta;
-		}catch (Exception e){
+
+			}
+			return movimentosResposta;
+		} catch (Exception e) {
 			throw new Exception(e);
 		}
 	}
-	
-	
+
 	@Override
-	public ResponseEntity<?> transferir( Integer id_origem,   Integer id_destino,   double valor)throws Exception{
+	public ResponseEntity<?> transferir(Integer id_origem, Integer id_destino, double valor) throws Exception {
 		try {
 			Conta contaOrigem = contaRepository.findById(id_origem).orElseThrow();
 			Conta contaDestino = contaRepository.findById(id_destino).orElseThrow();
-			transferirDinheiro(contaOrigem, contaDestino,valor);
+			transferirDinheiro(contaOrigem, contaDestino, valor);
 			return new ResponseEntity<>(HttpStatus.CREATED);
-		}catch (Exception e){
+		} catch (Exception e) {
 			throw new Exception(e);
 		}
-		
+
 	}
-	
+
 	@Override
-	public ResponseEntity<?> atualizarDadosPessoais( Integer id,  JSONObject jsonObject)throws Exception{
+	public ResponseEntity<?> atualizarDadosPessoais(Integer id, JSONObject jsonObject) throws Exception {
 		try {
 			Usuario cliente = usuarioRepo.findById(id).orElseThrow();
 			DadoUsuario dadosUsuario = dadoUsuarioRepo.findById(id).orElseThrow();
-			atualizaDadosCliente(cliente, dadosUsuario,jsonObject );
+			atualizaDadosCliente(cliente, dadosUsuario, jsonObject);
 			return new ResponseEntity<>(HttpStatus.CREATED);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			throw new Exception(e);
 		}
 	}
+
 	
 	@Override
 	public String pegarSenhaUser(Integer id) throws Exception{
@@ -210,5 +210,5 @@ public class UsuarioServiceImpl  implements UsuarioService{
 	
 	
 
-	
+
 }

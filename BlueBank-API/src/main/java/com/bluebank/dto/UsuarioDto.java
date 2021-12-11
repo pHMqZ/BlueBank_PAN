@@ -5,9 +5,9 @@ import com.bluebank.model.DadoUsuario;
 import com.bluebank.model.Usuario;
 
 public class UsuarioDto {
-	
-	private String nome;
-	private String senha;
+
+	  private String nome;
+	  private String senha;
     private String cpf;
     private String rua;
     private int numero;
@@ -18,22 +18,21 @@ public class UsuarioDto {
     private String telefone;
     private String email;
 
-//	Construtor Vazio
+
 
 	public UsuarioDto() {
 	}
 
-//	Metodos da Classe
-    public Usuario transformaUsuario() {
-    	DadoUsuario dadoUsuario = new DadoUsuario(cpf, rua, numero, complemento, bairro, cidade, estado, telefone, email);
-    	Conta conta = new Conta(nome,200.0);
-    	return new Usuario(nome, senha, dadoUsuario, conta);
-    }
-
-	public Usuario transformaAdmin(){
-		return new Usuario(nome, senha);
+	public Usuario transformaUsuario() {
+		DadoUsuario dadoUsuario = new DadoUsuario(cpf, rua, numero, complemento, bairro, cidade, estado, telefone,
+				email);
+		Conta conta = new Conta(nome, 200.0);
+		return new Usuario(nome, senha, dadoUsuario, conta);
 	}
 
+	public Usuario transformaAdmin() {
+		return new Usuario(nome, senha);
+	}
 
 	public String getNome() {
 		return nome;
@@ -123,5 +122,4 @@ public class UsuarioDto {
 		this.email = email;
 	}
 
-    
 }

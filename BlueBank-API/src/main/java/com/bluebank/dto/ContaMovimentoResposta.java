@@ -9,30 +9,31 @@ import java.util.Date;
 import com.bluebank.model.Movimento;
 
 
-
 public class ContaMovimentoResposta {
 	private Integer id;
-    private Date data_movimento;
-    private String tipo_movimento;
-    private double valor;
-    private String nome_conta;
-    
-    public ContaMovimentoResposta(Integer id2, Date data_movimento2, String tipo_movimento2, double valor2,
+	private Date data_movimento;
+	private String tipo_movimento;
+	private double valor;
+	private String nome_conta;
+
+	public ContaMovimentoResposta(Integer id2, Date data_movimento2, String tipo_movimento2, double valor2,
 			String nome_conta2) {
-		
-    	this.id = id2;
-    	this.data_movimento = data_movimento2;
-    	this.tipo_movimento = tipo_movimento2;
-    	this.valor = valor2;
-    	this.nome_conta = nome_conta2;
+
+		this.id = id2;
+		this.data_movimento = data_movimento2;
+		this.tipo_movimento = tipo_movimento2;
+		this.valor = valor2;
+		this.nome_conta = nome_conta2;
 	}
 
 	public ContaMovimentoResposta() {
-		
+
 	}
+
 
 	public static ContaMovimentoResposta transformaMovimento(Movimento movimento) throws ParseException {
 		return new ContaMovimentoResposta(movimento.getId(), movimento.getData_movimento(), movimento.getTipo_movimento(),movimento.getValor(), movimento.getNome_conta());
+
 	}
 
 	public Integer getId() {
@@ -74,8 +75,5 @@ public class ContaMovimentoResposta {
 	public void setNome_conta(String nome_conta) {
 		this.nome_conta = nome_conta;
 	}
-    
-	
-	
-    
+
 }

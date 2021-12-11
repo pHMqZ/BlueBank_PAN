@@ -19,8 +19,9 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name="movimento")
+@Table(name = "movimento")
 public class Movimento {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -100,21 +101,21 @@ public class Movimento {
     public void setNumero_doc(int numero_doc) {
         this.numero_doc = numero_doc;
     }
+
 	public String getNome_conta() {
 		return nome_conta;
 	}
+
 	public void setNome_conta(String nome_conta) {
 		this.nome_conta = nome_conta;
 	}
+
 	public Conta getConta() {
 		return conta;
 	}
+
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
-
-	
-
-    
 
 }
