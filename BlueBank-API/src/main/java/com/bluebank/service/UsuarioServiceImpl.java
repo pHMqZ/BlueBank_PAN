@@ -84,22 +84,24 @@ public class UsuarioServiceImpl  implements UsuarioService{
 	
 	@Override
 	public void atualizaDadosCliente( Usuario usuario, DadoUsuario dado, JSONObject jsonObject) throws Exception {
-		int telefone;
+		String telefone;
 		String email;
 		String bairro;
 		String complemento;
 		String rua;
 		String estado;
 		String cidade; 
+		String cpf;
 		
 		try {
-			telefone = (int) jsonObject.get("telefone");
+			telefone = (String) jsonObject.get("telefone");
 			email = (String) jsonObject.get("email");
 			bairro = (String) jsonObject.get("bairro");
 			complemento = (String) jsonObject.get("complemento");
 			rua = (String) jsonObject.get("rua");
 			estado = (String) jsonObject.get("estado");
 			cidade = (String) jsonObject.get("cidade");
+			cpf = (String) jsonObject.get("cpf");
 			
 			dado.setTelefone(telefone);
 			dado.setEmail(email);
@@ -108,6 +110,7 @@ public class UsuarioServiceImpl  implements UsuarioService{
 			dado.setRua(rua);
 			dado.setEstado(estado);
 			dado.setCidade(cidade);
+			dado.setCpf(cpf);
 			
 			dadoUsuarioRepo.save(dado);
 		}catch(Exception e) {
@@ -168,6 +171,39 @@ public class UsuarioServiceImpl  implements UsuarioService{
 			atualizaDadosCliente(cliente, dadosUsuario,jsonObject );
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		}catch(Exception e) {
+			throw new Exception(e);
+		}
+	}
+	
+	@Override
+	public String pegarSenhaUser(Integer id) throws Exception{
+		try {
+			Usuario cliente = usuarioRepo.findById(id).orElseThrow();
+			return cliente.getSenha();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}
+	}
+	
+	@Override
+	public Integer pegarIds() throws Exception{
+		try {
+			Integer idResp = 1;
+			List<Integer> resposta = new ArrayList<>();
+			for(Usuario pessoa : usuarioRepo.findAll()) {
+				resposta.add(pessoa.getId());
+			}
+			
+			if(!resposta.isEmpty()) {
+				idResp = resposta.size();
+			}
+			
+			return idResp;
+			
+			
+			
+		}catch(Exception e) {
+			
 			throw new Exception(e);
 		}
 	}

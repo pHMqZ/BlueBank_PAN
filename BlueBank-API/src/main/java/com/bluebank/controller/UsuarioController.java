@@ -66,6 +66,18 @@ public class UsuarioController {
 		return usuarioService.atualizarDadosPessoais(id, jsonObject);
 	}
 	
+	@CrossOrigin(origins = "http://localhost:3006")
+	@GetMapping("/pegarSenha/{id}")
+	public String pegarSenha(@PathVariable Integer id) throws Exception{
+		return usuarioService.pegarSenhaUser(id);
+	}
+	
+	@CrossOrigin(origins = "http://localhost:3006")
+	@GetMapping("/pegarIds")
+	public Integer pegarIds() throws Exception{
+		return usuarioService.pegarIds();
+	}
+	
 	
 
 

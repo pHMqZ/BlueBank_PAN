@@ -5,17 +5,18 @@ import {ReactComponent as CartaoCredito} from '../../assets/cartao-credito.svg';
 import MenuLateral from "../../components/menu-lateral/menu-lateral-component";
 import StepFormTransfer from "../../components/step-form/step-form-component";
 import MiniTable from "../../components/mini-table/mini-table-component";
-import funcao from "../../services/urls";
-import { ListItemSecondaryAction, MenuItem } from "@material-ui/core";
+
+
 import axios from "axios";
 import BASE_URL from "../../services/bases";
+import { useParams, useNavigate  } from 'react-router-dom';
 
 const MenuUserPage = () => {
     
-    
+    let { userId } = useParams();
     
     const [dados, setDados] = useState({
-        id: 2,
+        id: userId,
         nome: "",
         saldo: "",
         data: "",
@@ -38,7 +39,7 @@ const MenuUserPage = () => {
        useEffect( () =>{
         axios.get(`${BASE_URL}usuario/cliente/conta/${id}`)
         .then(res => 
-            setDados({...dados, saldo:  res.data.saldo }));
+            setDados({...dados, saldo:  res.data.saldo, nome: res.data.nome }));
 
         
         mapeiaDadosTabela(id);
@@ -50,22 +51,27 @@ const MenuUserPage = () => {
 
        },[] );
 
-       console.log(tableData);
+      
    
 
          function mapeiaDadosTabela(identificacao){
             axios.get(`${BASE_URL}usuario/cliente/historico/${identificacao}`)        
             .then(res => {
-            const resposta = [];
-  
-            for(let i = 0; i < res.data.length; i++){
-                const item = {"data_origem": "", "valor":"", "tipo":""};
-                item.data_origem = res.data[i].data_movimento;
-                item.tipo = res.data[i].tipo_movimento;
-                item.valor =  res.data[i].valor ;
-                resposta.push(item)
-              
+                const resposta = [];    
+            if(res.data.length >= 1){
+                var size = res.data.length-1;
+                parseInt(size);
+                for(let i = size; i > size-3; i--){
+                    const item = {"data_origem": "", "valor":"", "tipo":""};
+                    item.data_origem = res.data[i].data_movimento;
+                    item.tipo = res.data[i].tipo_movimento;
+                    item.valor =  res.data[i].valor ;
+                    resposta.push(item)
+                  
+                }
             }
+            
+            
             
 
            
@@ -84,13 +90,13 @@ const MenuUserPage = () => {
     return(
 <div className="menu-user-page">
         <div className="menu-vertical">
-            <MenuLateral/>
+            <MenuLateral id={id}/>
         </div>
 
         <div className="info-menu">
             <div className="info-menu-texto">
                 <h4>Bem vindo, </h4>
-                <h4 className="titulo-azul">Vinicius Trindade!</h4>  
+                <h4 className="titulo-azul">{nome}</h4>  
             </div>
 
             <div className="cartao-credito">
@@ -104,12 +110,12 @@ const MenuUserPage = () => {
             </div>
 
             <div className="transferencia">
-                <StepFormTransfer/>  
+                <StepFormTransfer id={id} />  
             </div>
 
             <div className="info-menu-table">
                 
-                <MiniTable list={tableData} />   
+                <MiniTable list={tableData} id={id} />   
             </div>
 
         </div>

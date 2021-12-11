@@ -15,7 +15,7 @@ public class UsuarioDto {
     private String bairro;
     private String cidade;
     private String estado;
-    private int telefone;
+    private String telefone;
     private String email;
 
 //	Construtor Vazio
@@ -107,11 +107,11 @@ public class UsuarioDto {
 		this.estado = estado;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
