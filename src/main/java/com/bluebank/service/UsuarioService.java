@@ -27,7 +27,7 @@ public interface UsuarioService {
 	public abstract List<ContaMovimentoResposta> getHistoricoById(Integer id)throws Exception;
 	public abstract ResponseEntity<?> transferir(Integer id_origem, Integer id_destino, double valor) throws Exception;
 	public abstract ResponseEntity<?> atualizarDadosPessoais(Integer id, JSONObject jsonObject) throws Exception;
-	
-
+	public abstract String pegarSenhaUser(Integer id) throws Exception;
+	public abstract Integer pegarIds() throws Exception;
 	
 }

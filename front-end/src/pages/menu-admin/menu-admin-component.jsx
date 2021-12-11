@@ -1,24 +1,38 @@
 import React, {useState, useEffect} from "react";
 import MenuLateralAdmin from "../../components/menu-lateral-admin/menu-lateral-admin-component";
 import "./menu-admin-style.scss";
+<<<<<<< HEAD
 import EyeHide from "../../components/eye-hide/eye-hide-component";
 import EyeWhite from "../../assets/eye-white.png";
 import MaterialTable from "material-table";
 import tableIcons from "./icon-provider";
 import Switch from "@material-ui/core/Switch";
+=======
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 import IconeLapis from "../../assets/icone-lapis.png";
 import IconeCadeado from "../../assets/icone-cadeado.png";
 import SignUpInput from "../../components/sign-up-input/sign-up-input-component";
 import {ReactComponent as ProfileCircle} from '../../assets/profile-circle.svg';
 import {ReactComponent as InfoCircle} from '../../assets/casa-circle.svg';
+<<<<<<< HEAD
+=======
+import CPF from "../../assets/cpf.png";
+import axios from "axios";
+import BASE_URL from "../../services/bases";
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
 
 import {ReactComponent as EyeWhites} from '../../assets/eye-white.svg';
 import {ReactComponent as EyeGreys} from '../../assets/eye-grey.svg';
+<<<<<<< HEAD
+=======
+import Button from "../../components/button/button-component";
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
 
 
 const MenuAdminPage = () => {
+<<<<<<< HEAD
     const dadosTabela = [
     
         {index:0, nome: "Vinicius Ribeiro", conta: "12", dados: 0, bloqueado: 1},
@@ -54,6 +68,19 @@ const MenuAdminPage = () => {
        //o hide precisa estar 1 para o id da conta mostrar algo nos compoenntes
        contaBloq: "",
         //fala a conta que esta sendo selecionada
+=======
+    
+    
+    
+        
+        
+    const nomeColunas = ['Tipo', 'De/Para', "Data", "Valor"];
+    
+
+   const [hideStatus, setHideStatus] = useState({
+     
+        contaPesquisa:"",
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
         nome: "",
         contaNum: "",
         cpf: "",
@@ -63,6 +90,7 @@ const MenuAdminPage = () => {
         complemento: "",
         rua: "",
         estado: "",
+<<<<<<< HEAD
         cidade: ""
 
        
@@ -170,6 +198,104 @@ const MenuAdminPage = () => {
     }
     
 
+=======
+        cidade: "",
+        tableData: [],
+
+       
+
+   });
+
+
+
+   
+
+
+   const {nome, contaNum, cpf, celular, email, bairro,complemento, rua,estado, cidade,contaPesquisa,tableData } = hideStatus;
+
+   useEffect(()=>{
+    var auxContaPesquisa ;
+    contaPesquisa ? auxContaPesquisa = contaPesquisa : auxContaPesquisa = 1;
+    setarConta(auxContaPesquisa);
+   
+   },[contaPesquisa])
+
+   useEffect(async ()=>{
+    var auxContaPesquisa ;
+    contaPesquisa ? auxContaPesquisa = contaPesquisa : auxContaPesquisa = 1;
+    await axios.put(`${BASE_URL}usuario/admin/editarUser/${auxContaPesquisa}`, {"telefone": celular,"email":email,
+    "bairro":bairro, "complemento":complemento, "rua":rua,"estado":estado,"cidade":cidade})
+    .then(res=>console.log(res)
+    )
+   
+   },[celular,email,bairro,complemento,rua,estado,cidade])
+
+   
+
+
+   function setarConta(id){
+    var contaAux = "";
+    var nomeAux = "";
+    const resposta = [];
+    
+    axios.get(`${BASE_URL}usuario/cliente/historico/${id}`)
+        .then(res => {   
+            var size = res.data.length-1;
+            parseInt(size);
+            for(let i = size; i >= 0; i--){
+                const item = {"tipo":"", "nome_conta":"", "data_origem":"", "valor":""};
+                item.data_origem = res.data[i].data_movimento;
+                item.tipo = res.data[i].tipo_movimento;
+                item.valor =  res.data[i].valor ;
+                item.nome_conta = res.data[i].nome_conta;
+                resposta.push(item)
+              
+            } });
+
+    axios.get(`${BASE_URL}usuario/cliente/conta/${id}`)
+    .then(res => {contaAux = res.data.id});
+
+    axios.get(`${BASE_URL}usuario/admin/listarUsuarioId/${id}`)
+    .then(res => {nomeAux = res.data.nome });
+
+    axios.get(`${BASE_URL}usuario/admin/listarUsuarioId/${id}`)
+    .then(res =>
+        
+        setHideStatus({...hideStatus,
+            cpf: res.data.dado_usuario.cpf ? res.data.dado_usuario.cpf : "...",
+            rua: res.data.dado_usuario.rua ? res.data.dado_usuario.rua: "...",
+            numero: res.data.dado_usuario.numero ? res.data.dado_usuario.numero : "...",
+            complemento: res.data.dado_usuario.complemento ? res.data.dado_usuario.complemento : "...",
+            bairro: res.data.dado_usuario.bairro ? res.data.dado_usuario.bairro : "...",
+            cidade: res.data.dado_usuario.cidade ? res.data.dado_usuario.cidade : "...",
+            estado: res.data.dado_usuario.estado ? res.data.dado_usuario.estado : "...",
+            celular: res.data.dado_usuario.telefone ? res.data.dado_usuario.telefone : "...",
+            email: res.data.dado_usuario.email ? res.data.dado_usuario.email : "...",
+            contaNum: contaAux,
+            nome: nomeAux,
+            tableData: resposta,
+
+            }
+            
+        ))
+    }
+
+
+   const handleChanges =(event) => {
+    const {name,value} = event.target;
+    setHideStatus({...hideStatus, [name]: value});
+    
+    };
+
+    const handleChangesPesquisa =(event) => {
+        const {name,value} = event.target;
+        setHideStatus({...hideStatus, [name]: value});
+        
+        
+    };
+
+    
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
     return(
         
@@ -185,8 +311,23 @@ const MenuAdminPage = () => {
                     
                 </div>
 
+<<<<<<< HEAD
                 <div className="info-menu-table-historico" style={{"width": "800px", "height": "390px" }}>
                     <BasicTable />
+=======
+                <div style={{"marginLeft": "45px"}}>
+                    
+                        <SignUpInput  
+                            onChange={handleChangesPesquisa}
+                            titulo="Número de conta:"
+                            icone={CPF}
+                            name="contaPesquisa"
+                            value={contaPesquisa}
+                        ></SignUpInput>
+
+
+                   
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                 </div>
 
                 <div className="info-admin-dados-pessoais">
@@ -203,9 +344,16 @@ const MenuAdminPage = () => {
                                     <SignUpInput  
                                     onChange={handleChanges}
                                     titulo="Nome:"
+<<<<<<< HEAD
                                     icone={IconeLapis}
                                     name="nome"
                                     value={nome}
+=======
+                                    icone={IconeCadeado}
+                                    name="nome"
+                                    value={nome}
+                                    disabled
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                     ></SignUpInput>
 
                                     <SignUpInput
@@ -307,7 +455,11 @@ const MenuAdminPage = () => {
                 </div>
 
                 <div className="info-menu-table-historico" style={{"width": "800px", "height": "390px", "overflow-y": "scroll", "overflow-x": "hidden", "margin-top":"60px","margin-bottom":"60px"}}>
+<<<<<<< HEAD
                     <Table list={list} colNames={nomeColunas} width="800px"/>
+=======
+                    <Table list={tableData} colNames={nomeColunas} width="800px"/>
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                 </div>
 
             
@@ -319,6 +471,7 @@ const MenuAdminPage = () => {
 
     );
 
+<<<<<<< HEAD
     function EyeWhiteShow(){ return( 
         <div style={{"cursor": "pointer"}}> 
         <EyeWhites/>
@@ -326,6 +479,11 @@ const MenuAdminPage = () => {
 
 
     function EyeGreyHide(){ return( <div style={{"cursor": "pointer"}} > <EyeGreys/> </div> )}
+=======
+    
+
+    
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
      
     
 
