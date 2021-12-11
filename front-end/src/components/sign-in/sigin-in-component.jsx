@@ -1,9 +1,26 @@
+<<<<<<< HEAD
+import React from "react";
+=======
 import React, {useState} from "react";
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 import CPF from '../../assets/cpf.png';
 import Senha from '../../assets/senha.png';
 import Button from "../button/button-component";
 import SignUpInput from "../sign-up-input/sign-up-input-component";
 import './sign-in-style.scss';
+<<<<<<< HEAD
+
+const SignIn = () => {
+
+
+    return(
+
+        <form>
+            <div className="form-login">
+        
+            <SignUpInput titulo="CPF:" icone={CPF} tamanho="310px"></SignUpInput>
+            <SignUpInput titulo="Senha:" icone={Senha} tipo="password" tamanho="310px"></SignUpInput>            
+=======
 import axios from "axios";
 import BASE_URL from "../../services/bases";
 import { useParams, useNavigate  } from 'react-router-dom';
@@ -58,6 +75,7 @@ const SignIn = () => {
         
             <SignUpInput  onChange={handleChange} titulo="Conta:" icone={CPF} tamanho="310px" name="conta" value={conta}></SignUpInput>
             <SignUpInput onChange={handleChange} titulo="Senha:" icone={Senha} tipo="password" tamanho="310px" name="senha" value={senha}></SignUpInput>            
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             
                 
                 <div className="botao">

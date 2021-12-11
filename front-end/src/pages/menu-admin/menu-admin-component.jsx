@@ -1,23 +1,74 @@
 import React, {useState, useEffect} from "react";
 import MenuLateralAdmin from "../../components/menu-lateral-admin/menu-lateral-admin-component";
 import "./menu-admin-style.scss";
+<<<<<<< HEAD
+import EyeHide from "../../components/eye-hide/eye-hide-component";
+import EyeWhite from "../../assets/eye-white.png";
+import MaterialTable from "material-table";
+import tableIcons from "./icon-provider";
+import Switch from "@material-ui/core/Switch";
+=======
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 import IconeLapis from "../../assets/icone-lapis.png";
 import IconeCadeado from "../../assets/icone-cadeado.png";
 import SignUpInput from "../../components/sign-up-input/sign-up-input-component";
 import {ReactComponent as ProfileCircle} from '../../assets/profile-circle.svg';
 import {ReactComponent as InfoCircle} from '../../assets/casa-circle.svg';
+<<<<<<< HEAD
+=======
 import CPF from "../../assets/cpf.png";
 import axios from "axios";
 import BASE_URL from "../../services/bases";
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
 
 import {ReactComponent as EyeWhites} from '../../assets/eye-white.svg';
 import {ReactComponent as EyeGreys} from '../../assets/eye-grey.svg';
+<<<<<<< HEAD
+=======
 import Button from "../../components/button/button-component";
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
 
 
 const MenuAdminPage = () => {
+<<<<<<< HEAD
+    const dadosTabela = [
+    
+        {index:0, nome: "Vinicius Ribeiro", conta: "12", dados: 0, bloqueado: 1},
+        {index:1,nome: "Vinicius Ribeiro", conta: "13", dados: 0, bloqueado: 0},
+        {index:2,nome: "Vinicius Ribeiro", conta: "14", dados: 0, bloqueado: 0},
+        {index:3,nome: "Vinicius Ribeiro", conta: "15", dados: 0, bloqueado: 0},
+        {index:4,nome: "Vinicius Ribeiro", conta: "16", dados: 0, bloqueado: 0},
+        {index:5,nome: "Vinicius Ribeiro", conta: "17", dados: 0, bloqueado: 0},
+        {index:6,nome: "Vinicius Ribeiro", conta: "18", dados: 0, bloqueado: 0},  
+        ]
+    
+    const list = [//
+            {tipo: "Recebimento", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00", Saldo: "R$ 3815,00" },
+            {tipo: "Transferência", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00", Saldo: "R$ 3805,00" },
+            {tipo: "Recebimento", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00", Saldo: "R$ 3815,00" },
+            {tipo: "Transferência", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00", Saldo: "R$ 3805,00" },
+            {tipo: "Recebimento", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00", Saldo: "R$ 3815,00" },
+            {tipo: "Transferência", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00", Saldo: "R$ 3805,00" },
+            {tipo: "Recebimento", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00", Saldo: "R$ 3815,00" },
+            {tipo: "Transferência", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00", Saldo: "R$ 3805,00" },
+            
+            
+    ]
+        
+        
+    const nomeColunas = ['Tipo', 'Para', "Data", "Valor", "Saldo"];
+        
+
+
+   const [hideStatus, setHideStatus] = useState({
+       hide: 0,
+       conta: "",
+       //o hide precisa estar 1 para o id da conta mostrar algo nos compoenntes
+       contaBloq: "",
+        //fala a conta que esta sendo selecionada
+=======
     
     
     
@@ -29,6 +80,7 @@ const MenuAdminPage = () => {
    const [hideStatus, setHideStatus] = useState({
      
         contaPesquisa:"",
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
         nome: "",
         contaNum: "",
         cpf: "",
@@ -38,6 +90,115 @@ const MenuAdminPage = () => {
         complemento: "",
         rua: "",
         estado: "",
+<<<<<<< HEAD
+        cidade: ""
+
+       
+
+   })
+
+   
+
+
+   const {hide,conta,contaBloq,nome, contaNum, cpf, celular, email, bairro,complemento, rua,estado, cidade } = hideStatus;
+
+   const handleChanges =(event) => {
+    const {name,value} = event.target;
+    setHideStatus({...hideStatus, [name]: value});
+    
+};
+
+   useEffect(() =>{
+    
+    dadosTabela.map(userInfo => {
+        if(userInfo.conta === conta){
+            userInfo.dados = hide;
+        }   
+        })
+     
+    
+    dadosTabela.forEach((obj)=>{
+        
+        if(obj.conta === contaBloq){
+            
+            if(obj.bloqueado ===1){
+                obj.bloqueado = 0;
+                
+            }else if(obj.bloqueado === 0){
+                obj.bloqueado = 1;
+               
+            }
+        }
+        
+    })
+
+       
+
+       
+    });
+
+   const handleChange =(conta) => {
+        hide ? setHideStatus({...hideStatus, "hide": 0 , "conta": conta}) : setHideStatus({...hideStatus, "hide": 1 , "conta": conta});
+        
+    };
+
+
+    function bloquear(){
+            //setHideStatus({...hideStatus, "contaStatusAux": "1"});     
+    }
+
+    function desbloquear(){
+        //setHideStatus({...hideStatus, "contaStatusAux": "0"});
+    }
+
+
+
+    const  bloqueio = (event) =>{
+        event.target.checked ? bloquear() : desbloquear();
+    }
+
+    function  mandarConta(conta){
+        setHideStatus({...hideStatus, "contaBloq": conta})
+    } 
+        
+   
+
+    
+    
+
+   
+
+
+    
+    const colunas = [
+        {title: "Nome", field: "nome"},
+        {title: "Conta", field: "conta"},
+        {title: "Dados", field: "dados", render: (row) => {  return <> 
+        
+        <div onClick = {()=>{handleChange(row.conta)}}>      
+                {row.dados === 0 && EyeGreyHide()}
+                {row.dados === 1 && EyeWhiteShow()}
+        </div>
+         
+        </>}},
+        {title: "Bloqueado", field: "bloqueado", render: (row) => {
+            return <>
+                <div  onClick={() =>{mandarConta(row.conta)}}>
+                    <Switch  checked={row.bloqueado} onChange={bloqueio}  />
+                </div>
+                
+            </>
+        }}
+    
+    ]
+    
+    
+    const BasicTable = () => {
+        return <MaterialTable  title="Clientes" icons={tableIcons} columns={colunas} data={dadosTabela} />
+    }
+    
+
+=======
         cidade: "",
         tableData: [],
 
@@ -134,6 +295,7 @@ const MenuAdminPage = () => {
     };
 
     
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
     return(
         
@@ -149,6 +311,10 @@ const MenuAdminPage = () => {
                     
                 </div>
 
+<<<<<<< HEAD
+                <div className="info-menu-table-historico" style={{"width": "800px", "height": "390px" }}>
+                    <BasicTable />
+=======
                 <div style={{"marginLeft": "45px"}}>
                     
                         <SignUpInput  
@@ -161,6 +327,7 @@ const MenuAdminPage = () => {
 
 
                    
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                 </div>
 
                 <div className="info-admin-dados-pessoais">
@@ -177,10 +344,16 @@ const MenuAdminPage = () => {
                                     <SignUpInput  
                                     onChange={handleChanges}
                                     titulo="Nome:"
+<<<<<<< HEAD
+                                    icone={IconeLapis}
+                                    name="nome"
+                                    value={nome}
+=======
                                     icone={IconeCadeado}
                                     name="nome"
                                     value={nome}
                                     disabled
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                     ></SignUpInput>
 
                                     <SignUpInput
@@ -282,7 +455,11 @@ const MenuAdminPage = () => {
                 </div>
 
                 <div className="info-menu-table-historico" style={{"width": "800px", "height": "390px", "overflow-y": "scroll", "overflow-x": "hidden", "margin-top":"60px","margin-bottom":"60px"}}>
+<<<<<<< HEAD
+                    <Table list={list} colNames={nomeColunas} width="800px"/>
+=======
                     <Table list={tableData} colNames={nomeColunas} width="800px"/>
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                 </div>
 
             
@@ -294,9 +471,19 @@ const MenuAdminPage = () => {
 
     );
 
+<<<<<<< HEAD
+    function EyeWhiteShow(){ return( 
+        <div style={{"cursor": "pointer"}}> 
+        <EyeWhites/>
+        </div> )}
+
+
+    function EyeGreyHide(){ return( <div style={{"cursor": "pointer"}} > <EyeGreys/> </div> )}
+=======
     
 
     
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
      
     
 

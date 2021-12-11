@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import SignUpInput from "../sign-up-input/sign-up-input-component";
 import "./sign-up-style.scss";
 import axios from "axios";
+<<<<<<< HEAD
+=======
 import BASE_URL from "../../services/bases";
 
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
 import Profile from "../../assets/perfil.png";
 import Email from "../../assets/Email.png";
@@ -11,11 +14,18 @@ import Senha from "../../assets/senha.png";
 import Celular from "../../assets/celular.png";
 import CPF from "../../assets/cpf.png";
 import Button from "../button/button-component";
+<<<<<<< HEAD
+import createClient from "../../services/urls";
+
+
+const SignUp = () => {
+=======
 import funcao from "../../services/urls";
 import { useParams, useNavigate  } from 'react-router-dom';
 
 const SignUp = () => {
   const navigate = useNavigate();
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
   const [userCredentials, setUserCredentials] = useState({
     nome: "",
     email: "",
@@ -29,6 +39,9 @@ const SignUp = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
+<<<<<<< HEAD
+    createClient(nome, password);
+=======
     funcao.createClient(nome, password, email, celular,cpf)
     .then( resp => {
       
@@ -48,6 +61,7 @@ const SignUp = () => {
 
     
 
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
   }
 
   const handleChange =(event) => {
@@ -63,7 +77,10 @@ const SignUp = () => {
         <div className="lado-esquerdo">
                 
           <SignUpInput
+<<<<<<< HEAD
+=======
             required
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             onChange={handleChange}
             titulo="Nome:"
             icone={Profile}
@@ -71,7 +88,10 @@ const SignUp = () => {
             value={nome}
           ></SignUpInput>
           <SignUpInput
+<<<<<<< HEAD
+=======
             required
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             onChange={handleChange}
             titulo="Email:"
             icone={Email}
@@ -79,7 +99,10 @@ const SignUp = () => {
             value={email}
           ></SignUpInput>
           <SignUpInput
+<<<<<<< HEAD
+=======
             required
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             onChange={handleChange}
             titulo="Senha:"
             icone={Senha}
@@ -91,7 +114,10 @@ const SignUp = () => {
 
         <div className="lado-direito">
           <SignUpInput
+<<<<<<< HEAD
+=======
             required
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             onChange={handleChange}
             titulo="Celular:"
             icone={Celular}
@@ -99,7 +125,10 @@ const SignUp = () => {
             value={celular}
           ></SignUpInput>
           <SignUpInput
+<<<<<<< HEAD
+=======
             required
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             onChange={handleChange}
             titulo="CPF:"
             icone={CPF}
@@ -107,7 +136,10 @@ const SignUp = () => {
             name="cpf"
           ></SignUpInput>
           <SignUpInput
+<<<<<<< HEAD
+=======
             required
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             onChange={handleChange}
             titulo="Confirmar senha:"
             icone={Senha}

@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+import React from "react";
+import "./menu-admin-historico-style.scss";
+import MenuLateralAdmin from "../../components/menu-lateral-admin/menu-lateral-admin-component";
+
+const MenuAdminHistoricoPage = () => {
+    const columnNames = ['De', 'Para', "Data", "Valor"];
+
+    const list = [//
+        {de: "Vitor Ribeiro", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00"},
+        {de: "Vitor Ribeiro", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00"},
+        {de: "Vitor Ribeiro", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00"},
+        {de: "Vitor Ribeiro", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00"},
+        {de: "Vitor Ribeiro", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00"},
+        {de: "Vitor Ribeiro", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00"},
+        {de: "Vitor Ribeiro", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00"},
+        {de: "Vitor Ribeiro", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00"},  
+    ]
+=======
 import React, {useState, useEffect} from "react";
 import "./menu-admin-historico-style.scss";
 import MenuLateralAdmin from "../../components/menu-lateral-admin/menu-lateral-admin-component";
@@ -41,6 +60,7 @@ const MenuAdminHistoricoPage = () => {
             setDadosTabela({ tableData: resposta });
         });
     }
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
 
     return(
@@ -57,7 +77,11 @@ const MenuAdminHistoricoPage = () => {
         </div>
 
         <div className="info-menu-table-historico" style={{"width": "800px", "height": "390px", "overflow-y": "scroll", "overflow-x": "hidden"}}>
+<<<<<<< HEAD
+            <Table list={list} colNames={columnNames} width="800px"/>
+=======
             <Table list={tableData} colNames={columnNames} width="800px"/>
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
         </div>
         
         </div>

@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+import React from "react";
+import MenuLateral from "../../components/menu-lateral/menu-lateral-component";
+import "./menu-user-historico-style.scss";
+
+
+const MenuUserHistorico = () =>{
+
+    const columnNames = ['Tipo', 'Para', "Data", "Valor", "Saldo"];
+
+    const list = [//
+        {tipo: "Recebimento", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00", Saldo: "R$ 3815,00" },
+        {tipo: "Transferência", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00", Saldo: "R$ 3805,00" },
+        {tipo: "Recebimento", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00", Saldo: "R$ 3815,00" },
+        {tipo: "Transferência", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00", Saldo: "R$ 3805,00" },
+        {tipo: "Recebimento", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00", Saldo: "R$ 3815,00" },
+        {tipo: "Transferência", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00", Saldo: "R$ 3805,00" },
+        {tipo: "Recebimento", para: "Vitor Ribeiro", data: "08/11/2021", valor: "R$ 10,00", Saldo: "R$ 3815,00" },
+        {tipo: "Transferência", para: "Renato Junior", data: "08/11/2021", valor: "R$ 300,00", Saldo: "R$ 3805,00" },
+        
+        
+    ]
+
+
+=======
 import React,{useState, useEffect} from "react";
 import MenuLateral from "../../components/menu-lateral/menu-lateral-component";
 import "./menu-user-historico-style.scss";
@@ -49,11 +74,16 @@ const MenuUserHistorico = () =>{
             setDadosTabela({ tableData: resposta });
         });
     }
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
     return (
         <div className="menu-user-page">
         <div className="menu-vertical">
+<<<<<<< HEAD
+            <MenuLateral/>
+=======
             <MenuLateral id={id}/>
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
         </div>
 
         <div className="info-menu">
@@ -64,7 +94,11 @@ const MenuUserHistorico = () =>{
         </div>
 
         <div className="info-menu-table-historico" style={{"width": "800px", "height": "390px", "overflow-y": "scroll", "overflow-x": "hidden"}}>
+<<<<<<< HEAD
+            <Table list={list} colNames={columnNames} width="800px"/>
+=======
             <Table list={tableData} colNames={columnNames} width="800px"/>
+>>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
         </div>
         
         </div>
