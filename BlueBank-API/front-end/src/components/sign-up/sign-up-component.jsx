@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import SignUpInput from "../sign-up-input/sign-up-input-component";
 import "./sign-up-style.scss";
+import axios from "axios";
+import BASE_URL from "../../services/bases";
 
 
 import Profile from "../../assets/perfil.png";
@@ -10,9 +12,10 @@ import Celular from "../../assets/celular.png";
 import CPF from "../../assets/cpf.png";
 import Button from "../button/button-component";
 import funcao from "../../services/urls";
-
+import { useParams, useNavigate  } from 'react-router-dom';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [userCredentials, setUserCredentials] = useState({
     nome: "",
     email: "",
@@ -26,8 +29,25 @@ const SignUp = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    funcao.createClient(nome, password, email, celular,cpf);
-    setUserCredentials({nome: "", email: "", password:"", confirmPassword:"", celular:"", cpf:""})
+    funcao.createClient(nome, password, email, celular,cpf)
+    .then( resp => {
+      
+      axios.get(`${BASE_URL}addInscricao/${email}`)
+      .then(
+          res => {alert(res.data)}
+      )
+
+      setUserCredentials({nome: "", email: "", password:"", confirmPassword:"", celular:"", cpf:""})
+
+      navigate(`/menu-user/${resp.data}`);
+      
+    });
+    
+     
+
+
+    
+
   }
 
   const handleChange =(event) => {
