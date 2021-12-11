@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.bluebank.BlueBankApiApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 39.782 s - in com.bluebank.BlueBankApiApplicationTests
