@@ -31,13 +31,18 @@ O projeto BlueBank foi desenvolvido com base no treinamento, onde foram implemen
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=LINK_LINKEDIN)](https://www.linkedin.com/in/vinicius-trindade-148a431b6/)
 
 ## Funcionalidades
+
+<div>
 <p align="center">
   <img align="left" width="400" height="400" src="/img/front-end.jpeg">
 </p>
+</div>
 
+<div>
 <p align="center">
   <img align="left" width="400" height="400" src="/img/aws.jpeg">
 </p>
+</div>
 
 
 ## Endpoints
