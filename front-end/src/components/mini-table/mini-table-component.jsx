@@ -7,7 +7,7 @@ const MiniTable = ({list, id}) => {
     
 
     return(
-        <div className="mini-table">
+        <div className="mini-table" >
             <h5>Histórico</h5>
             <div className="mini-table-conteudo" style={{"width": "310px"}}>
                 <Table list={list} colNames={columnNames} width="310px" height="180px"/>
