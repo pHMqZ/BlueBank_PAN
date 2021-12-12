@@ -1,8 +1,0 @@
-FROM node:17-alpine3.12
-WORKDIR /app
-COPY /front-end/package.json /app
-COPY /front-end/yarn.lock /app
-RUN yarn install
-COPY /front-end /app
-EXPOSE 3006
-CMD yarn start
