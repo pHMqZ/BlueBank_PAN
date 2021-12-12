@@ -33,6 +33,8 @@ build/
 .vscode/
 
 #Adiocionais
+application.properties
 *.gitignore
 .mvn
+.DS_Store
 /docker

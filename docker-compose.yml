@@ -1,18 +1,35 @@
 version: '3'
 services:
+  db:
+    container_name: db
+    image: mysql:8.0.23
+    networks:
+      - bluebank
+    environment:
+      MYSQL_ROOT_PASSWORD: teste
+    ports:
+      - 3306:3306
   api_bluebank:
     container_name: api
+    networks:
+      - bluebank
     image: api-bluebank:1.0
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?createDatabaseIfNotExist=true
-      - SPRING_DATASOURCE_USERNAME={$DB_USER}
-      - SPRING_DATASOURCE_PASSWORD=${DB_PW}
-      - SPRING_DATASOURCE_NAME=${DB_NAME}
     ports:
       - '8080'
+    links:
+      - db
 
-  front:
-    container_name: front
-    image: front-bluebank:1.0
-    ports:
-      - "80:3006"
+#  front:
+#    container_name: front
+#    networks:
+#      - bluebank
+#    image: front-bluebank:1.0
+#    ports:
+#      - "80:3006"
+#    links:
+#      - db
+#      - api
+
+networks:
+  bluebank:
+    driver: bridge
