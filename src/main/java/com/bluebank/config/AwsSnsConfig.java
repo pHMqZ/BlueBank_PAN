@@ -1,7 +1,5 @@
 package com.bluebank.config;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
-import lombok.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -14,9 +12,10 @@ import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 
 @Configuration
 public class AwsSnsConfig {
-    @Value("${}")
-	public MysqlxDatatypes.Scalar.String SECRET_KEY;
-	public MysqlxDatatypes.Scalar.String ACCESS_KEY;
+
+	public static final String SECRET_KEY = "";
+	public static final String ACCESS_KEY = "";
+	
 
 	@Primary
 	@Bean
