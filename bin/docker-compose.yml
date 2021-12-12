@@ -1,0 +1,18 @@
+version: '3'
+services:
+  api_bluebank:
+    container_name: api
+    image: api-bluebank:1.0
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME={$DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PW}
+      - SPRING_DATASOURCE_NAME=${DB_NAME}
+    ports:
+      - '8080'
+
+  front:
+    container_name: front
+    image: front-bluebank:1.0
+    ports:
+      - "80:3006"
