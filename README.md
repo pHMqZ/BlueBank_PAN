@@ -32,11 +32,11 @@ O projeto BlueBank foi desenvolvido com base no treinamento, onde foram implemen
 
 ## Funcionalidades
 <p align="center">
-  <img align="left" width="400" height="400" src="/img/front-end.PNG">
+  <img align="left" width="400" height="400" src="/img/front-end.jpeg">
 </p>
 
 <p align="center">
-  <img align="left" width="400" height="400" src="/img/aws.PNG">
+  <img align="left" width="400" height="400" src="/img/aws.jpeg">
 </p>
 
 
