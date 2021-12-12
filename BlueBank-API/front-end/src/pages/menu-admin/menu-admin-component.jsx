@@ -52,15 +52,20 @@ const MenuAdminPage = () => {
 
    const {nome, contaNum, cpf, celular, email, bairro,complemento, rua,estado, cidade,contaPesquisa,tableData } = hideStatus;
 
-   useEffect(()=>{
-    var auxContaPesquisa ;
-    contaPesquisa ? auxContaPesquisa = contaPesquisa : auxContaPesquisa = 1;
-    setarConta(auxContaPesquisa);
    
+   useEffect(()=>{
+    setHideStatus({...hideStatus, contaPesquisa: 1});
+   },[] )
+
+
+   useEffect(()=>{
+    //let auxContaPesquisa ;
+    // contaPesquisa ? auxContaPesquisa = contaPesquisa : auxContaPesquisa = 1;
+    setarConta(contaPesquisa);
    },[contaPesquisa])
 
    useEffect(async ()=>{
-    var auxContaPesquisa ;
+    let auxContaPesquisa ;
     contaPesquisa ? auxContaPesquisa = contaPesquisa : auxContaPesquisa = 1;
     await axios.put(`${BASE_URL}usuario/admin/editarUser/${auxContaPesquisa}`, {"telefone": celular,"email":email,
     "bairro":bairro, "complemento":complemento, "rua":rua,"estado":estado,"cidade":cidade})
@@ -68,8 +73,6 @@ const MenuAdminPage = () => {
     )
    
    },[celular,email,bairro,complemento,rua,estado,cidade])
-
-   
 
 
    function setarConta(id){
@@ -101,15 +104,15 @@ const MenuAdminPage = () => {
     .then(res =>
         
         setHideStatus({...hideStatus,
-            cpf: res.data.dado_usuario.cpf ? res.data.dado_usuario.cpf : "...",
+            cpf: res.data.dado_usuario.cpf,
             rua: res.data.dado_usuario.rua ? res.data.dado_usuario.rua: "...",
             numero: res.data.dado_usuario.numero ? res.data.dado_usuario.numero : "...",
             complemento: res.data.dado_usuario.complemento ? res.data.dado_usuario.complemento : "...",
             bairro: res.data.dado_usuario.bairro ? res.data.dado_usuario.bairro : "...",
             cidade: res.data.dado_usuario.cidade ? res.data.dado_usuario.cidade : "...",
             estado: res.data.dado_usuario.estado ? res.data.dado_usuario.estado : "...",
-            celular: res.data.dado_usuario.telefone ? res.data.dado_usuario.telefone : "...",
-            email: res.data.dado_usuario.email ? res.data.dado_usuario.email : "...",
+            celular: res.data.dado_usuario.telefone,
+            email: res.data.dado_usuario.email,
             contaNum: contaAux,
             nome: nomeAux,
             tableData: resposta,

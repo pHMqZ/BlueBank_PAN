@@ -22,7 +22,7 @@ public class AwsSnsController {
 		@Autowired
 		private UsuarioController userController;
 	
-		private String TOPIC_ARN = "arn:aws:sns:us-east-1:965934840569:SQ5T2Topico";
+		private String TOPIC_ARN = "";
 		
 		@CrossOrigin(origins = "http://localhost:3006")
 		@GetMapping("/addInscricao/{email}")
