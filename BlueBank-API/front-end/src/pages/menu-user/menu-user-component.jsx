@@ -59,13 +59,22 @@ const MenuUserPage = () => {
             .then(res => {
                 const resposta = [];    
             if(res.data.length >= 1){
-                var size = res.data.length-1;
+                let size = res.data.length-1;
                 parseInt(size);
-                for(let i = size; i > size-3; i--){
+                
+                let ciclo = size-3;
+                let cicloPadrao = size + 1 === 1 ||size + 1 === 2 ||size + 1 === 3
+                if (cicloPadrao) ciclo = -1
+                
+
+                
+
+                for( size; size > ciclo; size--){
+                    debugger;
                     const item = {"data_origem": "", "valor":"", "tipo":""};
-                    item.data_origem = res.data[i].data_movimento;
-                    item.tipo = res.data[i].tipo_movimento;
-                    item.valor =  res.data[i].valor ;
+                    item.data_origem = res.data[size].data_movimento;
+                    item.tipo = res.data[size].tipo_movimento;
+                    item.valor =  res.data[size].valor ;
                     resposta.push(item)
                   
                 }

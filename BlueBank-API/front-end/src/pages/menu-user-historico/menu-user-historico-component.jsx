@@ -37,6 +37,7 @@ const MenuUserHistorico = () =>{
             const resposta = [];
             var size = res.data.length-1;
             parseInt(size);
+           
             for(let i = size; i >= 0; i--){
                 const item = {"tipo":"", "nome_conta":"", "data_origem":"", "valor":""};
                 item.data_origem = res.data[i].data_movimento;

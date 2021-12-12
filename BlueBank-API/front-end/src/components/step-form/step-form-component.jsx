@@ -50,19 +50,22 @@ const StepFormTransfer = ({id}) =>{
 
       function transferirDinheiro(event){
         event.preventDefault();
+        console.log("cheguei aqui");
         
           if(confirmarSenha === senha){
             axios.get(`${BASE_URL}usuario/cliente/pegarSenha/${id}`)
             .then(res => {
+                
                 if(res.data === senha){
-                    console.log("cheguei aqui");
+                    
                     var valorEmDouble =  parseFloat(valor);
                     axios.post(`${BASE_URL}usuario/cliente/transferir/${id}/${conta}/${valorEmDouble}`).
                     then( resp => setPage({...page,"pagina": 1, "conta": "", "valor": "", "senha":"", "confirmarSenha": "", "nomeDestino": "" }))   
                 }
             })
 
-            window.location.reload();
+            setTimeout( ()=>{window.location.reload()}, 1000);
+            
           }else{
               alert("Senhas não batem!")
           }

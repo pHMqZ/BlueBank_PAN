@@ -34,7 +34,7 @@ public class AwsSnsController {
 		}
 		
 		@CrossOrigin(origins = "http://localhost:3006")
-		@GetMapping("/enviaNotificacao")
+		@GetMapping("/enviaNotificacao/{email}")
 		public String publishMessageToTopic() throws Exception {
 			PublishRequest publishRequest = new PublishRequest(TOPIC_ARN, buildEmailBody(), "Notificatio: Network connectivity issue");
 			snsCliente.publish(publishRequest);
@@ -50,6 +50,7 @@ public class AwsSnsController {
 					"Agora você está apto a realizar as suas movimentações" +
 					"\n" +
 					"Seu número de conta é: " + userController.pegarIds();
+					
 					
 		}
 
