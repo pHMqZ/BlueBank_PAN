@@ -21,7 +21,9 @@ public class AwsSnsController {
 		@Autowired
 		private UsuarioController userController;
 	
-		private String TOPIC_ARN = "arn:aws:sns:us-east-1:965934840569:SQ5T2Topico";
+
+		private String TOPIC_ARN = "";
+
 		
 		@CrossOrigin(origins = "http://localhost:3006")
 		@GetMapping("/addInscricao/{email}")
@@ -33,7 +35,8 @@ public class AwsSnsController {
 		}
 		
 		@CrossOrigin(origins = "http://localhost:3006")
-		@GetMapping("/enviaNotificacao/{email}")
+		@GetMapping("/enviaNotificacao")
+
 		public String publishMessageToTopic() throws Exception {
 			PublishRequest publishRequest = new PublishRequest(TOPIC_ARN, buildEmailBody(), "Notificatio: Network connectivity issue");
 			snsCliente.publish(publishRequest);
@@ -50,7 +53,7 @@ public class AwsSnsController {
 					"\n" +
 					"Seu número de conta é: " + userController.pegarIds();
 					
-					
+
 		}
 
 }

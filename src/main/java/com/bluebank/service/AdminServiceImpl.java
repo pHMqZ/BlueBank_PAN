@@ -52,6 +52,7 @@ public class AdminServiceImpl implements AdminService {
 		Usuario usuario = usuarioRepo.getById(id);
 		usuario.setStatus(true);
 		usuarioRepo.save(usuario);
+
 	}
 
 	@Override
