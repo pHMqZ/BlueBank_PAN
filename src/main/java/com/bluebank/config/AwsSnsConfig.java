@@ -13,9 +13,11 @@ import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 @Configuration
 public class AwsSnsConfig {
 
+
 	public static final String SECRET_KEY = "";
 	public static final String ACCESS_KEY = "";
 	
+
 
 	@Primary
 	@Bean

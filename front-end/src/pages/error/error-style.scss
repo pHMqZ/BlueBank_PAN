@@ -1,0 +1,58 @@
+.background-cinza{
+    background-color: #1D1D1D;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .logo-error{
+        width: 200px;
+    }
+
+    h1{
+        font-size: 200px;
+        margin: 0px;
+        color:#4DBEFE;
+        margin-top: 48px;
+        
+    }
+    
+    h3{
+        margin: 0px;
+        color:#FFF;
+    }
+    
+    h5{
+        margin: 8px;
+        font-size: 20px;
+        max-width: 530px;
+        text-align: center;
+        color: #717171;
+    
+    }
+    
+    .button-error{
+    
+        width: 500px ;
+        margin-top: 24px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: Transparent;
+        cursor:pointer;
+        border: 1px solid #4DBEFE;
+        color:#4DBEFE;
+        
+        
+        
+    }
+    
+    button:hover{
+        background-color: #4DBEFE;
+        color: #fff;
+    }
+    
+    
+   
+}
+

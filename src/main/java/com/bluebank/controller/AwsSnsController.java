@@ -10,6 +10,7 @@ import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.SubscribeRequest;
 
+
 @RestController
 public class AwsSnsController {
 	
@@ -20,7 +21,9 @@ public class AwsSnsController {
 		@Autowired
 		private UsuarioController userController;
 	
+
 		private String TOPIC_ARN = "";
+
 		
 		@CrossOrigin(origins = "http://localhost:3006")
 		@GetMapping("/addInscricao/{email}")
@@ -33,6 +36,7 @@ public class AwsSnsController {
 		
 		@CrossOrigin(origins = "http://localhost:3006")
 		@GetMapping("/enviaNotificacao")
+
 		public String publishMessageToTopic() throws Exception {
 			PublishRequest publishRequest = new PublishRequest(TOPIC_ARN, buildEmailBody(), "Notificatio: Network connectivity issue");
 			snsCliente.publish(publishRequest);
@@ -49,6 +53,7 @@ public class AwsSnsController {
 					"\n" +
 					"Seu número de conta é: " + userController.pegarIds();
 					
+
 		}
 
 }

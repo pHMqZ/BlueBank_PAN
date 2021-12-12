@@ -17,8 +17,10 @@ public interface AdminService {
 	public abstract Usuario cadastrarAdmin(Usuario usuario);
     public abstract  List<Usuario> userFindAll();
 	public abstract Usuario userFindById(Integer id);
-	public abstract Usuario bloqueiaUser(Integer id);
-    public abstract Usuario desbloqueiaUser(Integer id);
+
+	public abstract void bloqueiaUser(Integer id);
+    public abstract void desbloqueiaUser(Integer id);
+
     public abstract Movimento movimentoFindById(Integer id);
     public abstract List<Movimento> movimentoFindAll();
     public abstract List<UsuarioResposta> findAllUsers();

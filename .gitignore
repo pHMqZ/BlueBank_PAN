@@ -6,6 +6,7 @@ target/
 
 ### STS ###
 .apt_generated
+.apt_generated_tests
 .classpath
 .factorypath
 .project
@@ -32,7 +33,12 @@ build/
 ### VS Code ###
 .vscode/
 
+
+application.properties
+.gitignore
+
 #Adiocionais
 *.gitignore
 .mvn
 /docker
+
