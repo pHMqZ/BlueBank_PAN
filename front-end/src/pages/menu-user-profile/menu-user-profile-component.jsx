@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, {useState} from "react";
-=======
 import React, {useState, useEffect} from "react";
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 import MenuLateral from "../../components/menu-lateral/menu-lateral-component";
 import "./menu-user-profile-style.scss";
 import {ReactComponent as ProfileCircle} from '../../assets/profile-circle.svg';
@@ -10,11 +6,6 @@ import {ReactComponent as InfoCircle} from '../../assets/casa-circle.svg';
 import SignUpInput from "../../components/sign-up-input/sign-up-input-component";
 import IconeLapis from "../../assets/icone-lapis.png";
 import IconeCadeado from "../../assets/icone-cadeado.png";
-<<<<<<< HEAD
-
-const MenuUserProfile = () => {
-    const [userCredentials, setUserCredentials] = useState({
-=======
 import axios from "axios";
 import BASE_URL from "../../services/bases";
 import { useParams, useNavigate  } from 'react-router-dom';
@@ -26,7 +17,6 @@ const MenuUserProfile = () => {
 
     const [userCredentials, setUserCredentials] = useState({
         id: userId,
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
         nome: "",
         conta: "",
         cpf: "",
@@ -36,13 +26,6 @@ const MenuUserProfile = () => {
         complemento: "",
         rua: "",
         estado: "",
-<<<<<<< HEAD
-        cidade: ""
-
-      });
-
-      const {nome, conta, cpf, celular, email, bairro,complemento, rua,estado, cidade } = userCredentials;
-=======
         cidade: "",
 
         
@@ -53,7 +36,6 @@ const MenuUserProfile = () => {
 
       const {nome, conta, cpf, celular, email, bairro,complemento, rua,estado, cidade,id} = userCredentials;
       
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
     const handleChange =(event) => {
         const {name,value} = event.target;
@@ -61,12 +43,6 @@ const MenuUserProfile = () => {
         
     };
 
-<<<<<<< HEAD
-    return(
-        <div className="menu-user-page">
-            <div className="menu-vertical">
-                <MenuLateral/>
-=======
     
 
     useEffect(  () =>{
@@ -127,7 +103,6 @@ const MenuUserProfile = () => {
         <div className="menu-user-page">
             <div className="menu-vertical">
                 <MenuLateral id={id}/>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             </div>
 
             <div className="info-menu">
@@ -140,23 +115,11 @@ const MenuUserProfile = () => {
                         <ProfileCircle/>
                     </div>
 
-<<<<<<< HEAD
-                    <form>
-=======
                     <form onSubmit={enviarDadosNovos}>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                     <div className="form-profile">
                     
                             <div className="lado-esquerdo">
                     
-<<<<<<< HEAD
-                                <SignUpInput  
-                                onChange={handleChange}
-                                titulo="Nome:"
-                                icone={IconeLapis}
-                                name="nome"
-                                value={nome}
-=======
                                 <SignUpInput
                                 readOnly  
                                 onChange={handleChange}
@@ -166,49 +129,28 @@ const MenuUserProfile = () => {
                                 value={nome}
                                 
                                 
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 ></SignUpInput>
 
                                 <SignUpInput
                                 onChange={handleChange}
-<<<<<<< HEAD
-                                titulo="Email:"
-=======
                                 titulo={"Email:"}
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 icone={IconeLapis}
                                 name="email"
                                 value={email}
                                 ></SignUpInput>
 
                                 <SignUpInput
-<<<<<<< HEAD
-                                onChange={handleChange}
-                                titulo="CPF:"
-                                icone={IconeCadeado}
-                                name="cpf"
-                                value={cpf}
-                                disabled
-=======
                                 readOnly
                                 titulo={"CPF:"}
                                 icone={IconeCadeado}
                                 name="cpf"
                                 value={cpf}
                                 
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 ></SignUpInput>
                             </div>
         
                             <div className="lado-direito">
                                 <SignUpInput
-<<<<<<< HEAD
-                                titulo="Conta:"
-                                icone={IconeCadeado}
-                                name="conta"
-                                value={conta}
-                                disabled
-=======
                                 readOnly
                                 titulo={"Conta:"}
                                 icone={IconeCadeado}
@@ -217,22 +159,15 @@ const MenuUserProfile = () => {
 
                                
                                
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 ></SignUpInput>
 
                                 <SignUpInput
                                 onChange={handleChange}
-<<<<<<< HEAD
-                                titulo="Telefone:"
-=======
                                 titulo={"Telefone:"}
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 icone={IconeLapis}
                                 value={celular}
                                 name="celular"
                                 ></SignUpInput>
-<<<<<<< HEAD
-=======
 
                             <div className="botao">
                                 <Button
@@ -242,7 +177,6 @@ const MenuUserProfile = () => {
                                 tamanho="130px"
                                 />
                             </div>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                             </div>
                     </div>
                     </form>
@@ -254,93 +188,55 @@ const MenuUserProfile = () => {
                         <InfoCircle/>
                     </div>
 
-<<<<<<< HEAD
-                    <form>
-=======
                     <form onSubmit={enviarDadosNovos}>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                     <div className="form-profile">
                     
                             <div className="lado-esquerdo">
                     
                                 <SignUpInput  
                                 onChange={handleChange}
-<<<<<<< HEAD
-                                titulo="Bairro:"
-                                icone={IconeLapis}
-                                name="bairro"
-                                value={bairro}
-=======
                                 titulo={"Bairro:"}
                                 icone={IconeLapis}
                                 name="bairro"
                                 value={bairro}
                                 
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 ></SignUpInput>
 
                                 <SignUpInput
                                 onChange={handleChange}
-<<<<<<< HEAD
-                                titulo="Rua:"
-                                icone={IconeLapis}
-                                name="rua"
-                                value={rua}
-=======
                                 titulo={"Rua:"}
                                 icone={IconeLapis}
                                 name="rua"
                                 value={rua}
                                 
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 ></SignUpInput>
 
                                 <SignUpInput
                                 onChange={handleChange}
-<<<<<<< HEAD
-                                titulo="Complemento:"
-                                icone={IconeLapis}
-                                name="complemento"
-                                value={complemento}
-=======
                                 titulo={"Complemento:"}
                                 icone={IconeLapis}
                                 name="complemento"
                                 value={complemento}
                                 
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 ></SignUpInput>
                             </div>
         
                             <div className="lado-direito">
                                 <SignUpInput
-<<<<<<< HEAD
-                                titulo="Estado:"
-                                icone={IconeLapis}
-                                name="estado"
-                                value={estado}
-=======
                                 titulo={"Estado:"}
                                 icone={IconeLapis}
                                 name="estado"
                                 value={estado}
                                
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 ></SignUpInput>
 
                                 <SignUpInput
                                 onChange={handleChange}
-<<<<<<< HEAD
-                                titulo="Cidade:"
-=======
                                 titulo={"Cidade:"}
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                                 icone={IconeLapis}
                                 value={cidade}
                                 name="cidade"
                                 ></SignUpInput>
-<<<<<<< HEAD
-=======
 
                             <div className="botao">
                                 <Button
@@ -350,7 +246,6 @@ const MenuUserProfile = () => {
                                 tamanho="130px"
                                 />
                             </div>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                             </div>
                     </div>
                     </form>

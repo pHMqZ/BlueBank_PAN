@@ -43,16 +43,18 @@ public class AdminController {
 
 	@CrossOrigin(origins = "http://localhost:3006")
     @PostMapping("/bloquearUsuario/{id}")
-    public UsuarioResposta bloqueiaUser(@PathVariable("id") Integer id){
-    	Usuario user = adminService.bloqueiaUser(id);
-    	return UsuarioResposta.transformaDTO(user);
+
+    public void bloqueiaUser(@PathVariable("id") Integer id){
+    	adminService.bloqueiaUser(id);
+
     }
 
 	@CrossOrigin(origins = "http://localhost:3006")
     @PostMapping("/desbloquearUsuario/{id}")
-    public UsuarioResposta desbloqueiaUser(@PathVariable("id") Integer id){
-    	Usuario user = adminService.desbloqueiaUser(id);
-       return UsuarioResposta.transformaDTO(user);
+
+    public void desbloqueiaUser(@PathVariable("id") Integer id){
+    	adminService.desbloqueiaUser(id);
+   
     }
 
 	@CrossOrigin(origins = "http://localhost:3006")

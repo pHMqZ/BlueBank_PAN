@@ -10,7 +10,7 @@ import {ReactComponent as LogoBlue} from '../../assets/logoBlue.svg';
 const UserHomePage = () => (
     <div className="container">
 
-        <div className="register-menu">
+        <div className="register-menu ">
             <RegisterMenu/>
         </div>
         

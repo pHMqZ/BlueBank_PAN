@@ -17,11 +17,7 @@ const RegisterMenu = () => (
 
         <div className="options-controller">
             <div className="option">
-<<<<<<< HEAD
-                <a href="/home">Home</a>
-=======
                 <a href="/">Home</a>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             </div>
 
             <div className="option">

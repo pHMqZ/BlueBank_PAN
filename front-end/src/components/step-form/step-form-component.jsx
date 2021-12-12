@@ -8,57 +8,36 @@ import IconeValor from '../../assets/icone-valor.png'
 import SignUpInput from "../sign-up-input/sign-up-input-component";
 import Button from "../button/button-component";
 import Senha from "../../assets/senha.png";
-<<<<<<< HEAD
-
-
-const StepFormTransfer = () =>{
-=======
 import axios from "axios";
 import BASE_URL from "../../services/bases";
 
 
 const StepFormTransfer = ({id}) =>{
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
     const [page, setPage] = useState({
         "pagina": 1,
         "conta": "",
         "valor": "",
         "senha": "",
-<<<<<<< HEAD
-        "confirmarSenha": ""
-    });
-
-    const {pagina, conta, valor, senha, confirmarSenha} = page;
-=======
         "confirmarSenha": "",
         "nomeDestino": "",
     });
 
     const {pagina, conta, valor, senha, confirmarSenha,nomeDestino} = page;
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
 
     function handleSubmit(event) {
         event.preventDefault();
-<<<<<<< HEAD
-        setPage({...page, "pagina": pagina + 1});   
-=======
         axios.get(`${BASE_URL}usuario/cliente/conta/${conta}`)
         .then(res => 
             setPage({...page, "pagina": pagina + 1, nomeDestino: res.data.nome }));
 
         //setPage({...page, "pagina": pagina + 1});   
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
       }
     
 
     const handleChange =(event) => {
         const {name,value} = event.target;
         setPage({...page, [name]: value});
-<<<<<<< HEAD
-        console.log(conta);
-=======
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
       };
 
       function voltar() {
@@ -69,23 +48,24 @@ const StepFormTransfer = ({id}) =>{
         
       })
 
-<<<<<<< HEAD
-=======
       function transferirDinheiro(event){
         event.preventDefault();
+        console.log("cheguei aqui");
         
           if(confirmarSenha === senha){
             axios.get(`${BASE_URL}usuario/cliente/pegarSenha/${id}`)
             .then(res => {
+                
                 if(res.data === senha){
-                    console.log("cheguei aqui");
+                    
                     var valorEmDouble =  parseFloat(valor);
                     axios.post(`${BASE_URL}usuario/cliente/transferir/${id}/${conta}/${valorEmDouble}`).
                     then( resp => setPage({...page,"pagina": 1, "conta": "", "valor": "", "senha":"", "confirmarSenha": "", "nomeDestino": "" }))   
                 }
             })
 
-            window.location.reload();
+            setTimeout( ()=>{window.location.reload()}, 1000);
+            
           }else{
               alert("Senhas não batem!")
           }
@@ -93,7 +73,6 @@ const StepFormTransfer = ({id}) =>{
 
     
 
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
     return (
         <div className="step-form-transferir">
@@ -124,10 +103,7 @@ const StepFormTransfer = ({id}) =>{
             <form onSubmit={handleSubmit}>
                 <div className="campo-input-step">
                 <SignUpInput
-<<<<<<< HEAD
-=======
                     
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                     onChange={handleChange}
                     value={conta}
                     titulo="Conta:"
@@ -137,10 +113,7 @@ const StepFormTransfer = ({id}) =>{
                     ></SignUpInput>
 
                 <SignUpInput
-<<<<<<< HEAD
-=======
                     
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                     onChange={handleChange}
                     titulo="Valor:"
                     icone={IconeValor}
@@ -168,15 +141,9 @@ const StepFormTransfer = ({id}) =>{
                 </div>
 
                 <div className="conjunto-dados-confirmacao">
-<<<<<<< HEAD
-                    <div className="quadrado-azul"><div>Nome</div></div>
-                    <div className="quadrado-azul"><div>Conta</div></div>
-                    <div className="quadrado-azul"><div>Valor</div></div>
-=======
                     <div className="quadrado-azul"><div>{nomeDestino}</div></div>
                     <div className="quadrado-azul"><div>{conta}</div></div>
                     <div className="quadrado-azul"><div>{valor}</div></div>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                 </div>
 
                 <form  onSubmit={handleSubmit} > 
@@ -197,21 +164,14 @@ const StepFormTransfer = ({id}) =>{
     function ConfirmarSenha(handleChange){
         return(
 
-<<<<<<< HEAD
-            <form onSubmit={handleSubmit}>
-=======
             <form onSubmit={transferirDinheiro}>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                 <div className="campo-input-step">
                     <SignUpInput
                         onChange={handleChange}
                         titulo="Senha:"
                         icone={Senha}
                         name="senha"
-<<<<<<< HEAD
-=======
                         type="password"
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                         value={senha}
                         className="ajuste-margin"
                     ></SignUpInput>
@@ -220,10 +180,7 @@ const StepFormTransfer = ({id}) =>{
                         onChange={handleChange}
                         titulo="Confirmar senha:"
                         icone={Senha}
-<<<<<<< HEAD
-=======
                         type="password"
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                         name="confirmarSenha"
                         value={confirmarSenha}
                         className="ajuste-margin"
@@ -234,11 +191,7 @@ const StepFormTransfer = ({id}) =>{
                             <button onClick={voltar}>VOLTAR</button>  
                         </div>
                         <div className="botao">
-<<<<<<< HEAD
-                            <Button onClick={voltar} tipo ="submit" texto="PRÓXIMO" tamanho="160px"/>
-=======
                             <Button  tipo ="submit" texto="FINALIZAR" tamanho="160px"/>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                         </div>
 
                     </div>

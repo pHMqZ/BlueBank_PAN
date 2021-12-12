@@ -17,11 +17,7 @@ const MenuLateralAdmin = () => (
             <div className="menu-lateral_opcoes_3">
                 <div className="menu-lateral_opcoes_3_individual"><a href="/menu-admin"><Casinha/></a></div>
                 <div className="menu-lateral_opcoes_3_individual"><a href="/menu-admin-historico"><Clock/></a></div>
-<<<<<<< HEAD
-                <div className="menu-lateral_opcoes_3_individual"><a><span>sair</span></a></div>
-=======
                 <div className="menu-lateral_opcoes_3_individual"><a href={`/`}><span>sair</span></a></div>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             </div>
         </div>
     </div>

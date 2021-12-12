@@ -3,6 +3,7 @@ WORKDIR /app
 COPY /front-end/package.json /app
 COPY /front-end/yarn.lock /app
 RUN npm update
+RUN npx browserslist@latest --update-db
 RUN yarn install
 COPY /front-end /app
 EXPOSE 3006

@@ -1,23 +1,5 @@
 import axios from "axios";
 import BASE_URL from "./bases";
-<<<<<<< HEAD
-// export default function showClients (){
-//     axios.get(`${BASE_URL}usuario/admin/listarUsuarios`)
-//         .then(res =>console.log(res))
-// }
-
-
-
-export default function  createClient (user, password)  {
-    axios.post(`${BASE_URL}usuario/cliente/salvar`, {"nome":user,"senha":password})
-    .then(res =>console.log(res))
-    
-}
-
-// export{
-//     createClient
-// }
-=======
 
 
  
@@ -50,6 +32,5 @@ export default function  createClient (user, password)  {
 
 
  export default {createClient}
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
 

@@ -1,35 +1,33 @@
-version: '3'
+version: '3.8'
 services:
   db:
     container_name: db
-    image: mysql:8.0.23
+    image: db-bluebank:1.0
     networks:
       - bluebank
-    environment:
-      MYSQL_ROOT_PASSWORD: teste
     ports:
-      - 3306:3306
-  api_bluebank:
+      - '3306'
+  api:
     container_name: api
     networks:
       - bluebank
     image: api-bluebank:1.0
     ports:
-      - '8080'
+      - '8080:8080'
+    restart: on-failure
     links:
       - db
-
-#  front:
-#    container_name: front
-#    networks:
-#      - bluebank
-#    image: front-bluebank:1.0
-#    ports:
-#      - "80:3006"
-#    links:
-#      - db
-#      - api
-
+  front:
+    container_name: front
+    networks:
+      - bluebank
+    image: front-bluebank:1.0
+    ports:
+      - '3006:3006'
+    restart: on-failure
+    links:
+      - db
+      - api
 networks:
   bluebank:
     driver: bridge

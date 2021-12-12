@@ -41,17 +41,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Usuario bloqueiaUser(Integer id) {
+	public void bloqueiaUser(Integer id) {
 		Usuario usuario = usuarioRepo.getById(id);
 		usuario.setStatus(false);
-		return usuario;
+		usuarioRepo.save(usuario);
 	}
 
 	@Override
-	public Usuario desbloqueiaUser(Integer id) {
+	public void desbloqueiaUser(Integer id) {
 		Usuario usuario = usuarioRepo.getById(id);
 		usuario.setStatus(true);
-		return usuario;
+		usuarioRepo.save(usuario);
+
 	}
 
 	@Override

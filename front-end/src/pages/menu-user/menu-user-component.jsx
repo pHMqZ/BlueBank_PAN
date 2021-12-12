@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from "react";
-=======
 import React, {useEffect, useState} from "react";
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 import "./menu-user-style.scss";
 import {ReactComponent as LogoBlue} from '../../assets/logoBlue.svg';
 import {ReactComponent as CartaoCredito} from '../../assets/cartao-credito.svg';
@@ -10,12 +6,6 @@ import MenuLateral from "../../components/menu-lateral/menu-lateral-component";
 import StepFormTransfer from "../../components/step-form/step-form-component";
 import MiniTable from "../../components/mini-table/mini-table-component";
 
-<<<<<<< HEAD
-const MenuUserPage = () => (
-    <div className="menu-user-page">
-        <div className="menu-vertical">
-            <MenuLateral/>
-=======
 
 import axios from "axios";
 import BASE_URL from "../../services/bases";
@@ -69,13 +59,22 @@ const MenuUserPage = () => {
             .then(res => {
                 const resposta = [];    
             if(res.data.length >= 1){
-                var size = res.data.length-1;
+                let size = res.data.length-1;
                 parseInt(size);
-                for(let i = size; i > size-3; i--){
+                
+                let ciclo = size-3;
+                let cicloPadrao = size + 1 === 1 ||size + 1 === 2 ||size + 1 === 3
+                if (cicloPadrao) ciclo = -1
+                
+
+                
+
+                for( size; size > ciclo; size--){
+                    debugger;
                     const item = {"data_origem": "", "valor":"", "tipo":""};
-                    item.data_origem = res.data[i].data_movimento;
-                    item.tipo = res.data[i].tipo_movimento;
-                    item.valor =  res.data[i].valor ;
+                    item.data_origem = res.data[size].data_movimento;
+                    item.tipo = res.data[size].tipo_movimento;
+                    item.valor =  res.data[size].valor ;
                     resposta.push(item)
                   
                 }
@@ -101,23 +100,11 @@ const MenuUserPage = () => {
 <div className="menu-user-page">
         <div className="menu-vertical">
             <MenuLateral id={id}/>
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
         </div>
 
         <div className="info-menu">
             <div className="info-menu-texto">
                 <h4>Bem vindo, </h4>
-<<<<<<< HEAD
-                <h4 className="titulo-azul">Vinicius Trindade!</h4>
-            </div>
-
-            <div className="cartao-credito">
-                <CartaoCredito/>
-
-                <div className="texto-saldo">
-                    <h6>saldo</h6>
-                    <h3>R$ 3900,00</h3>
-=======
                 <h4 className="titulo-azul">{nome}</h4>  
             </div>
 
@@ -127,26 +114,17 @@ const MenuUserPage = () => {
                 <div className="texto-saldo">
                     <h6>saldo</h6>
                     <h3>{saldo}</h3>  
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
                 </div>
                 
             </div>
 
             <div className="transferencia">
-<<<<<<< HEAD
-                <StepFormTransfer/>
-            </div>
-
-            <div className="info-menu-table">
-                <MiniTable/>
-=======
                 <StepFormTransfer id={id} />  
             </div>
 
             <div className="info-menu-table">
                 
                 <MiniTable list={tableData} id={id} />   
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
             </div>
 
         </div>
@@ -157,16 +135,10 @@ const MenuUserPage = () => {
 
 
     </div>
-<<<<<<< HEAD
-
-
-);
-=======
     )
     
 
 
 };
->>>>>>> 63efb025571bc822625c02ee88a4448642df0ddb
 
 export default MenuUserPage;
