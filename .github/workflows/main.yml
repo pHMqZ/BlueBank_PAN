@@ -8,7 +8,7 @@ on:
 #JOBS
 jobs:
   build_docker_images:
-    name: build docker images
+    name: Deploy to EB
     runs-on: ubuntu-latest
     steps:
       - name: checkout
