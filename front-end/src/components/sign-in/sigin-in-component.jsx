@@ -31,12 +31,12 @@ const SignIn = () => {
 
     function handleSubmit(event) {
          event.preventDefault();
-         if(conta==="12345" && senha==="admin"){
+         if(conta=="12345" && senha=="admin"){
             navigate(`/menu-admin`);
         }else{
             axios.get(`${BASE_URL}usuario/cliente/pegarSenha/${conta}`)
             .then(res => {
-               if(res.data === senha){
+               if(res.data == senha){
                    
                    navigate(`/menu-user/${conta}`);
                    
