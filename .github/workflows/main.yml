@@ -1,0 +1,26 @@
+#NAME
+name: Deploy on ELastic Beanstalk
+#EVENT
+on:
+  push:
+    branches:
+      - main
+#JOBS
+jobs:
+  build_docker_images:
+    name: build docker images
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v19
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_ACCESS_SECRET_KEY }}
+          application_name: sq5t2-teste
+          environment_name: Sq5t2teste-env
+          version_label: bluebank-1.0
+          region: us-east-1
+          deployment_package: docker-compose.yml
