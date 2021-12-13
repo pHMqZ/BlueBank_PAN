@@ -1,33 +1,29 @@
 version: '3.8'
 services:
-  db:
-    container_name: db
-    image: db-bluebank:1.0
-    networks:
-      - bluebank
-    ports:
-      - '3306'
   api:
     container_name: api
     networks:
-      - bluebank
+      bluebank:
+        ipv4_address: 10.5.0.5
     image: api-bluebank:1.0
+    hostname: api
     ports:
       - '8080:8080'
     restart: on-failure
-    links:
-      - db
   front:
     container_name: front
     networks:
-      - bluebank
+      bluebank:
+        ipv4_address: 10.5.0.6
     image: front-bluebank:1.0
     ports:
-      - '3006:3006'
+      - '80:3006'
     restart: on-failure
     links:
-      - db
       - api
 networks:
   bluebank:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16

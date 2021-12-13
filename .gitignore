@@ -38,13 +38,9 @@ application.properties
 .gitignore
 
 #Adiocionais
-application.properties
+/src/main/resources/application.properties
 *.gitignore
 .mvn
-<<<<<<< HEAD
 .DS_Store
 /docker
-=======
-/docker
 
->>>>>>> 95ef6c4fdaca5b4873d4bd46357bb7e5a96d5e3f
