@@ -37,6 +37,7 @@ build/
 application.properties
 .gitignore
 
+
 #Adiocionais
 /src/main/resources/application.properties
 *.gitignore
