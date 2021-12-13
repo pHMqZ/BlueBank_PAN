@@ -32,27 +32,25 @@ O projeto BlueBank foi desenvolvido com base no treinamento, onde foram implemen
 
 ## Funcionalidades
 
-<div>
-<p align="center">
-  <img align="left" width="400" height="400" src="/img/front-end.jpeg">
-</p>
-<br>
-</div>
-
-<div>
-<p align="center">
-  <img align="left" width="400" height="400" src="/img/aws.jpeg">
-</p>
-<br>
-</div>
+<ul>
+  <li>
+    <div>
+      <img align="left" width="400" height="400" src="/img/front-end.jpeg">
+    </div>
+  </li>
+  <br />
+  <li>
+    <div>
+      <img align="left" width="400" height="400" src="/img/aws.jpeg">
+    </div>
+  </li>
+  <br />
+</ul>
 
 
 ## Endpoints
-
-### Swagger
-
+### Swagger - http://sq5t2teste-env.eba-vwdhhprt.us-east-1.elasticbeanstalk.com/swagger-ui/
 #### admin-controller
-
 ```json
 POST /usuario/admin/bloquearUsuario/{id}
 {
