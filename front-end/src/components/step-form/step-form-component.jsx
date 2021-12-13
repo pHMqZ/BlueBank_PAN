@@ -52,11 +52,11 @@ const StepFormTransfer = ({id}) =>{
         event.preventDefault();
         console.log("cheguei aqui");
         
-          if(confirmarSenha === senha){
+          if(confirmarSenha == senha){
             axios.get(`${BASE_URL}usuario/cliente/pegarSenha/${id}`)
             .then(res => {
                 
-                if(res.data === senha){
+                if(res.data == senha){
                     
                     var valorEmDouble =  parseFloat(valor);
                     axios.post(`${BASE_URL}usuario/cliente/transferir/${id}/${conta}/${valorEmDouble}`).
