@@ -35,13 +35,13 @@ O projeto BlueBank foi desenvolvido com base no treinamento, onde foram implemen
 <ul>
   <li>
     <div>
-      <img align="left" width="400" height="400" src="/img/front-end.jpeg">
+      <img align="left" src="/img/front-end.jpeg">
     </div>
   </li>
   <br />
   <li>
     <div>
-      <img align="left" width="400" height="400" src="/img/aws.jpeg">
+      <img align="left" src="/img/aws.jpeg">
     </div>
   </li>
   <br />
