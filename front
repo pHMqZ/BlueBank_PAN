@@ -1,9 +1,8 @@
 FROM node:14.17.6-stretch-slim
 WORKDIR /home/node/app
-COPY --chown=node:node /front-end/package.json .
-COPY --chown=node:node /front-end/yarn.lock .
-USER node
-RUN yarn install --network-timeout 100000
-COPY --chown=node:node /front-end .
-CMD [ "npm", "start" ]
+COPY /front-end/package.json .
+COPY /front-end/yarn.lock .
+RUN yarn install
+COPY /front-end .
+CMD [ "yarn", "start"]
 EXPOSE 3006
