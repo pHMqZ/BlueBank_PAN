@@ -49,8 +49,8 @@ O projeto BlueBank foi desenvolvido com base no treinamento, onde foram implemen
 
 
 ## Endpoints
-### Aplicação (front) - http://bluebanks5t2prod-env-1.eba-mymcbaht.us-east-1.elasticbeanstalk.com/
-### Swagger - http://sq5t2teste-env.eba-vwdhhprt.us-east-1.elasticbeanstalk.com/swagger-ui/
+### <a href="http://bluebanks5t2prod-env-1.eba-mymcbaht.us-east-1.elasticbeanstalk.com/" target="_blank">Aplicação</a>
+### <a href="http://sq5t2teste-env.eba-vwdhhprt.us-east-1.elasticbeanstalk.com/swagger-ui/" target="_blank">Swagger</a>
 #### admin-controller
 ```json
 POST /usuario/admin/bloquearUsuario/{id}
